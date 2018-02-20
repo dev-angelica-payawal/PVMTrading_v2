@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
+using System.Web;
 using System.Web.Mvc;
 using Microsoft.Ajax.Utilities;
 using PVMTrading_v1.Models;
@@ -43,17 +45,26 @@ namespace PVMTrading_v1.Controllers
 
         }
 
-        [CustomAuthorize(Roles = RoleName.Admin)]
-        public ActionResult New()
+        //[CustomAuthorize(Roles = RoleName.Admin)]
+       // [HttpPost]
+        public ActionResult New(Product model, HttpPostedFileBase file)
         {
             var brands = _context.Brands.ToList();
             var branches = _context.Branches.ToList();
             var productCategories = _context.ProductCategories.ToList();
             var productConditions = _context.ProductConditions.ToList();
             var warranties = _context.Warranty.ToList();
+            if (file!=null)
+            {
+                model.ProductImage = new byte[file.ContentLength];
+                file.InputStream.Read(model.ProductImage, 0, file.ContentLength);
+            }
+            _context.Products.Add(model);
+            
 
             var viewModels = new ProductViewModel
             {
+                Product = model,
                 Brands = brands,
                 Branches = branches,
                 ProductCategories = productCategories,
@@ -61,6 +72,9 @@ namespace PVMTrading_v1.Controllers
                 Warranties = warranties
 
             };
+
+           
+
             return View(viewModels);
         }
         [HttpPost]

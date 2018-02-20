@@ -10,6 +10,7 @@ namespace PVMTrading_v1.ViewModels
 {
     public class ProductViewModel
     {
+
         public IEnumerable<Brand> Brands { get; set; }
 
         public IEnumerable<Warranty> Warranties { get; set; }
@@ -36,8 +37,9 @@ namespace PVMTrading_v1.ViewModels
             }
         }
 
-
-
+     
     }
+
+   
 }
 

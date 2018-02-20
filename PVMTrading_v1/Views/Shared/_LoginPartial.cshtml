@@ -14,9 +14,23 @@
     @Styles.Render("~/bundles/font-awesome")
     <!-- Custom styles for this template-->
     @Styles.Render("~/bundles/customstyle")
+    <link rel="stylesheet" href="~/Content/background.css">
+    <script src="~/Content/jquery.min.js"></script>
+    <script src="~/Content/bootstrap.min.js"></script>
 </head>
 <body class="bg-light">
+<div class="carousel slide carousel-fade" data-ride="carousel">
 
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+        <div class="item active">
+        </div>
+        <div class="item">
+        </div>
+        @*<div class="item">
+        </div>*@
+    </div>
+</div>
     
 
 
@@ -26,11 +40,11 @@
 <div>
     @RenderBody()
 </div>
-    <!-- Bootstrap core JavaScript-->
-    @Scripts.Render("~/bundles/core")
+<!-- Bootstrap core JavaScript-->
+@Scripts.Render("~/bundles/core")
 
-    <!-- Core plugin JavaScript-->
-    @Scripts.Render("~/bundles/coreplugin")
+<!-- Core plugin JavaScript-->
+@Scripts.Render("~/bundles/coreplugin")
 @RenderSection("scripts", required: false)
 
 </body>

@@ -10,27 +10,27 @@
         <div class="container-fluid">
             <div class="card mb-3">
                 <div class="card-header">
-                    <h4>Search Cash Transactions</h4>
+                    <h4>Cash Transactions</h4>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <div id="dataTable_wrapper" class="dataTables_wrapper container-fluid">
-                            
-                                <!-- Modal -->
-                                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
 
 
-                                            @{Html.RenderAction("SearchCustomer", "CashTransaction");}
+                                        @{Html.RenderAction("SearchCustomer", "CashTransaction");}
 
 
-                                        </div>
                                     </div>
                                 </div>
+                            </div>
 
-                               @Html.ActionLink("New Cash Transaction","ProductList","SearchProduct",new {@class="btn btn-primary"},null)
-                           
+                            @Html.ActionLink("New Cash Transaction", "ProductList", "SearchProduct", new { @class = "btn btn-primary" }, null)
+
 
                             @if (!Model.Any())
                             {
@@ -43,11 +43,17 @@
                                         <tr>
                                             <th>No.</th>
                                             <th>Customer</th>
-                                            <th>Total Amount</th>
+                                            <td>Total Amount</td>
+                                            <td>Discount</td>
+                                            <th>Total Amount w/ Discount</th>
                                             <th>Date</th>
                                             <th>Remarks</th>
+                                            <td>OR Number</td>
+
                                             <th>Is Void</th>
+                                            <th>OR</th>
                                             <th></th>
+
 
 
                                         </tr>
@@ -59,16 +65,22 @@
                                             <tr>
                                                 <td>@cash.Id</td>
                                                 <td>@cash.Customer</td>
+                                                <td>@cash.OriginalTotalAmount</td>
+                                                <td>@cash.TotalDiscountedAmount</td>
                                                 <td>@cash.TotalAmount</td>
                                                 <td>@cash.CashTransactionDate</td>
                                                 <td>@cash.Remarks</td>
-                                                <td>@cash.IsVoid</td>
-                                                
+
+                                                <td>@cash.OR</td>
+                                                <td>
+                                                    @Html.ActionLink("Edit", "Edit", new { id = cash.Id }) | @Html.ActionLink("Edit", "Edit", new { id = cash.Id }) | @Html.ActionLink("Edit", "Edit", new { id = cash.Id })|
+                                                </td>
+
                                             </tr>
-                                                                }
+                                        }
                                     </tbody>
                                 </table>
-                                                                }
+                            }
 
                         </div>
                     </div>
@@ -100,73 +112,73 @@
 }
 
 @*
-<h2>Index</h2>
+    <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Customer.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TotalDiscountedAmount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OriginalTotalAmount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CashTransactionDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TotalAmount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsVoid)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Remarks)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OR)
-        </th>
-        <th></th>
-    </tr>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalDiscountedAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OriginalTotalAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CashTransactionDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsVoid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Remarks)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OR)
+            </th>
+            <th></th>
+        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Customer.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TotalDiscountedAmount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OriginalTotalAmount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CashTransactionDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TotalAmount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsVoid)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Remarks)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OR)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalDiscountedAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OriginalTotalAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CashTransactionDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsVoid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Remarks)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OR)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            </td>
+        </tr>
+    }
 
-</table>
+    </table>
 *@
