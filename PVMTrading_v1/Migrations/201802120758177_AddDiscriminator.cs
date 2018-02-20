@@ -1,0 +1,26 @@
+namespace PVMTrading_v1.Migrations
+{
+    using System;
+    using System.Data.Entity.Migrations;
+    
+    public partial class AddDiscriminator : DbMigration
+    {
+        public override void Up()
+        {
+            CreateTable(
+                "dbo.RoleViewModels",
+                c => new
+                    {
+                        Id = c.String(nullable: false, maxLength: 128),
+                        Name = c.String(),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+        }
+        
+        public override void Down()
+        {
+            DropTable("dbo.RoleViewModels");
+        }
+    }
+}

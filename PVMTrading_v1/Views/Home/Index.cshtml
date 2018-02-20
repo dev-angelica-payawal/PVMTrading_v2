@@ -1,0 +1,410 @@
+﻿
+
+@model List<PVMTrading_v1.Models.Customer>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#">HOME</a>
+            </li>
+            <li class="breadcrumb-item active">HOME</li>
+        </ol>
+        <!-- Icon Cards-->
+        <div class="row">
+            <div class="col-xl-3 col-sm-6 mb-3">
+                <div class="card text-white bg-primary o-hidden h-100">
+                    <div class="card-body">
+                        <div class="card-body-icon">
+                            <i class="fa fa-fw fa-institution"></i>
+                        </div>
+                        <div class="mr-5">26 Products</div>
+                    </div>
+                    <a class="card-footer text-white clearfix small z-1" href="#">
+                        <span class="float-left">View Details</span>
+                        <span class="float-right">
+                            <i class="fa fa-angle-right"></i>
+                        </span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-6 mb-3">
+                <div class="card text-white bg-warning o-hidden h-100">
+                    <div class="card-body">
+                        <div class="card-body-icon">
+                            <i class="fa fa-fw fa-users"></i>
+                        </div>
+                        <div class="mr-5">11 Customers</div>
+                    </div>
+                    <a class="card-footer text-white clearfix small z-1" href="#">
+                        <span class="float-left">View Details</span>
+                        <span class="float-right">
+                            <i class="fa fa-angle-right"></i>
+                        </span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-6 mb-3">
+                <div class="card text-white bg-success o-hidden h-100">
+                    <div class="card-body">
+                        <div class="card-body-icon">
+                            <i class="fa fa-fw fa-shopping-cart"></i>
+                        </div>
+                        <div class="mr-5">123 New Orders!</div>
+                    </div>
+                    <a class="card-footer text-white clearfix small z-1" href="#">
+                        <span class="float-left">View Details</span>
+                        <span class="float-right">
+                            <i class="fa fa-angle-right"></i>
+                        </span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-6 mb-3">
+                <div class="card text-white bg-danger o-hidden h-100">
+                    <div class="card-body">
+                        <div class="card-body-icon">
+                            <i class="fa fa-fw fa-bar-chart"></i>
+                        </div>
+                        <div class="mr-5">13 Website Visit</div>
+                    </div>
+                    <a class="card-footer text-white clearfix small z-1" href="#">
+                        <span class="float-left">View Details</span>
+                        <span class="float-right">
+                            <i class="fa fa-angle-right"></i>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- Example DataTables Card-->
+@*
+        <div class="card mb-3">
+            <div class="card-header">
+                <i class="fa fa-table"></i> Data Table Example
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <div id="dataTable_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
+                        <div class="row"><div class="col-sm-12 col-md-6"><div class="dataTables_length" id="dataTable_length"><label>Show <select name="dataTable_length" aria-controls="dataTable" class="form-control form-control-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div></div><div class="col-sm-12 col-md-6"><div id="dataTable_filter" class="dataTables_filter"><label>Search:<input class="form-control form-control-sm" placeholder="" aria-controls="dataTable" type="search"></label></div></div></div><div class="row">
+                            <div class="col-sm-12">
+                                <table class="table table-bordered dataTable" id="dataTable" role="grid" aria-describedby="dataTable_info" style="width: 100%;" width="100" cellspacing="0">
+                                    <thead>
+                                        <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 141px;" aria-sort="ascending" aria-label="Name: activate to sort column descending">Name</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 221px;" aria-label="Position: activate to sort column ascending">Position</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 101px;" aria-label="Office: activate to sort column ascending">Office</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 44px;" aria-label="Age: activate to sort column ascending">Age</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 97px;" aria-label="Start date: activate to sort column ascending">Start date</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 77px;" aria-label="Salary: activate to sort column ascending">Salary</th></tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr><th rowspan="1" colspan="1">Name</th><th rowspan="1" colspan="1">Position</th><th rowspan="1" colspan="1">Office</th><th rowspan="1" colspan="1">Age</th><th rowspan="1" colspan="1">Start date</th><th rowspan="1" colspan="1">Salary</th></tr>
+                                    </tfoot>
+                                    <tbody>
+                                        <tr role="row" class="odd">
+                                            <td class="sorting_1">Airi Satou</td>
+                                            <td>Accountant</td>
+                                            <td>Tokyo</td>
+                                            <td>33</td>
+                                            <td>2008/11/28</td>
+                                            <td>$162,700</td>
+                                        </tr>
+                                        <tr role="row" class="even">
+                                            <td class="sorting_1">Angelica Ramos</td>
+                                            <td>Chief Executive Officer (CEO)</td>
+                                            <td>London</td>
+                                            <td>47</td>
+                                            <td>2009/10/09</td>
+                                            <td>$1,200,000</td>
+                                        </tr>
+                                        <tr role="row" class="odd">
+                                            <td class="sorting_1">Ashton Cox</td>
+                                            <td>Junior Technical Author</td>
+                                            <td>San Francisco</td>
+                                            <td>66</td>
+                                            <td>2009/01/12</td>
+                                            <td>$86,000</td>
+                                        </tr>
+                                        <tr role="row" class="even">
+                                            <td class="sorting_1">Bradley Greer</td>
+                                            <td>Software Engineer</td>
+                                            <td>London</td>
+                                            <td>41</td>
+                                            <td>2012/10/13</td>
+                                            <td>$132,000</td>
+                                        </tr>
+                                        <tr role="row" class="odd">
+                                            <td class="sorting_1">Brenden Wagner</td>
+                                            <td>Software Engineer</td>
+                                            <td>San Francisco</td>
+                                            <td>28</td>
+                                            <td>2011/06/07</td>
+                                            <td>$206,850</td>
+                                        </tr>
+                                        <tr role="row" class="even">
+                                            <td class="sorting_1">Brielle Williamson</td>
+                                            <td>Integration Specialist</td>
+                                            <td>New York</td>
+                                            <td>61</td>
+                                            <td>2012/12/02</td>
+                                            <td>$372,000</td>
+                                        </tr>
+                                        <tr role="row" class="odd">
+                                            <td class="sorting_1">Bruno Nash</td>
+                                            <td>Software Engineer</td>
+                                            <td>London</td>
+                                            <td>38</td>
+                                            <td>2011/05/03</td>
+                                            <td>$163,500</td>
+                                        </tr>
+                                        <tr role="row" class="even">
+                                            <td class="sorting_1">Caesar Vance</td>
+                                            <td>Pre-Sales Support</td>
+                                            <td>New York</td>
+                                            <td>21</td>
+                                            <td>2011/12/12</td>
+                                            <td>$106,450</td>
+                                        </tr>
+                                        <tr role="row" class="odd">
+                                            <td class="sorting_1">Cara Stevens</td>
+                                            <td>Sales Assistant</td>
+                                            <td>New York</td>
+                                            <td>46</td>
+                                            <td>2011/12/06</td>
+                                            <td>$145,600</td>
+                                        </tr>
+                                        <tr role="row" class="even">
+                                            <td class="sorting_1">Cedric Kelly</td>
+                                            <td>Senior Javascript Developer</td>
+                                            <td>Edinburgh</td>
+                                            <td>22</td>
+                                            <td>2012/03/29</td>
+                                            <td>$433,060</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div><div class="row"><div class="col-sm-12 col-md-5"><div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="dataTable_previous"><a href="#" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li><li class="paginate_button page-item active"><a href="#" aria-controls="dataTable" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">2</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="3" tabindex="0" class="page-link">3</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="4" tabindex="0" class="page-link">4</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="5" tabindex="0" class="page-link">5</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="6" tabindex="0" class="page-link">6</a></li><li class="paginate_button page-item next" id="dataTable_next"><a href="#" aria-controls="dataTable" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li></ul></div></div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+        </div>*@
+    <!-- Area Chart Example-->
+        <div class="card mb-3">
+            <div class="card-header">
+                <h2>List's of Costumers</h2>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <div id="dataTable_wrapper" class="dataTables_wrapper container-fluid">
+                        <p>
+
+
+                            @*                            <!-- Modal -->
+                            <div class="modal fade" id="1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+                                        </div>
+                                        <div class="modal-body">
+                                            @{Html.RenderAction("New", "Customer");}
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>*@
+                        </p>
+                        @if (!Model.Any())
+            {
+                            <p>We don't have any customers yet.</p>
+                        }
+                        else
+                        {
+                            <table class="table table-bordered" id="customers" style="margin: 0">
+                                <thead>
+                                    <tr>
+                                        <th>First Name</th>
+                                        <th>Middle Name</th>
+                                        <th>Last Name</th>
+                                        <th>Extension Name</th>
+                                        <th>Mobile Number</th>
+                                        <th>Sex</th>
+                                        <th>Registered Date Created</th>
+                                        @*
+                                        <th>Address</th>*@
+
+
+                                        @*
+                                        <th>Telephone</th>
+
+                                          <th>Telephone</th>
+
+                                          <th>Email Address</th>
+                                          <th>Birth Date</th>
+                                          <th>Civil Status</th>
+
+                                          <th>Place Of Birth</th>
+                                          <th>Nationality</th>
+                                          <th>Tax Identification Number</th>
+                                          <th>Customer Type</th>
+
+                                          <th>Address</th>
+                                          <th>Zip Code</th>*@
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var customer in Model)
+                                    {
+
+                                        <tr>
+                                            <td>@customer.FirstName</td>
+                                            <td>@customer.MiddleName</td>
+                                            <td>@customer.LastName</td>
+                                            <td>@customer.NameExtension</td>
+                                            <td>@customer.Mobile</td>
+                                            <td>@customer.Sex.Label</td>
+                                            <td>@customer.RegisteredDateCreated.ToShortDateString()</td>
+                                            @*<td>@customer.CustomerCompleInfo.Telephone</td>
+                                            <td>@customer.CustomerCompleInfo.Email</td>
+                                            <td>@customer.CustomerCompleInfo.Birthdate</td>
+                                            <td>@customer.CustomerCompleInfo.CivilStatus.Label</td>
+                                            <td>@customer.CustomerCompleInfo.PlaceOfBirth</td>
+                                            <td>@customer.CustomerCompleInfo.Nationality</td>
+                                            <td>@customer.CustomerCompleInfo.TaxIdentificationNumber</td>
+                                            <td>@customer.CustomerCompleInfo.CustomerType.Label</td>
+                                            <td>@customer.CustomerCompleInfo.LotHouseNumberAndStreet, @customer.CustomerCompleInfo.Barangay, @customer.CustomerCompleInfo.CityMunicipality, @customer.CustomerCompleInfo.Province, @customer.CustomerCompleInfo.Country</td>"
+                                            <td>@customer.CustomerCompleInfo.ZipCode</td>#1#*@
+                                            <td>
+                                                @*@Html.ActionLink("Edit", "Edit", new { id = customer.Id }, null)*@ @*<span class="btn btn-xs btn-primary" id="edit_@customer.Id" onclick="createModal('@Url.Action("Edit", "Customer" , new {id=customer.Id })')">Edit</span> | @Html.ActionLink("Delete", "Delete", new { id = customer.Id }, null) | @#1#Html.ActionLink("Details", "Details", "Customer", new { id = customer.Id }, null)#1#  <span class="btn btn-xs btn-primary" id="edit_@customer.Id" onclick="createModal('@Url.Action("Details", "Customer" , new {id=customer.Id })')">Details</span>*@
+
+
+
+
+
+                                                @* <td>@Html.ActionLink("OderByCustomer", "OderByCustomer")</td>*@
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            <div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+                                <div class="modal-dialog">
+                                    <div class="modal-content" id="modelContent">
+                                    </div>
+                                </div>
+                            </div>
+
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mb-3">
+            <div class="card-header">
+                <i class="fa fa-area-chart"></i> Area Chart Example
+            </div>
+            <div class="card-body">
+                <div style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;" class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+                <canvas id="myAreaChart" width="965" height="289" style="display: block; width: 965px; height: 289px;" class="chartjs-render-monitor"></canvas>
+            </div>
+            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8">
+                <!-- Example Bar Chart Card-->
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <i class="fa fa-bar-chart"></i> Bar Chart Example
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-8 my-auto">
+                                <div style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;" class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+                                <canvas id="myBarChart" width="403" height="201" style="display: block; width: 403px; height: 201px;" class="chartjs-render-monitor"></canvas>
+                            </div>
+                            <div class="col-sm-4 text-center my-auto">
+                                <div class="h4 mb-0 text-primary">$34,693</div>
+                                <div class="small text-muted">YTD Revenue</div>
+                                <hr>
+                                <div class="h4 mb-0 text-warning">$18,474</div>
+                                <div class="small text-muted">YTD Expenses</div>
+                                <hr>
+                                <div class="h4 mb-0 text-success">$16,219</div>
+                                <div class="small text-muted">YTD Margin</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <!-- /.container-fluid-->
+    <!-- /.content-wrapper-->
+    <footer class="sticky-footer">
+        <div class="container">
+            <div class="text-center">
+                <small>Copyright © Your Website 2017</small>
+            </div>
+        </div>
+    </footer>
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top" style="display: none;">
+        <i class="fa fa-angle-up"></i>
+    </a>
+
+</div>
+<link href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
+@section scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js">
+    </script>
+    <script>
+        function createModal(url){
+            $('#modelContent').load(url);
+            $('#myModal').modal('show');
+        }
+    </script>
+    <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#customers').DataTable({/*
+            "ajax": {
+                "url": "/customer/Loaddata",
+                "type": "GET",
+                "datatype":"json"
+            },*/
+                "column": [
+                    { "autowidth": true },
+                    { "ScrollY": (0.6 * $(window).height()) },
+
+
+                    /* { "data": "FirstName", "autowidth": true },
+                     { "data": "MiddleName", "autowidth": true },
+                     { "data": "LastName", "autowidth": true },
+                     { "data": "NameExtension", "autowidth": true },
+                     { "data": "Mobile", "autowidth": true },
+                      { "data": "Telephone", "autowidth": true },
+                      { "data": "Sex.Label", "autowidth": true },
+                     { "data": "RegisteredDateCreated", "autowidth": true },
+                     { "data": "PlaceOfBirth", "autowidth": true },
+                     { "data": "Nationality", "autowidth": true },
+                     { "data": "TaxIdentificationNumber", "autowidth": true },
+                     { "data": "CustomerType", "autowidth": true },
+                     { "data": "ZipCode", "autowidth": true }
+ */
+
+                ]
+
+
+
+            });
+        });
+    </script>
+}

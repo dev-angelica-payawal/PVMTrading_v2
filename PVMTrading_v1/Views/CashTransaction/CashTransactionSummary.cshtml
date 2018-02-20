@@ -1,0 +1,165 @@
+﻿@model PVMTrading_v1.ViewModels.CashTransactionViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+@using (Html.BeginForm("Save", "CashTransaction"))
+{
+    @Html.AntiForgeryToken()
+    <div class="content-wrapper">
+        <div class="form-horizontal">
+
+
+            <h4>Cash Transaction</h4>
+            <!-- Modal -->
+            <div class="modal fade" id="myModalcustomer" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        @{
+                            Html.RenderAction("SearchCustomer", "CashTransaction");
+                        }
+                    </div>
+                </div>
+            </div>
+         
+           
+           
+            
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.CashTransaction.CashTransactionDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.CashTransaction.CashTransactionDate, new { Value = DateTime.Now, @disabled = "disabled", @readonly = "readonly" })
+                    @Html.ValidationMessageFor(model => model.CashTransaction.CashTransactionDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            
+          
+        
+            <div class="form-group">
+                @Html.LabelFor(model => model.CashTransaction.CustomerId, "Customer Name", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(m => m.CashTransaction.CustomerId, new SelectList(Model.Customer, "Id", "FirstName"),"", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.CashTransaction.CustomerId, "", new {@class = "text-danger"})
+                </div>
+            </div>
+          
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.CashTransaction.TotalDiscountedAmount,"Discount", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.CashTransaction.TotalDiscountedAmount, new { value=0,id = "discount",@class = "discount form-control"})
+                    @Html.ValidationMessageFor(model => model.CashTransaction.TotalDiscountedAmount, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.CashTransaction.OriginalTotalAmount, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.CashTransaction.OriginalTotalAmount, new {@class="txt", Value = ViewBag.price ,@disabled = "disabled", @readonly = "readonly" })
+                    @Html.ValidationMessageFor(model => model.CashTransaction.OriginalTotalAmount, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.CashTransaction.TotalAmount, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.CashTransaction.TotalAmount, new { Value = ViewBag.price , @disabled = "disabled", @readonly = "readonly" })
+                    @Html.ValidationMessageFor(model => model.CashTransaction.TotalAmount, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.CashTransaction.Remarks, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.CashTransaction.Remarks, new { @class ="form-control" })
+                    @Html.ValidationMessageFor(model => model.CashTransaction.Remarks, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            
+            <div class="form-group">
+                @Html.LabelFor(model => model.CashTransaction.OR, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.CashTransaction.OR, new { @class="form-control" })
+                    @Html.ValidationMessageFor(model => model.CashTransaction.OR, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+
+    </div>
+                            }
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+@*<link href="~/Content/PVMcssandjs/jquery-ui-1.12.1/jquery-ui.css" rel="stylesheet" />
+<script src="~/Content/PVMcssandjs/jquery-ui-1.12.1/jquery-ui.js"></script><script type="text/javascript">
+    $(function () {
+
+        $("#SearchString").autocomplete({
+            source: @Html.ActionLink("autocomplete","AutocompleteSuggestions","CashTransaction"),
+            minLength: 1,
+            select: function (event, ui) {
+                if (ui.item) {
+                    $("#SearchString").val(ui.item.value);
+                    $("form").submit();
+                }
+            }
+        });
+    });
+</script>*@
+
+<script>
+    $(document).ready(function(){
+
+        //iterate through each textboxes and add keyup
+        //handler to trigger sum event
+        $(".txt").each(function() {
+
+            $(this).keyup(function(){
+                calculateSum();
+            });
+        });
+
+    });
+
+    function calculateSum() {
+
+        var sum = 0;
+        //iterate through each textboxes and add the values
+        $(".txt").each(function() {
+
+            //add only if the value is number
+            if(!isNaN(this.value) && this.value.length != 0) {
+                sum += parseFloat(this.value);
+            }
+
+        });
+        //.toFixed() method will roundoff the final sum to 2 decimal places
+        $("#sum").html(sum.toFixed(2));
+    }
+</script>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
+
+
+
+

@@ -1,0 +1,47 @@
+﻿@model List<PVMTrading_v1.Models.ProductCategory>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <h2>Product Category</h2>
+
+        <p>
+            @Html.ActionLink("Create New", "New",null, new { @class = "btn btn-primary" })
+        </p>
+        @if (!Model.Any())
+        {
+            <p>No Available Product Category.</p>
+        }
+        else
+        {
+            <table class="table" >
+                <tr>
+                    <th>
+                        Name
+                    </th>
+
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @item.Name
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        }
+    </div>
+</div>
+
+
+

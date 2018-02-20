@@ -1,0 +1,45 @@
+﻿@model List<PVMTrading_v1.Models.Brand>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <h2>BrandName</h2>
+
+        <p>
+            @Html.ActionLink("Create New", "New")
+        </p>
+        <table class="table">
+            <tr>
+       
+                <th>
+                    Brand Name
+                </th>
+                <th>
+                    Brand Type
+                </th>
+    
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+           
+                    <td>
+                        @item.BrandName
+                    </td>
+                    <td>
+                        @item.BrandType.Label
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) 
+                    </td>
+                </tr>
+            }
+
+
+        </table>
+    </div>
+</div>

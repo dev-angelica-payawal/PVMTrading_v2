@@ -1,0 +1,88 @@
+﻿
+
+@using PVMTrading_v1.Controllers
+@model List<PVMTrading_v1.Models.TempCart>
+
+
+@{
+    ViewBag.Title = "Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Resources/css/style.css" rel="stylesheet" />
+<link href="~/Resources/css/bootstrap.css" rel="stylesheet" />
+<link href="~/Resources/css/form.css" rel="stylesheet" />
+<link href="~/Resources/css/jquery-ui.css" rel="stylesheet" />
+
+<script src="~/Content/PVMcssandjs/jquery-1.11.1.min.js"></script>
+<script src="~/Content/PVMcssandjs/js/simpleCart.min.js"></script>
+<script src="~/Content/PVMcssandjs/js/responsiveslides.min.js"></script>
+
+<!-- Modal -->
+<div class="modal fade" id="SearchCustomerModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+                                            
+                                            
+            @{Html.RenderAction("SearchCustomer", "CashTransaction");}
+            
+        </div>
+    </div>
+</div>
+
+
+    <div class="content-wrapper">
+        <!---->
+        <div class="cart_main">
+            <div class="container">
+                <div class="cart-items">
+                    <h2>My Shopping Bag (@ViewBag.CountofProducts)</h2>
+                    <script>
+                        $(document).ready(function(c) {
+                            $('.close1').on('click',
+                                function(c) {
+                                    $('.cart-header').fadeOut('slow',
+                                        function(c) {
+                                            $('.cart-header').remove();
+                                        });
+                                });
+                        });
+                    </script>
+                    <div class="col-4">
+                        @Html.ActionLink("Add More Products", "ProductList", "Product", new {@class = "btn btn-primary"})
+                    </div>
+                    @foreach (var item in Model)
+                    {
+                        <div class="cart-header">
+                            <div class="close1">@Html.ActionLink("X", "DeleteFromCart", new {id = item.Id, @class = "close1"})</div>
+                            <div class="cart-sec">
+                                <div class="cart-item cyc">
+                                    <img src="@Url.Content("~/Resources/images/ts4.jpg")" class="img-responsive" alt="">
+                                </div>
+
+
+                                <div class="cart-item-info">
+                                    <h3>@item.Product.Name<span>Model :@item.Product.Model</span></h3>
+                                    <h4>&#8369; @item.ProductPrice</h4>
+                                    <p class="qty">Qty :@Html.ActionLink("-","LessQuantity",new {id=item.Id,quantity = item.Product.AvailableForSelling},new { @class = "btn btn-xs btn-primary" })|  @item.Quantity  |@Html.ActionLink("+", "AddQuantity", new { id = item.Id, quantity = item.Product.AvailableForSelling }, new { @class = "btn btn-xs btn-primary" })  </p>
+                                    <p><span>Avail Prod: </span> @item.Product.AvailableForSelling</p>
+                                </div>
+
+                                <div class="clearfix"></div>
+
+                            </div>
+                        </div>
+                    }
+                    <div class="cart-total">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#SearchCustomerModal">
+                            Pay Out
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}

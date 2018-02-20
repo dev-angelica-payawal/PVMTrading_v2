@@ -1,0 +1,111 @@
+﻿@model IEnumerable<PVMTrading_v1.ViewModels.ProductViewModel>
+
+@{
+    ViewBag.Title = "Product List";
+}
+
+<div class="content-wrapper">
+
+   <div class="new">
+            <div class="container">
+                <h3>ProductList</h3>
+                <div class="new-products">
+                
+                    @*@for (int i = 1; i < ViewBag.productCounts; i++)
+                    {
+                        
+                    }*@
+                    
+                    <table>
+                    @foreach (var product in Model)
+                                        {
+                                            <tr>
+                                                <td> @product.Product.Name</td>
+                                            <td>  @product.Product.Model</td>
+                                                <td>  @product.ProductPrice.SellingPrice</td>
+                                            </tr>
+                                                }
+
+                    </table>
+                                               @* <div class="new-items">
+        <div class="item1">
+            <img src="~/Resources/images/s1.jpg" alt="" /><!--Product Image-->
+            <div class="item-info">
+                <h4>Brown Furny Seater</h4><!--Product Name-->
+                <span>ID: SR5421</span><!--Product Id-->
+                <a href="#">Buy Now</a><!--Buy now Button-->
+            </div>
+        </div>
+        <div class="item4">
+            <img src="~/Resources/images/s4.jpg" alt="" />
+            <div class="item-info4">
+                <h4>Dream Furniture Bed</h4>
+                <span>ID: SR5421</span>
+                <a href="#">Buy Now</a>
+            </div>
+        </div>
+    </div>
+    <div class="new-items new_middle">
+        <div class="item2">
+            <div class="item-info2">
+                <h4><a href="products.html">Georgia Sofa Set</a></h4>
+                <span>ID: GS7641</span>
+                <a href="single.html">Buy Now</a>
+            </div>
+            <a href="products.html"><img src="~/Resources/images/s2.jpg" alt="" /></a>
+        </div>
+        <div class="item5">
+            <a href="products.html"><img src="~/Resources/images/s5.jpg" alt="" /></a>
+            <div class="item-info5">
+                <h4><a href="products.html">BlackBurn Law Set</a></h4>
+                <span>ID: SR5421</span>
+                <a href="single.html">Buy Now</a>
+            </div>
+        </div>
+    </div>
+    <div class="new-items new_last">
+        <div class="item3">
+            <a href="products.html"><img src="~/Resources/images/s3.jpg" alt="" /></a>
+            <div class="item-info3">
+                <h4><a href="products.html">Shefan Dinning Set</a></h4>
+                <span>ID: SR5421</span>
+                <a href="single.html">Buy Now</a>
+            </div>
+        </div>
+        <div class="item6">
+            <a href="products.html"><img src="~/Resources/images/s6.jpg" alt="" /></a>
+            <div class="item-info6">
+                <h4><a href="products.html">Irony Sofa Set</a></h4>
+                <span>ID: SR5421</span>
+                <a href="single.html">Buy Now</a>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>*@
+</div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+@*<link href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+    @section scripts{
+
+        <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('#product').DataTable({
+
+                    "column": [
+                        { "autowidth": true },
+                        { "ScrollY": (0.6 * $(window).height()) }
+                              ]
+                });
+            });
+        </script>
+    }*@

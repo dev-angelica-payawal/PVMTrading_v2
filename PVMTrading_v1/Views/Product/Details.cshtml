@@ -1,0 +1,168 @@
+﻿@model PVMTrading_v1.ViewModels.ProductViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="modal-header">
+    Product
+</div>
+ <div class="modal-body">
+    <div class="form-horizontal">
+        <div>
+            @Html.DisplayNameFor(model => model.Product.Branch.BranchName)
+        </div>
+
+        <div>
+            @Html.DisplayFor(model => model.Product.Branch.BranchName)
+        </div>
+
+        <div>
+            @Html.DisplayNameFor(model => model.Product.Brand.BrandName)
+        </div>
+
+        <div>
+            @Html.DisplayFor(model => model.Product.Brand.BrandName)
+        </div>
+
+        <div>
+            @Html.DisplayNameFor(model => model.Product.ProductCategory.Name)
+        </div>
+
+        <div>
+            @Html.DisplayFor(model => model.Product.ProductCategory.Name)
+        </div>
+
+        <div>
+            @Html.DisplayNameFor(model => model.Product.ProductCondition.Label)
+        </div>
+
+        <div>
+            @Html.DisplayFor(model => model.Product.ProductCondition.Label)
+        </div>
+
+        <div>
+            @Html.DisplayNameFor(model => model.Product.Warranty.Label)
+        </div>
+
+        <div>
+            @Html.DisplayFor(model => model.Product.Warranty.Label)
+        </div>
+
+        <div>
+            @Html.DisplayNameFor(model => model.Product.Name)
+        </div>
+
+        <div>
+            @Html.DisplayFor(model => model.Product.Name)
+        </div>
+
+        <div>
+            @Html.DisplayNameFor(model => model.Product.Description)
+        </div>
+
+        <div>
+            @Html.DisplayFor(model => model.Product.Description)
+        </div>
+
+        <div>
+            @Html.DisplayNameFor(model => model.Product.SerialNumber)
+        </div>
+
+        <div>
+            @Html.DisplayFor(model => model.Product.SerialNumber)
+        </div>
+
+        <div>
+            @Html.DisplayNameFor(model => model.Product.Model)
+        </div>
+
+        <div>
+            @Html.DisplayFor(model => model.Product.Model)
+        </div>
+
+        <div>
+            @Html.DisplayNameFor(model => model.Product.DateCreated)
+        </div>
+
+        <div>
+            @Html.DisplayFor(model => model.Product.DateCreated)
+        </div>
+
+        <div>
+            @Html.DisplayNameFor(model => model.Product.IsReturned)
+        </div>
+
+        <div>
+            @Html.DisplayFor(model => model.Product.IsReturned)
+        </div>
+
+        <div>
+            @Html.DisplayNameFor(model => model.Product.OriginalPrice)
+        </div>
+
+        <div>
+            @Html.DisplayFor(model => model.Product.OriginalPrice)
+        </div>
+
+        <div>
+            @Html.DisplayNameFor(model => model.Product.Quantity)
+        </div>
+
+        <div>
+            @Html.DisplayFor(model => model.Product.Quantity)
+        </div>
+
+        <div>
+            @Html.DisplayNameFor(model => model.Product.Reserved)
+        </div>
+
+        <div>
+            @Html.DisplayFor(model => model.Product.Reserved)
+        </div>
+
+        <div>
+            @Html.DisplayNameFor(model => model.Product.AvailableForSelling)
+        </div>
+        
+
+
+        <div>
+            @Html.DisplayFor(model => model.Product.AvailableForSelling)
+        </div>
+        
+        
+        
+        
+        
+        <div>
+            @Html.DisplayFor(model => model.ProductInclusion.FreeItem)
+        </div>
+
+        <div>
+            @Html.DisplayNameFor(model => model.ProductInclusion.FreeItem)
+        </div>
+        
+        
+        <div>
+            @Html.DisplayFor(model => model.ProductInclusion.Quantity)
+        </div>
+
+        <div>
+            @Html.DisplayNameFor(model => model.ProductInclusion.Quantity)
+        </div>
+        
+
+
+
+        @* <dt>
+            @Html.DisplayNameFor(model => model.Product.Image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Product.Image)
+        </dd>*@
+
+    </div>
+</div>
+

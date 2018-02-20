@@ -1,0 +1,27 @@
+﻿@model IEnumerable<PVMTrading_v1.Models.Customer>
+@using GridMvc.Html
+@{
+    ViewBag.Title = "Grid";
+}
+
+<h2>Grid</h2>
+
+<link href="~/Content/Gridmvc.css" rel="stylesheet" />
+<link href="~/Content/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<script src="~/Scripts/gridmvc.min.js"></script>
+<script src="~/Content/PVMcssandjs/jquery-1.11.1.min.js"></script>
+
+<div class="">
+    @Html.Grid(Model).Columns(columns =>
+    {
+        columns.Add(c => c.Id).Titled("Id").Filterable(true).Sortable(true);
+        columns.Add(c => c.FirstName).Titled("Id").Filterable(true);
+        columns.Add(c => c.MiddleName).Titled("Id").Filterable(true);
+        columns.Add(c => c.LastName).Titled("Id").Filterable(true);
+        columns.Add()
+            .Encoded(false)
+            .Sanitized(false)
+            .SetWidth(30);
+
+    }).WithPaging(10).Sortable(true)
+</div>

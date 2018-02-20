@@ -1,0 +1,91 @@
+﻿@model List<PVMTrading_v1.Models.Product>
+@{
+    ViewBag.Title = "ReadOnlyView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div>
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h2>Product List</h2>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <div id="dataTable_wrapper" class="dataTables_wrapper container-fluid">
+                          
+
+                            @if (!Model.Any())
+                            {
+                                <p>We don't have any Products available yet.</p>
+                            }
+                            else
+                            {
+                                <table class="table table-bordered" id="product" style="margin: 0">
+                                    <thead>
+                                        <tr>
+                                            <th>Product Name</th>
+                                            <th>Description</th>
+                                            <th>Model</th>
+                                            <th>Price</th>
+                                            <th>Branch</th>
+                                            <th>Brand</th>
+                                            <th>Product Category</th>
+                                            <th>Product Condition</th>
+                                            
+
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var product in Model)
+                                        {
+
+                                            <tr>
+                                                <td>@product.Name</td>
+                                                <td>@product.Description</td>
+                                                <td>@product.Model</td>
+                                                <td>@product.OriginalPrice</td>
+                                                <td>@product.Branch.BranchName</td>
+                                                <td>@product.Brand.BrandName</td>
+                                                <td>@product.ProductCategory.Name</td>
+                                                <td>@product.ProductCondition.Label</td>
+                                           
+                                             
+                                            </tr>
+                                                                }
+                                    </tbody>
+                                </table>
+                                                                }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<link href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
+@section scripts{
+
+    <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#product').DataTable({
+
+                "column": [
+                    { "autowidth": true },
+                    { "ScrollY": (0.6 * $(window).height()) }
+                ]
+
+
+
+            });
+        });
+    </script>
+}

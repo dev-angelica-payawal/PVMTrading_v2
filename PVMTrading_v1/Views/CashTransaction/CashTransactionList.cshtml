@@ -1,0 +1,73 @@
+﻿@model List<PVMTrading_v1.ViewModels.CashTransactionListViewModel>
+@{
+    ViewBag.Title = "CashTransactionList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+    <div class="card-title"><h2>CashTransactionList</h2></div>
+
+@if (!Model.Any())
+{
+    <p>We don't have any Products available yet.</p>
+}
+else
+{
+    <table class="table table-bordered" id="product" style="margin: 0">
+        <thead>
+            <tr>
+                <th>Transaction Number</th>
+                <th>Customer Name</th>
+                <th>Total Amount</th>
+                <th>Date of Transaction</th>
+                <th>Branch Sold</th>
+                <th>Discount Amount</th>
+                <th>OR Number</th>
+                <th></th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var cash in Model)
+            {
+
+                <tr>
+                    <td>@cash.CashTransaction.Id</td>
+                    <td>@cash.Customer.FirstName,@cash.Customer.LastName</td>
+                    <td>@cash.CashTransaction.TotalAmount</td>
+                    <td>@cash.CashTransaction.CashTransactionDate</td>
+                    <td>@cash.Product.Branch.BranchName</td>
+                    <td>@cash.CashTransaction.TotalDiscountedAmount</td>
+                    <td>@cash.CashTransaction.OR</td>
+                    <td>
+                        <button type="button" class="btn btn-link" data-toggle="modal" data-target="#modalEdit">Edit</button> |
+                        @Html.ActionLink("Delete", "Delete", new { id = cash.CashTransaction.Id }, null) |
+                        <button type="button" class="btn btn-link" data-toggle="modal" data-target="#modalDisplay">
+                            Details
+                        </button>
+                    </td>
+
+                 
+                </tr>
+                                    }
+        </tbody>
+    </table>
+      
+
+
+
+
+
+
+
+/*
+        <!-- Modal for Details-->
+        <div class="modal fade" id="modalDisplay" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+        @{Html.RenderAction("Details", "Product", new { id = product.Id });}
+    </div>
+    </div>
+    </div>*/

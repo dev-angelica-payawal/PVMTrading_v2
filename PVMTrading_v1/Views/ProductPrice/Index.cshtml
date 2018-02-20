@@ -1,0 +1,76 @@
+﻿@model List<PVMTrading_v1.Models.ProductPrice>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+<div class="container-fluid">
+    <h2>Product Price</h2>
+
+    <table class="table table-responsive" id="productPrice">
+        <tr>
+            <th>
+                Product Name
+            </th>
+            <th>
+                Unit Price
+            </th>
+            <th>
+                Selling Price
+            </th>
+            <th>
+                Remarks
+            </th>
+            <th>
+                Date Created
+            </th>
+            <th></th>
+        
+        </tr>
+
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @item.Product.Name
+                <td>
+                    @item.UnitPrice
+                </td>
+                <td>
+                    @item.SellingPrice
+                </td>
+                <td>
+                    @item.Remarks
+                </td>
+                <td>
+                    @item.DateCreated
+                </td>
+                <td>
+                    @Html.ActionLink("Update", "Edit", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+</div>
+<link href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
+@section scripts{
+
+    <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#productPrice').DataTable({
+
+                "column": [
+                    { "autowidth": true },
+                    { "ScrollY": (0.6 * $(window).height()) }
+                ]
+
+
+
+            });
+        });
+    </script>
+}

@@ -1,0 +1,267 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    @Styles.Render("~/bundles/corecss")
+    @Styles.Render("~/bundles/font-awesome")
+    @Styles.Render("~/bundles/plugincss")
+    @Styles.Render("~/bundles/customstyle")
+    @Styles.Render("~/css/hovercard")
+    
+</head>
+<body class="sticky-footer bg-light" id="page-top">
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg static-top navbar-light bg-light" id="mainNav">
+        <a class="navbar-brand" href="@Url.Content("~/Home/Index")">Admin Panel</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Home">
+                    <a class="nav-link" href="@Url.Content("~/Home/Index")">
+                        <i class="fa fa-fw fa-dashboard"></i>
+                        <span class="nav-link-text">HOME</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="PRODUCTS">
+                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapsePRODUCTS" data-parent="#exampleAccordion">
+                        <i class="fa fa-fw fa-shopping-cart"></i>
+                        <span class="nav-link-text">PRODUCTS</span>
+                    </a>
+                    <ul class="sidenav-second-level collapse" style="" id="collapsePRODUCTS">
+                        <li>
+                            <a href="@Url.Content("~/Product/Index")">Products</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Content("~/ProductCategory/Index")">Categories</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Content("~/Brand/Index")">Brand</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="ORDERS">
+                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseORDERS" data-parent="#exampleAccordion">
+                        <i class="fa fa-fw fa-table"></i>
+                        <span class="nav-link-text">ORDERS</span>
+                    </a>
+                    <ul class="sidenav-second-level collapse" id="collapseORDERS">
+                        <li>
+                            <a href="login.html">New Orders</a>
+                        </li>
+                        <li>
+                            <a href="register.html">Rejected Orders</a>
+                        </li>
+                        <li>
+                            <a href="forgot-password.html">Approved Orders</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Content("~/Home/Blank")">Full Lists</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Content("~/Customer/Index")">Customers</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="TRANSACTIONS">
+                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseTRANSACTIONS" data-parent="#exampleAccordion">
+                        <i class="fa fa-fw fa-wrench"></i>
+                        <span class="nav-link-text">Transaction</span>
+                    </a>
+                    <ul class="sidenav-second-level collapse" id="collapseTRANSACTIONS">
+                        <li>
+                            <a href="@Url.Content("~/CashTransaction/Index")">Cash</a>
+                        </li>
+                        <li>
+                            <a href="register.html">Loan</a>
+                        </li>
+                        <li>
+                            <a href="forgot-password.html">Lay Away</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Content("~/Home/Blank")">Delivery</a>
+                        </li>
+                    </ul>
+
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="SITE CONTENT">
+                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseSITECONTENT" data-parent="#exampleAccordion">
+                        <i class="fa fa-fw fa-sitemap"></i>
+                        <span class="nav-link-text">SITE CONTENT</span>
+                    </a>
+                    <ul class="sidenav-second-level collapse" id="collapseSITECONTENT">
+                        <li>
+                            <a href="login.html">Management</a>
+                        </li>
+                        <li>
+                            <a href="register.html">Logo</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="STATISTICS">
+                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseSTATISTICS" data-parent="#exampleAccordion">
+                        <i class="fa fa-fw fa-bar-chart-o"></i>
+                        <span class="nav-link-text">STATISTICS</span>
+                    </a>
+                    <ul class="sidenav-second-level collapse" id="collapseSTATISTICS">
+                        <li>
+                            <a href="#">Reports</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="ADMINUSERS">
+                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseADMINUSERS" data-parent="#exampleAccordion">
+                        <i class="fa fa-fw fa-users"></i>
+                        <span class="nav-link-text">ADMIN USERS</span>
+                    </a>
+                    <ul class="sidenav-second-level collapse" id="collapseADMINUSERS">
+                        <li>
+                            <a href="#">Users Group Privileges</a>
+                        </li>
+                        <li>
+                            <a href="#">New Users</a>
+                        </li>
+                        <li>
+                            <a href="#">Administrator</a>
+                        </li>
+                        <li>
+                            <a href="#">Users Permissions</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="navbar-nav sidenav-toggler">
+                <li class="nav-item">
+                    <a class="nav-link text-center" id="sidenavToggler">
+                        <i class="fa fa-fw fa-angle-left"></i>
+                    </a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+@*
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle mr-lg-2" id="messagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-fw fa-shopping-cart"></i>
+                        <span class="d-lg-none">
+                            Messages
+                            <span class="badge badge-pill badge-primary">12 New</span>
+                        </span>
+                        <span class="indicator text-primary d-none d-lg-block">
+                            <i class="fa fa-fw fa-circle"></i>
+                        </span>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="messagesDropdown">
+                        <h6 class="dropdown-header">Cart : </h6>
+                        <!--ForEach-->
+                        <div class="row" id="product">
+                            @if (!Model.Any())
+                            {
+                                <p>We don't have any Products yet.</p>
+                            }
+                            else
+                            {
+
+                                foreach (var product in Model)
+                                {
+                                    <div class="col-lg-4 product-model-sec">
+                                        <a href="single.html"></a>
+                                        <div class="card col-md-12">
+                                            <div class="">
+                                                <a href="single.html">
+                                                    <div class="more-product"><span> </span></div>
+                                                    <div class="b-wrapper">
+                                                        <img src="@Url.Content("~/Content/PVMcssandjs/images/1.jpg")" class="img-responsive" alt=""><!--Product Image-->
+                                                        <div class="">
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                                <div class="product-info simpleCart_shelfItem">
+                                                    <div class="product-info-cust prt_name">
+                                                        <h4>@product.Product.Name</h4><!--Buy now Button-->
+                                                        <p>@product.Product.Model</p><!--Product Id-->
+                                                        <span class="item_price">@product.SellingPrice</span>
+                                                        <a href="single.html">Buy Now</a><!--Buy now Button-->
+                                                    </div>
+                                                    <div class="clearfix"> </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                }
+
+                            }
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">
+                                <!-- Product Added to the Cart -->
+                                <strong>David Miller</strong> <!-- Product Name -->
+                                $1$                            <span class="small float-right text-muted">11:21 AM</span> <!-- Product Date -->#1#
+                                <div class="dropdown-message small"></div> <!-- Product Model -->
+                            </a>
+
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item small" href="#">View all messages</a>
+                        </div>
+
+                </li>
+                
+                <li class="nav-item">
+                    <form class="form-inline my-2 my-lg-0 mr-lg-2">
+                        <div class="input-group">
+                            <a class="btn btn-primary" href="@Url.Content("~/Home/Index")">Open PVM Trading Website</a>
+                        </div>
+                    </form>
+                </li>
+*@
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
+                        <i class="fa fa-fw fa-sign-out"></i>Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" href="@Url.Content("~/Account/Login")">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div>
+    @RenderBody()
+</div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/core")
+    @Scripts.Render("~/bundles/coreplugin")
+    @Scripts.Render("~/bundles/pageplugin")
+    @Scripts.Render("~/bundles/customscriptsallpages")
+    @Scripts.Render("~/bundles/customscriptspage")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
