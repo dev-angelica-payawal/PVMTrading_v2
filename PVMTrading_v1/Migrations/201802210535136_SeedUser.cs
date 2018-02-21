@@ -3,7 +3,7 @@ namespace PVMTrading_v1.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class SeedUsers : DbMigration
+    public partial class SeedUser : DbMigration
     {
         public override void Up()
         {

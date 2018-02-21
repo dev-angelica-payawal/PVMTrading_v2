@@ -272,15 +272,18 @@
         @RenderBody()
     </div>
     @section scripts{
-
+       
     }
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/core")
-    @Scripts.Render("~/bundles/coreplugin")
-    @Scripts.Render("~/bundles/pageplugin")
-    @Scripts.Render("~/bundles/customscriptsallpages")
-    @Scripts.Render("~/bundles/customscriptspage")
-    @RenderSection("scripts", required: false)
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@Scripts.Render("~/Content/css")
+@Scripts.Render("~/bundles/coreplugin")
+@Scripts.Render("~/bundles/core")
+@Scripts.Render("~/bundles/pageplugin")
+@Scripts.Render("~/bundles/customscriptsallpages")
+@Scripts.Render("~/bundles/customscriptspage")
+
+@RenderSection("scripts", required: false)
+   
 </body>
 </html>
