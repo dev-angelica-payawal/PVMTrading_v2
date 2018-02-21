@@ -215,6 +215,14 @@
     <Compile Include="Migrations\201802210535136_SeedUser.Designer.cs">
       <DependentUpon>201802210535136_SeedUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201802211101001_ChangeIntTOstring.cs" />
+    <Compile Include="Migrations\201802211101001_ChangeIntTOstring.Designer.cs">
+      <DependentUpon>201802211101001_ChangeIntTOstring.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802211240560_AddDiscountTotempandTransactionItem.cs" />
+    <Compile Include="Migrations\201802211240560_AddDiscountTotempandTransactionItem.Designer.cs">
+      <DependentUpon>201802211240560_AddDiscountTotempandTransactionItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\TypeOfTransaction.cs" />
     <Compile Include="ViewModels\Item.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -1321,6 +1329,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802210535136_SeedUser.resx">
       <DependentUpon>201802210535136_SeedUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802211101001_ChangeIntTOstring.resx">
+      <DependentUpon>201802211101001_ChangeIntTOstring.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802211240560_AddDiscountTotempandTransactionItem.resx">
+      <DependentUpon>201802211240560_AddDiscountTotempandTransactionItem.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -14,7 +14,7 @@ namespace PVMTrading_v1.ViewModels
 
         public Product Product { get; set; }
 
-        public List<Customer> Customer { get; set; }
+        public Customer Customer { get; set; }
         public ProductPrice ProductPrice { get; set; }
 
       

@@ -56,8 +56,10 @@ namespace PVMTrading_v1.Controllers
             var tempCart = new TempCart();
 	      
 	        var isProduct = _context.TempCarts.Count(p => p.ProductId == id);
-	        
-	        if (isProduct == 0)
+
+	        var productQuantity = _context.TempCarts.Where(p => p.ProductId == id);
+
+            if (isProduct == 0)
 	        {
 	            tempCart.ProductId = id;
 	            tempCart.Quantity = 1;
@@ -66,7 +68,7 @@ namespace PVMTrading_v1.Controllers
 	        }
 	        else
 	        {
-	            tempCart.Quantity++;
+	            AddQuantity(id,tempCart.Quantity);
 	        }
 
 	        _context.SaveChanges();
@@ -100,21 +102,23 @@ namespace PVMTrading_v1.Controllers
 	    public ActionResult AddQuantity(int id,int quantity)
 	    {
 	        var tempCart = _context.TempCarts.SingleOrDefault(p => p.Id == id);
-            if(tempCart != null && tempCart.Quantity <= quantity)
-                ++tempCart.Quantity;
-	        _context.SaveChanges();
+            if(tempCart != null && tempCart.Quantity < quantity)
+            {  ++tempCart.Quantity;
 
-	        return RedirectToAction("Index");
+	        _context.SaveChanges();
+            }
+            return RedirectToAction("Index");
         }
 
         public ActionResult LessQuantity(int id,int quantity)
 	    {
 	        var tempCart = _context.TempCarts.SingleOrDefault(p => p.Id == id);
-	        if (tempCart != null && tempCart.Quantity >0 )
+	        if (tempCart != null && tempCart.Quantity >0) { 
 	            --tempCart.Quantity;
             _context.SaveChanges();
+	        }
 
-	        return RedirectToAction("Index");
+            return RedirectToAction("Index");
         }
         /*public ActionResult BuyNow(int id, double price)
 	    {

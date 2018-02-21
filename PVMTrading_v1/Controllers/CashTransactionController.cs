@@ -50,37 +50,53 @@ namespace PVMTrading_v1.Controllers
         
         public ActionResult CashTransactionSummary()
         {
-          
+            var count = _context.CashTransactions.Count();
+            var cashId = Convert.ToString(DateTime.Today.Year) + "00" + Convert.ToString(count) + Convert.ToString(DateTime.Today.Day);
+            var cashTransaction = _context.CashTransactions.SingleOrDefault(c => c.Id == cashId);
+            var customer = _context.Customers.SingleOrDefault(c => c.Id == cashTransaction.CustomerId);
+           
             var viewModel = new CashTransactionViewModel
             {
-                Customer = _context.Customers.ToList()
+                CashTransaction = cashTransaction,
+                Customer = customer
+
             };
  
             return View(viewModel);
         }
 
-        public ActionResult Save()
+        public ActionResult Save(CashTransaction cashTransaction)
         {
-            throw new NotImplementedException();
+           
+            return View();
         }
 
         public ActionResult Select(int id)
         {
+            var count = _context.CashTransactions.Count();
+            var cashId = Convert.ToString(DateTime.Today.Year) + "00" + Convert.ToString(count + 1) + Convert.ToString(DateTime.Today.Day);
+
             var cashTransaction = new CashTransaction();
+          //  var cashTransactionItem = new CashTransactionItem();
             double totalPrice = 0;
             foreach (var c in _context.TempCarts.ToList())
             {
 
                 ViewData["products"] = c;
+               /* cashTransactionItem.ProductId = c.ProductId;
+                cashTransactionItem.CashTransactionId = Convert.ToInt32(cashId);
+                cashTransactionItem.ProductPrice = c.ProductPrice;
+                cashTransactionItem.Quantity = c.Quantity;*/
                 totalPrice = totalPrice + (c.ProductPrice * c.Quantity);
+               /* _context.CashTransactionItems.Add(cashTransactionItem);*/
             }
 
-            var count = _context.CashTransactions.Count();
-            var cashId = Convert.ToString(DateTime.Today.Year)+ "0" + Convert.ToString(count + 1)+"00" + Convert.ToString(DateTime.Today.Day);
             var selectCustomer = _context.Customers.SingleOrDefault(c => c.Id == id);
-            cashTransaction.Id = Convert.ToInt32(cashId);
+            cashTransaction.Id = cashId;
             cashTransaction.CustomerId = selectCustomer.Id;
+            cashTransaction.CashTransactionDate = DateTime.Now;
             cashTransaction.OriginalTotalAmount = totalPrice;
+            cashTransaction.Remarks = "";
             _context.CashTransactions.Add(cashTransaction);
             _context.SaveChanges();
             return RedirectToAction("CashTransactionSummary");
