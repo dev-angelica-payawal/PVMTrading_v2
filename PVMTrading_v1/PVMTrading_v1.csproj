@@ -202,9 +202,14 @@
     <Compile Include="Controllers\CashTransactionController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LandingPageController.cs" />
     <Compile Include="Migrations\201802181038462_TempCart.cs" />
     <Compile Include="Migrations\201802181038462_TempCart.Designer.cs">
       <DependentUpon>201802181038462_TempCart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802202037237_Update1.cs" />
+    <Compile Include="Migrations\201802202037237_Update1.Designer.cs">
+      <DependentUpon>201802202037237_Update1.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\TypeOfTransaction.cs" />
     <Compile Include="ViewModels\Item.cs" />
@@ -493,6 +498,9 @@
     <Compile Include="ViewModels\UsersViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\background.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap.min.js" />
     <Content Include="Content\css\sb-admin.css" />
     <Content Include="Content\css\sb-admin.min.css" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap.css" />
@@ -654,6 +662,7 @@
     <Content Include="Content\DataTables\swf\flashExport.swf" />
     <Content Include="Content\Gridmvc.css" />
     <Content Include="Content\hovercard.css" />
+    <Content Include="Content\jquery.min.js" />
     <Content Include="Content\js\sb-admin-charts.js" />
     <Content Include="Content\js\sb-admin-charts.min.js" />
     <Content Include="Content\js\sb-admin-datatables.js" />
@@ -1124,6 +1133,8 @@
     <Content Include="Views\CashTransaction\Index.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Customer\CustomerReg.cshtml" />
+    <Content Include="Views\LandingPage\Index.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1302,6 +1313,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802181038462_TempCart.resx">
       <DependentUpon>201802181038462_TempCart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802202037237_Update1.resx">
+      <DependentUpon>201802202037237_Update1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
