@@ -22,7 +22,8 @@ namespace PVMTrading_v1.Models
         [Display(Name = "Price")]
         public double ProductPrice { get; set; }
 
-       
+
+        public double Discount { get; set; }
 
         public int Quantity { get; set; }
 

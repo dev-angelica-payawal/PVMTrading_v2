@@ -10,7 +10,7 @@ namespace PVMTrading_v1.Models
     public class CashTransaction
     {
       
-        public int Id { get; set; }
+        public string Id { get; set; }
 
        
         [Display(Name = "Total Discount Amount")]
