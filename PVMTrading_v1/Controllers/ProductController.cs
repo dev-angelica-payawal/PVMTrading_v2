@@ -75,11 +75,7 @@ namespace PVMTrading_v1.Controllers
         public ActionResult New(Product model, HttpPostedFileBase file)
         {
             
-<<<<<<< HEAD
-=======
 
-
->>>>>>> 4cba351a5d3b3953771f13db7bf2538cd413804b
             var brands = _context.Brands.ToList();
             var branches = _context.Branches.ToList();
             var productCategories = _context.ProductCategories.ToList();
