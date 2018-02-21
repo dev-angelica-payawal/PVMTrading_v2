@@ -25,11 +25,14 @@ namespace PVMTrading_v1.Controllers
             _context.Dispose();
         }
 
+       
         public ActionResult Index()
         {
             var customer = _context.Customers.Include(s => s.Sex).ToList();
-
-
+           var prod = _context.Products.Count();
+            var cus = _context.Customers.Count();
+            ViewBag.Customer = cus;
+            ViewBag.Product = prod;
 
             return View(customer);
         }

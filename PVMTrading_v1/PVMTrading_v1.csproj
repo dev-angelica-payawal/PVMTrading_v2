@@ -1138,6 +1138,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\loginImage\" />
     <Folder Include="Views\Cart\" />
   </ItemGroup>
   <ItemGroup>
