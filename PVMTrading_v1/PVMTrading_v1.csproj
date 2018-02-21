@@ -203,7 +203,6 @@
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LandingPageController.cs" />
-    <Compile Include="Migrations\201802081106306_SeedUsers.cs" />
     <Compile Include="Migrations\201802181038462_TempCart.cs" />
     <Compile Include="Migrations\201802181038462_TempCart.Designer.cs">
       <DependentUpon>201802181038462_TempCart.cs</DependentUpon>
@@ -212,13 +211,9 @@
     <Compile Include="Migrations\201802202037237_Update1.Designer.cs">
       <DependentUpon>201802202037237_Update1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201802210243179_Update2.cs" />
-    <Compile Include="Migrations\201802210243179_Update2.Designer.cs">
-      <DependentUpon>201802210243179_Update2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201802210255005_UpdateSeedUsers.cs" />
-    <Compile Include="Migrations\201802210255005_UpdateSeedUsers.Designer.cs">
-      <DependentUpon>201802210255005_UpdateSeedUsers.cs</DependentUpon>
+    <Compile Include="Migrations\201802210535136_SeedUser.cs" />
+    <Compile Include="Migrations\201802210535136_SeedUser.Designer.cs">
+      <DependentUpon>201802210535136_SeedUser.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\TypeOfTransaction.cs" />
     <Compile Include="ViewModels\Item.cs" />
@@ -503,7 +498,12 @@
     <Compile Include="ViewModels\UsersViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\aspnet-PVMTrading_v1-20180109093125.mdf" />
+    <Content Include="App_Data\aspnet-PVMTrading_v1-20180109093125_log.ldf">
+      <DependentUpon>aspnet-PVMTrading_v1-20180109093125.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\background.css" />
+    <Content Include="Content\bootstrap-lumen.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.min.js" />
     <Content Include="Content\css\sb-admin.css" />
@@ -1142,7 +1142,6 @@
     <Content Include="Views\Shared\_Footer.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Content\loginImage\" />
     <Folder Include="Views\Cart\" />
   </ItemGroup>
@@ -1320,11 +1319,8 @@
     <EmbeddedResource Include="Migrations\201802202037237_Update1.resx">
       <DependentUpon>201802202037237_Update1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201802210243179_Update2.resx">
-      <DependentUpon>201802210243179_Update2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201802210255005_UpdateSeedUsers.resx">
-      <DependentUpon>201802210255005_UpdateSeedUsers.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201802210535136_SeedUser.resx">
+      <DependentUpon>201802210535136_SeedUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

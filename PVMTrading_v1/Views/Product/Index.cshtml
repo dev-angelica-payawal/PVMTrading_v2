@@ -16,25 +16,8 @@
                     <div class="table-responsive">
                         <div id="dataTable_wrapper" class="dataTables_wrapper container-fluid">
                             <p>
-                                @Html.ActionLink("Add New Product", "New")
-                                @*<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#1">
-                                    Add New Product
-                                </button>
-                                
-                                <!-- Modal -->
-                                <div class="modal fade" id="1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            
-                                            <div class="modal-body">
-                                                @{Html.RenderAction("New", "Product");}
-                                            </div>
-                                            
-                                            
-
-                                        </div>
-                                    </div>
-                                </div>*@
+                                @Html.ActionLink("Add New Product", "New","Product",new {@class="btn btn-primary"})
+                             
                             </p>
 
                             @if (!Model.Any())
@@ -72,20 +55,15 @@
                                             <td>@product.Brand.BrandName</td>
                                             <td>@product.ProductCategory.Name</td>
                                             <td>@product.ProductCondition.Label</td>
-                                            <td><button type="button" class="btn btn-link" data-toggle="modal" data-target="#modalEdit">Edit</button> |
-                                                @Html.ActionLink("Delete", "Delete", new { id = product.Id }, null) |
-                                                <button type="button" class="btn btn-link" data-toggle="modal" data-target="#modalDisplay">Details
-                                                </button> </td>
-                                           
-                            <!-- Modal for Edit-->
-                            <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
+                                            <td>@Html.ActionLink("Edit", "Edit", new { id = product.Id }) |
+                                                 @Html.ActionLink("Delete", "Delete", new{id = product.Id }, null) |
+                                                <button type="button" class="btn btn-link" data-toggle="modal" data-target="#modalDisplay">
+                                                    Details
+                                                </button>
+                                            </td>
 
-                                        @{Html.RenderAction("Edit", "Product", new {id = product.Id});}
-                                    </div>
-                                </div>
-                            </div>      
+
+                              
 
            
                                             
