@@ -26,7 +26,7 @@ namespace PVMTrading_v1
                      
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                      "~/Content/bootstrap-lumen.css",
                       "~/Content/site.css",
                       "~/Content/datatables/css/datatables.bootstrap.css"));
 
