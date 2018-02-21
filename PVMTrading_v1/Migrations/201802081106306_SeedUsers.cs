@@ -9,11 +9,11 @@ namespace PVMTrading_v1.Migrations
         {
             /*Password ZAQxsw!2    
             admin@pvm.com - admin Role
-<<<<<<< HEAD
-            angel@gmail.com - customer role*/
-=======
+
+            angel@gmail.com - customer role
+
             customer - customer role*/
->>>>>>> d3f94b727655c11ed325b3331980c46183640e64
+
 
 
             Sql(@"

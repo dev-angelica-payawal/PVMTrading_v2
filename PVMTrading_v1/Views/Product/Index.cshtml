@@ -17,17 +17,19 @@
                         <div id="dataTable_wrapper" class="dataTables_wrapper container-fluid">
                             <p>
                                 
-                                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#1">
                                     Add New Product
                                 </button>
                                 
                                 <!-- Modal -->
-                                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                <div class="modal fade" id="1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             
+                                            <div class="modal-body">
+                                                @{Html.RenderAction("New", "Product");}
+                                            </div>
                                             
-                                            @{Html.RenderAction("New", "Product");}
                                             
 
                                         </div>
@@ -113,7 +115,12 @@
 
 <link href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
 @section scripts{
-
+<script>
+        function createModal(url){
+            $('#modelContent').load(url);
+            $('#myModal').modal('show');
+        }
+</script>
     <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script>
         $(document).ready(function () {
