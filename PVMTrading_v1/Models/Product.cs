@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Security.Permissions;
+using System.Web.Mvc;
 
 namespace PVMTrading_v1.Models
 {
@@ -11,6 +12,7 @@ namespace PVMTrading_v1.Models
         [Key]
         public int Id { get; set; }
 
+        [Remote("IsBarCodeUnique", "Product", ErrorMessage = "This {0} is already used.")]
         [Required(ErrorMessage = "Input the Name of the Product.")]
         [MaxLength(255)]
         public string Name { get; set; }

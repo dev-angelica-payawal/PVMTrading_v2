@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
+using System.Web.Services.Description;
 using Microsoft.Ajax.Utilities;
 using PVMTrading_v1.Models;
 using PVMTrading_v1.ViewModels;
@@ -24,9 +25,31 @@ namespace PVMTrading_v1.Controllers
             _context.Dispose();
         }
 
-        // GET: Product
-        public ViewResult Index()
+
+      
+        public JsonResult IsBarCodeUnique(string name)
         {
+            System.Threading.Thread.Sleep(100);
+            var searchData = _context.Products.Count(p => p.Name == name);
+            if(searchData != 0)
+                return Json(1);
+            else
+            {
+                return Json(2);
+            }
+        }
+
+
+
+        // GET: Product
+        public ActionResult Index()
+        {
+            var brandAvail = _context.Brands.Count();
+            var productCategory = _context.ProductCategories.Count();
+           
+                
+
+
             var products = _context.Products.Include(c => c.Brand)
                 .Include(q => q.Branch)
                 .Include(w => w.ProductCategory)
@@ -41,11 +64,16 @@ namespace PVMTrading_v1.Controllers
 
             return View("ReadOnlyView",products);
 
+            
+            
         }
 
         [CustomAuthorize(Roles = RoleName.Admin)]
         public ActionResult New()
         {
+            
+
+
             var brands = _context.Brands.ToList();
             var branches = _context.Branches.ToList();
             var productCategories = _context.ProductCategories.ToList();
@@ -62,12 +90,14 @@ namespace PVMTrading_v1.Controllers
 
             };
             return View(viewModels);
+
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Save(Product product, ProductInclusion productInclusion, ProductPrice productPrice)
         {
-          var isProductExist = _context.Products.Count(c => c.Name == product.Name);
+            IsBarCodeUnique(product.Name);
+            var isProductExist = _context.Products.Count(c => c.Name == product.Name);
 
 
             
@@ -84,20 +114,7 @@ namespace PVMTrading_v1.Controllers
 
                  return View("New", viewModel);
              }*/
-         /*   else
-            {
-                var viewModel = new ProductViewModel
-                {
-                    Product = product,
-                    Brands = _context.Brands.ToList(),
-                    Branches = _context.Branches.ToList(),
-                    ProductCategories = _context.ProductCategories.ToList(),
-                    ProductConditions = _context.ProductConditions.ToList(),
-                };
-                return View("New", viewModel);
-            }*/
-
-
+         
           
             
             if (product.Id == 0)
