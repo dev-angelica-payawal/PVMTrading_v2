@@ -1,12 +1,16 @@
 ﻿
 @model PVMTrading_v1.ViewModels.CustomerViewModel
-
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
 @using (Html.BeginForm("Save", "Customer"))
 {
     @Html.AntiForgeryToken()
-    <div class="modal-body">
-        <div class="form-horizontal">
+    <div class="content-wrapper">
+    <div class="container-fluid">
+        <div class="card mb-3">
 
             <div class="card mb-3">
                 <div class="card-header">
@@ -15,13 +19,13 @@
               
                 <div class="card-body">
                     <div class="table-responsive"></div>
-                    <hr />
+                   @* <hr />*@
                     @if (TempData["notice"] != null) {
                         <p>@TempData["notice"]</p>
                     }
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="row">
-                <div class="column">
+                <div class="column col-md-6">
                     <div class="form-group">
                         @Html.LabelFor(model => model.Customer.FirstName, htmlAttributes: new { @class = "control-label col-md-10" })
                         <div class="col-xs-10">
@@ -106,7 +110,7 @@
                     </div>
                 </div>
 
-                <div class="column">
+                <div class="column col-md-6">
                     <div class="form-group">
                         @Html.LabelFor(model => model.CustomerCompleInfo.PlaceOfBirth, htmlAttributes: new { @class = "control-label col-md-10" })
                         <div class="col-xs-10">
@@ -194,19 +198,23 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                </div>
-                <div class="modal-footer">
-                    @Html.HiddenFor(m => m.Customer.Id)
-                    <div class="form-group">
-                        <button type="button" value="Create" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="submit" value="Save" class="btn btn-primary">Save changes</button>
+               
+                
+    <div class="modal-footer">
+        @Html.HiddenFor(m => m.Customer.Id)
+        <div class="form-group">
+            <button type="button" value="Create" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="submit" value="Save" class="btn btn-primary">Save changes</button>
                    
                 
-                    </div>
-              
+        </div>
+    </div>   
                
-                </div>
+    </div>
+    </div>
+    </div>
+
+
 
                                                                     
                                                               

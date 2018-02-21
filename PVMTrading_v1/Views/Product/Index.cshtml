@@ -16,8 +16,8 @@
                     <div class="table-responsive">
                         <div id="dataTable_wrapper" class="dataTables_wrapper container-fluid">
                             <p>
-                                
-                                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#1">
+                                @Html.ActionLink("Add New Product", "New")
+                                @*<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#1">
                                     Add New Product
                                 </button>
                                 
@@ -34,7 +34,7 @@
 
                                         </div>
                                     </div>
-                                </div>
+                                </div>*@
                             </p>
 
                             @if (!Model.Any())
