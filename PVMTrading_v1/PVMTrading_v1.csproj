@@ -211,9 +211,9 @@
     <Compile Include="Migrations\201802202037237_Update1.Designer.cs">
       <DependentUpon>201802202037237_Update1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201802210535136_SeedUser.cs" />
-    <Compile Include="Migrations\201802210535136_SeedUser.Designer.cs">
-      <DependentUpon>201802210535136_SeedUser.cs</DependentUpon>
+    <Compile Include="Migrations\201802211404011_Update2.cs" />
+    <Compile Include="Migrations\201802211404011_Update2.Designer.cs">
+      <DependentUpon>201802211404011_Update2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201802211101001_ChangeIntTOstring.cs" />
     <Compile Include="Migrations\201802211101001_ChangeIntTOstring.Designer.cs">
@@ -1327,8 +1327,8 @@
     <EmbeddedResource Include="Migrations\201802202037237_Update1.resx">
       <DependentUpon>201802202037237_Update1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201802210535136_SeedUser.resx">
-      <DependentUpon>201802210535136_SeedUser.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201802211404011_Update2.resx">
+      <DependentUpon>201802211404011_Update2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802211101001_ChangeIntTOstring.resx">
       <DependentUpon>201802211101001_ChangeIntTOstring.cs</DependentUpon>

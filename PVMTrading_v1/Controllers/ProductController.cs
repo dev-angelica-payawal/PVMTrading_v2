@@ -2,9 +2,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+<<<<<<< HEAD
  using System.IO;
  using System.Linq;
  using System.Text;
+=======
+using System.Linq;
+>>>>>>> a5866c31766cff410be01c9eb8953d754a0efb84
  using System.Web;
  using System.Web.Mvc;
 using Microsoft.Ajax.Utilities;
@@ -72,7 +76,11 @@ namespace PVMTrading_v1.Controllers
     
         [HttpPost]
         [ValidateAntiForgeryToken]
+<<<<<<< HEAD
         public ActionResult Save(Product product, ProductInclusion productInclusion, ProductPrice productPrice,HttpPostedFile file)
+=======
+        public ActionResult Save(Product product, ProductInclusion productInclusion, ProductPrice productPrice/*, Product model, HttpPostedFileBase file*/)
+>>>>>>> a5866c31766cff410be01c9eb8953d754a0efb84
         {
             var decodedString = Convert.ToBase64String(product.ProductImage)
                 .Replace("-", "");
@@ -118,11 +126,17 @@ namespace PVMTrading_v1.Controllers
                 if (isProductExist == 0)
                 {
                     if (productInclusion.FreeItem != null &&
-                        (productInclusion.Quantity != 0 || productInclusion.Quantity != null))
+                        (productInclusion.Quantity != 0 || productInclusion.Quantity != null)/* && file != null*/)
                     {
+                        /*model.ProductImage = new byte[file.ContentLength];
+                        file.InputStream.Read(model.ProductImage, 0, file.ContentLength);*/
+
+
+
                         productInclusion.ProductId = product.Id;
                         _context.ProductInclusions.Add(productInclusion);
                     }
+                    /*_context.Products.Add(model);*/
                     productPrice.ProductId = product.Id;
                     productPrice.DateCreated = DateTime.Now;
                     productPrice.UnitPrice = product.OriginalPrice;
