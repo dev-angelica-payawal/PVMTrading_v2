@@ -3,13 +3,13 @@ namespace PVMTrading_v1.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class SeedUsers : DbMigration
+    public partial class UpdateSeedUsers : DbMigration
     {
         public override void Up()
         {
             /*Password ZAQxsw!2    
-            admin@pvm.com - admin Role
-            angel@gmail.com - customer role*/
+           admin@pvm.com - admin Role
+           angel@gmail.com - customer role*/
 
 
             Sql(@"
