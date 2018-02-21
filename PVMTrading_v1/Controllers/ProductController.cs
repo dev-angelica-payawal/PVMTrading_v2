@@ -1,11 +1,9 @@
+﻿
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Services.Description;
 using Microsoft.Ajax.Utilities;
 using PVMTrading_v1.Models;
 using PVMTrading_v1.ViewModels;
@@ -27,31 +25,9 @@ namespace PVMTrading_v1.Controllers
             _context.Dispose();
         }
 
-
-      
-        public JsonResult IsBarCodeUnique(string name)
-        {
-            System.Threading.Thread.Sleep(100);
-            var searchData = _context.Products.Count(p => p.Name == name);
-            if(searchData != 0)
-                return Json(1);
-            else
-            {
-                return Json(2);
-            }
-        }
-
-
-
         // GET: Product
-        public ActionResult Index()
+        public ViewResult Index()
         {
-            var brandAvail = _context.Brands.Count();
-            var productCategory = _context.ProductCategories.Count();
-           
-                
-
-
             var products = _context.Products.Include(c => c.Brand)
                 .Include(q => q.Branch)
                 .Include(w => w.ProductCategory)
@@ -64,40 +40,21 @@ namespace PVMTrading_v1.Controllers
                 return View(products);
 
 
-            return View("ReadOnlyView",products);
+            return View("ReadOnlyView", products);
 
-            
-            
         }
 
-        //[CustomAuthorize(Roles = RoleName.Admin)]
-       // [HttpPost]
-        public ActionResult New(Product model, HttpPostedFileBase file)
+        [CustomAuthorize(Roles = RoleName.Admin)]
+        public ActionResult New()
         {
-            
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 4cba351a5d3b3953771f13db7bf2538cd413804b
             var brands = _context.Brands.ToList();
             var branches = _context.Branches.ToList();
             var productCategories = _context.ProductCategories.ToList();
             var productConditions = _context.ProductConditions.ToList();
             var warranties = _context.Warranty.ToList();
-            if (file!=null)
-            {
-                model.ProductImage = new byte[file.ContentLength];
-                file.InputStream.Read(model.ProductImage, 0, file.ContentLength);
-
-            }
-            _context.Products.Add(model);
-            
-
 
             var viewModels = new ProductViewModel
             {
-                Product = model,
                 Brands = brands,
                 Branches = branches,
                 ProductCategories = productCategories,
@@ -105,21 +62,16 @@ namespace PVMTrading_v1.Controllers
                 Warranties = warranties
 
             };
-
-           
-
             return View(viewModels);
-
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Save(Product product, ProductInclusion productInclusion, ProductPrice productPrice)
         {
-            IsBarCodeUnique(product.Name);
             var isProductExist = _context.Products.Count(c => c.Name == product.Name);
 
 
-            
+
             /* if (!ModelState.IsValid)
              {
                  var viewModel = new ProductViewModel
@@ -133,31 +85,45 @@ namespace PVMTrading_v1.Controllers
 
                  return View("New", viewModel);
              }*/
-         
-          
-            
+            /*   else
+               {
+                   var viewModel = new ProductViewModel
+                   {
+                       Product = product,
+                       Brands = _context.Brands.ToList(),
+                       Branches = _context.Branches.ToList(),
+                       ProductCategories = _context.ProductCategories.ToList(),
+                       ProductConditions = _context.ProductConditions.ToList(),
+                   };
+                   return View("New", viewModel);
+               }*/
+
+
+
+
             if (product.Id == 0)
             {
-                if(isProductExist == 0) { 
-                if (productInclusion.FreeItem != null &&
-                    (productInclusion.Quantity != 0 || productInclusion.Quantity != null))
+                if (isProductExist == 0)
                 {
-                    productInclusion.ProductId = product.Id;
-                    _context.ProductInclusions.Add(productInclusion);
-                }
-                productPrice.ProductId = product.Id;
-                productPrice.DateCreated = DateTime.Now;
-                productPrice.UnitPrice = product.OriginalPrice;
-                _context.ProductPrices.Add(productPrice);
+                    if (productInclusion.FreeItem != null &&
+                        (productInclusion.Quantity != 0 || productInclusion.Quantity != null))
+                    {
+                        productInclusion.ProductId = product.Id;
+                        _context.ProductInclusions.Add(productInclusion);
+                    }
+                    productPrice.ProductId = product.Id;
+                    productPrice.DateCreated = DateTime.Now;
+                    productPrice.UnitPrice = product.OriginalPrice;
+                    _context.ProductPrices.Add(productPrice);
 
-               // product.Image = sadjkladskjasd;
-                product.Quantity = product.AvailableForSelling + product.Reserved;
-                product.DateCreated = DateTime.Now;
-                _context.Products.Add(product);
+                    // product.Image = sadjkladskjasd;
+                    product.Quantity = product.AvailableForSelling + product.Reserved;
+                    product.DateCreated = DateTime.Now;
+                    _context.Products.Add(product);
                 }
                 else
                 {
-                    
+
                     var viewModel = new ProductViewModel
                     {
                         Product = product,
@@ -174,7 +140,7 @@ namespace PVMTrading_v1.Controllers
                 var productInDb = _context.Products.Single(p => p.Id == product.Id);
                 productInDb.Name = product.Name;
                 productInDb.Description = product.Description;
-               // product.Image = sdcnskdfjskdj;
+                // product.Image = sdcnskdfjskdj;
                 /*productInDb.LastChangedEmployee = DateTime.Now;*/
                 productInDb.BranchId = product.BranchId;
                 productInDb.BrandId = product.BrandId;
@@ -184,7 +150,7 @@ namespace PVMTrading_v1.Controllers
                 productInDb.OriginalPrice = product.OriginalPrice;
                 productInDb.ProductConditionId = product.ProductConditionId;
                 productInDb.SerialNumber = product.SerialNumber;
-                productInDb.Quantity = product.AvailableForSelling+product.Reserved;
+                productInDb.Quantity = product.AvailableForSelling + product.Reserved;
                 productInDb.WarrantyId = product.WarrantyId;
                 productInDb.AvailableForSelling = product.AvailableForSelling;
                 productInDb.Reserved = product.Reserved;
@@ -212,27 +178,27 @@ namespace PVMTrading_v1.Controllers
         public ActionResult Edit(int id)
         {
 
-             var product = _context.Products.SingleOrDefault(p => p.Id == id);
+            var product = _context.Products.SingleOrDefault(p => p.Id == id);
 
-             var productInclsion = _context.ProductInclusions.SingleOrDefault(p => p.ProductId == id);
-             if (product == null)
-             {
-                 return HttpNotFound();
-             }
+            var productInclsion = _context.ProductInclusions.SingleOrDefault(p => p.ProductId == id);
+            if (product == null)
+            {
+                return HttpNotFound();
+            }
 
-             var viewModel = new ProductViewModel
-             {
-                 Product = product,
-                 ProductInclusion = productInclsion,
-                 Brands = _context.Brands.ToList(),
-                 Branches = _context.Branches.ToList(),
-                 ProductConditions = _context.ProductConditions.ToList(),
-                 ProductCategories = _context.ProductCategories.ToList(),
-                 Warranties = _context.Warranty.ToList()
+            var viewModel = new ProductViewModel
+            {
+                Product = product,
+                ProductInclusion = productInclsion,
+                Brands = _context.Brands.ToList(),
+                Branches = _context.Branches.ToList(),
+                ProductConditions = _context.ProductConditions.ToList(),
+                ProductCategories = _context.ProductCategories.ToList(),
+                Warranties = _context.Warranty.ToList()
 
-             };
+            };
             return View(viewModel);
-            
+
         }
 
 
@@ -256,7 +222,7 @@ namespace PVMTrading_v1.Controllers
         }
 
 
-        
+
         public ActionResult Details(int id)
         {
             var product = _context.Products.SingleOrDefault(p => p.Id == id);

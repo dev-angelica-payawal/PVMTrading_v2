@@ -17,14 +17,18 @@ namespace PVMTrading_v1
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
            }
-        protected void Application_Error()
+
+//enable to handle all errors
+
+
+       /* protected void Application_Error()
         {
             HttpContext httpContext = HttpContext.Current;
             if (httpContext != null)
             {
                 RequestContext requestContext = ((MvcHandler)httpContext.CurrentHandler).RequestContext;
                 /* When the request is ajax the system can automatically handle a mistake with a JSON response. 
-                   Then overwrites the default response */
+                   Then overwrites the default response #1#
                 if (requestContext.HttpContext.Request.IsAjaxRequest())
                 {
                     httpContext.Response.Clear();
@@ -46,7 +50,7 @@ namespace PVMTrading_v1
                     httpContext.Response.Redirect("~/Error.html");
                 }
             }
-        }
+        }*/
 
     }
 }
