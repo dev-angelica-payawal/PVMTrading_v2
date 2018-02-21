@@ -6,7 +6,7 @@
 {
     @Html.AntiForgeryToken()
     <div class="modal-header">
-        <h4 class="modal-title" id="myModalLabel">Product</h4>
+        <h4 class="modal-title" id="myModalLabel">New Product</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     </div>
     <div class="modal-body">
@@ -16,10 +16,10 @@
             <div class="row">
                 <div class="column">
                     <div class="form-group">
-                        @Html.LabelFor(model => model.Product.Name, new { @class = "control-label col-md-12" })
+                        @Html.LabelFor(model => model.Product.Name, new { @class = "control-label col-md-12" ,id="productName"})
                         <div class="col-md-12">
                             @Html.EditorFor(model => model.Product.Name, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Product.Name, "", new { @class = "text-danger" })
+                            @Html.ValidationMessageFor(model => model.Product.Name, "", new { @class = "text-danger" ,id= "Status"})
                         </div>
                     </div>
                     <div class="form-group">
@@ -28,7 +28,7 @@
                             @Html.TextBoxFor(model => model.Product.ProductImage, new { id="file", type = "file" , accept = "image/x-png,image/gif,image/jpeg" })
                             @Html.ValidationMessageFor(model => model.Product.Name, "", new { @class = "text-danger" })
                         </div>
-                     </div>
+                    </div>
                     <div class="form-group">
                         @Html.LabelFor(model => model.Product.Description, htmlAttributes: new { @class = "control-label col-md-12" })
                         <div class="col-md-12">
@@ -176,9 +176,34 @@
               
         </div>
 
+        <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+        <script src="~/Scripts/jquery.validate.js"></script>
+        <script>
+    
+            function ProductCheck() {
+                $("#Status").html("Checking.....");
+                $.post("@Url.Action("IsBarCodeUnique", "Product")", 
+                    {
+                        userdata:
+                            $("#productName").val()
+                    },
+                    function(data) {
+                        if (data == 0) {
+                            $("#Status").html('<font color = "green"> Product does not yet exist</font>');
+                            $("#productName").css("border-color", "Green");
+                        } else {
+                            $("#Status").html('<font color = "red"> Product already exist</font>');
+                            $("#productName").css("border-color", "red");
+                        }
+                    });
+            }
+
+          
+
+
+        </script>
 
     </div>
 }
-@section Scripts{
-    @Scripts.Render("~/bundles/jqueryval")
-}
+  
+         

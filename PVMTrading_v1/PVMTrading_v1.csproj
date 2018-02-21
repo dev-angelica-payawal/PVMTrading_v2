@@ -819,9 +819,11 @@
     <Content Include="Content\vendor\jquery-easing\jquery.easing.min.js" />
     <Content Include="Content\vendor\jquery\jquery.js" />
     <Content Include="Content\vendor\jquery\jquery.min.js" />
+    <Content Include="Error.html" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Resources\404.png" />
     <Content Include="Resources\css\bootstrap.css" />
     <Content Include="Resources\css\etalage.css" />
     <Content Include="Resources\css\form.css" />
@@ -950,7 +952,6 @@
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\common.scss" />
     <Content Include="Grid.mvc.readme" />
-    <Content Include="Scripts\jquery-1.10.2.cache" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
@@ -1042,7 +1043,6 @@
     <Content Include="Scripts\jquery-3.0.0.slim.min.js" />
     <Content Include="Scripts\jquery-3.0.0.slim.min.map" />
     <Content Include="Scripts\jquery-3.0.0.min.map" />
-    <Content Include="Scripts\jquery-ui.cache" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.ui.all.css" />
     <Content Include="Scripts\jquery.validate.js" />
