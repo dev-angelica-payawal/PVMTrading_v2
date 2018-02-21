@@ -61,6 +61,7 @@
         </div>
     </div>
 </div>
+<br />
 <div class="card mb-3">
 
     <div class="container">
@@ -77,31 +78,48 @@
 
                         foreach (var product in Model)
                         {
-                            <div class="col-lg-4 product-model-sec">
+                            <div >
 
-                                <div class="card col-md-12">
+                                <div >
+                                    <div class="new-items col-lg-4">
+                                        <div class="item1">
+                                            @* <div class="more-product"><span> </span></div>
+                                    <div class="b-wrapper">*@
+                                            <a href="products.html"><img src="@Url.Content("~/Content/PVMcssandjs/images/s1.jpg")" alt="" /></a>
+                                            @*  <img src="@Url.Content("~/Content/PVMcssandjs/images/1.jpg")" class="img-responsive" alt=""><!--Product Image-->
                                     <div class="">
-                                        <div class="more-product"><span> </span></div>
-                                        <div class="b-wrapper">
-                                            <img src="@Url.Content("~/Content/PVMcssandjs/images/1.jpg")" class="img-responsive" alt=""><!--Product Image-->
-                                            <div class="">
-                                            </div>
-                                        </div>
-
-                                        <div class="product-info simpleCart_shelfItem">
-                                            <div class="product-info-cust prt_name">
-                                                <h4>@product.Product.Name</h4><!--Buy now Button-->
-                                                <p>@product.Product.Model</p><!--Product Id-->
-                                                <span class="item_price">@product.SellingPrice</span>
-                                                <br />
-                                                @Html.ActionLink("Add to cart", "BuyNow", "SearchProduct", new { id = product.Product.Id, price = product.SellingPrice }, new { @class = "btn btn-info" })<!--Buy now Button-->
-
-                                            </div>
-                                            <div class="clearfix"> </div>
-                                            <br />
-                                        </div>
+                                    </div>*@
+                                            @*
                                     </div>
+                                            *@
+                                            
+                                            
+                                            <div class="item-info4">
+                                                <h4><a href="products.html">@product.Product.Name</a></h4>
+                                                <span>@product.Product.Model</span>
+                                                @Html.ActionLink("Add to cart", "BuyNow", "SearchProduct", new { id = product.Product.Id, price = product.SellingPrice }, new { @class = "btn btn-info" })<!--Buy now Button-->
+                                            </div>
+                                            
+
+                                            @*  <div class="product-info simpleCart_shelfItem">
+                                                <div class="product-info-cust prt_name">
+                                                    <h4>@product.Product.Name</h4><!--Buy now Button-->
+                                                    <p>@product.Product.Model</p><!--Product Id-->
+                                                    <span class="item_price">@product.SellingPrice</span>
+                                                    <br />
+                                                    @Html.ActionLink("Add to cart", "BuyNow", "SearchProduct", new { id = product.Product.Id, price = product.SellingPrice }, new { @class = "btn btn-info" })<!--Buy now Button-->
+
+                                                </div>
+                                                <div class="clearfix"> </div>
+                                                <br />
+                                            </div>*@
+                                            
+                                        </div>
+                                        <br />
+                                    </div>
+                                    
                                 </div>
+                                
                             </div>
 
                         }

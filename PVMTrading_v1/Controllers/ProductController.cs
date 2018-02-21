@@ -67,7 +67,7 @@ namespace PVMTrading_v1.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Save(Product product, ProductInclusion productInclusion, ProductPrice productPrice, Product model, HttpPostedFileBase file)
+        public ActionResult Save(Product product, ProductInclusion productInclusion, ProductPrice productPrice/*, Product model, HttpPostedFileBase file*/)
         {
             var isProductExist = _context.Products.Count(c => c.Name == product.Name);
 
@@ -107,17 +107,17 @@ namespace PVMTrading_v1.Controllers
                 if (isProductExist == 0)
                 {
                     if (productInclusion.FreeItem != null &&
-                        (productInclusion.Quantity != 0 || productInclusion.Quantity != null) && file != null)
+                        (productInclusion.Quantity != 0 || productInclusion.Quantity != null)/* && file != null*/)
                     {
-                        model.ProductImage = new byte[file.ContentLength];
-                        file.InputStream.Read(model.ProductImage, 0, file.ContentLength);
+                        /*model.ProductImage = new byte[file.ContentLength];
+                        file.InputStream.Read(model.ProductImage, 0, file.ContentLength);*/
 
 
 
                         productInclusion.ProductId = product.Id;
                         _context.ProductInclusions.Add(productInclusion);
                     }
-                    _context.Products.Add(model);
+                    /*_context.Products.Add(model);*/
                     productPrice.ProductId = product.Id;
                     productPrice.DateCreated = DateTime.Now;
                     productPrice.UnitPrice = product.OriginalPrice;

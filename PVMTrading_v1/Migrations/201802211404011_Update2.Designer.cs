@@ -7,13 +7,13 @@ namespace PVMTrading_v1.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class SeedUser : IMigrationMetadata
+    public sealed partial class Update2 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(SeedUser));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Update2));
         
         string IMigrationMetadata.Id
         {
-            get { return "201802210535136_SeedUser"; }
+            get { return "201802211404011_Update2"; }
         }
         
         string IMigrationMetadata.Source

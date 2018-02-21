@@ -70,7 +70,7 @@ namespace PVMTrading_v1.Models
         public int AvailableForSelling { get; set; }
 
         
-        public byte[] ProductImage { get; set; }
+        public string ProductImage { get; set; }
 
 
        // public PvMCart Cart { get; set; }
