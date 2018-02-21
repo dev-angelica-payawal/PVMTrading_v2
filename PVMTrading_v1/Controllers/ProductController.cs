@@ -49,6 +49,7 @@ namespace PVMTrading_v1.Controllers
        // [HttpPost]
         public ActionResult New(Product model, HttpPostedFileBase file)
         {
+            
             var brands = _context.Brands.ToList();
             var branches = _context.Branches.ToList();
             var productCategories = _context.ProductCategories.ToList();
@@ -58,9 +59,11 @@ namespace PVMTrading_v1.Controllers
             {
                 model.ProductImage = new byte[file.ContentLength];
                 file.InputStream.Read(model.ProductImage, 0, file.ContentLength);
+
             }
             _context.Products.Add(model);
             
+
 
             var viewModels = new ProductViewModel
             {
