@@ -203,6 +203,7 @@
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LandingPageController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Migrations\201802181038462_TempCart.cs" />
     <Compile Include="Migrations\201802181038462_TempCart.Designer.cs">
       <DependentUpon>201802181038462_TempCart.cs</DependentUpon>
@@ -1140,10 +1141,12 @@
     <Content Include="Views\Customer\CustomerReg.cshtml" />
     <Content Include="Views\LandingPage\Index.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Customer\CustomerProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\loginImage\" />
     <Folder Include="Views\Cart\" />
+    <Folder Include="Views\Profile\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
