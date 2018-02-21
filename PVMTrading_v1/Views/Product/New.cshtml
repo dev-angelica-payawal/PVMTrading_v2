@@ -1,20 +1,29 @@
 ﻿
 ﻿
 @model PVMTrading_v1.ViewModels.ProductViewModel
-
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 @using (Html.BeginForm("Save", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    <div class="modal-header">
-        <h4 class="modal-title" id="myModalLabel">Product</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    </div>
-    <div class="modal-body">
+    <div class="content-wrapper">
+    <div class="container-fluid">
+    <div class="card mb-3">
+        @*<div class="modal-header">*@
+        <div class="card-header">
+            <h2>Product</h2>
+        </div>
+        
+       @* <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div>*@
+    <div class="card-body">
         <div class="form-horizontal">
 
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="row">
-                <div class="column">
+                <div class="column col-md-6">
                     <div class="form-group">
                         @Html.LabelFor(model => model.Product.Name, new { @class = "control-label col-md-12" })
                         <div class="col-md-12">
@@ -80,7 +89,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="column">
+                <div class="column col-md-6">
                     <div class="form-group">
                         @Html.LabelFor(model => model.Product.ProductConditionId, "Product Condition", htmlAttributes: new { @class = "control-label col-md-10" })
                         <div class="col-md-10">
@@ -161,6 +170,13 @@
                 </div>
 
 
+            </div>
+
+
+
+        </div>
+
+    </div>
             </div>
 
 
