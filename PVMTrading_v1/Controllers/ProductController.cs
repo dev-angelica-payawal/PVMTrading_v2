@@ -111,6 +111,9 @@ namespace PVMTrading_v1.Controllers
                     {
                         model.ProductImage = new byte[file.ContentLength];
                         file.InputStream.Read(model.ProductImage, 0, file.ContentLength);
+
+
+
                         productInclusion.ProductId = product.Id;
                         _context.ProductInclusions.Add(productInclusion);
                     }
