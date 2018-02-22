@@ -227,11 +227,10 @@
     <Compile Include="Migrations\201802211240560_AddDiscountTotempandTransactionItem.Designer.cs">
       <DependentUpon>201802211240560_AddDiscountTotempandTransactionItem.cs</DependentUpon>
     </Compile>
-<<<<<<< HEAD
     <Compile Include="Migrations\201802220517021_Update3.cs" />
     <Compile Include="Migrations\201802220517021_Update3.Designer.cs">
       <DependentUpon>201802220517021_Update3.cs</DependentUpon>
-=======
+    </Compile>
     <Compile Include="Migrations\201802211841101_AddDiscount.cs" />
     <Compile Include="Migrations\201802211841101_AddDiscount.Designer.cs">
       <DependentUpon>201802211841101_AddDiscount.cs</DependentUpon>
@@ -243,7 +242,10 @@
     <Compile Include="Migrations\201802212217071_deleteDiscountTempCart.cs" />
     <Compile Include="Migrations\201802212217071_deleteDiscountTempCart.Designer.cs">
       <DependentUpon>201802212217071_deleteDiscountTempCart.cs</DependentUpon>
->>>>>>> 3e414bd9f6da58aaff80477c01614f3a2b33adc0
+    </Compile>
+    <Compile Include="Migrations\201802221116048_Update4.cs" />
+    <Compile Include="Migrations\201802221116048_Update4.Designer.cs">
+      <DependentUpon>201802221116048_Update4.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\TypeOfTransaction.cs" />
     <Compile Include="ViewModels\Item.cs" />
@@ -1369,10 +1371,9 @@
     <EmbeddedResource Include="Migrations\201802211240560_AddDiscountTotempandTransactionItem.resx">
       <DependentUpon>201802211240560_AddDiscountTotempandTransactionItem.cs</DependentUpon>
     </EmbeddedResource>
-<<<<<<< HEAD
     <EmbeddedResource Include="Migrations\201802220517021_Update3.resx">
       <DependentUpon>201802220517021_Update3.cs</DependentUpon>
-=======
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802211841101_AddDiscount.resx">
       <DependentUpon>201802211841101_AddDiscount.cs</DependentUpon>
     </EmbeddedResource>
@@ -1381,7 +1382,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802212217071_deleteDiscountTempCart.resx">
       <DependentUpon>201802212217071_deleteDiscountTempCart.cs</DependentUpon>
->>>>>>> 3e414bd9f6da58aaff80477c01614f3a2b33adc0
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802221116048_Update4.resx">
+      <DependentUpon>201802221116048_Update4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

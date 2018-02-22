@@ -97,7 +97,10 @@
                                             <div class="item-info4">
                                                 <h4><a href="products.html">@product.Product.Name</a></h4>
                                                 <span>@product.Product.Model</span>
+                                                @*
                                                 @Html.ActionLink("Add to cart", "BuyNow", "SearchProduct", new { id = product.Product.Id, price = product.SellingPrice }, new { @class = "btn btn-info" })<!--Buy now Button-->
+*@
+                                                <a class="btn btn-primary" href="@Url.Content("~/Account/Login")">Order Now</a>
                                             </div>
                                             
 
