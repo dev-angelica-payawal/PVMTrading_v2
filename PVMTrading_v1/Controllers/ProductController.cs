@@ -72,21 +72,13 @@ namespace PVMTrading_v1.Controllers
     
         [HttpPost]
         [ValidateAntiForgeryToken]
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
         public ActionResult Save(Product product, ProductInclusion productInclusion, ProductPrice productPrice/*, Product model, HttpPostedFileBase file*/)
         {
             /*var decodedString = Convert.ToBase64String(product.ProductImage)
                 .Replace("-", "");
-=======
 
->>>>>>> bab49281e188f0f7282717b05bdcf5ccc9242f68
-        public ActionResult Save(Product product, ProductInclusion productInclusion, ProductPrice productPrice/*, Product model, HttpPostedFileBase file*/)
-
-        {
            /* var decodedString = Convert.ToBase64String(product.ProductImage).Replace("-", "");
->>>>>>> 3e414bd9f6da58aaff80477c01614f3a2b33adc0
+
             var bytes = Convert.FromBase64String(decodedString);
 
             var encodedString = Encoding.UTF8.GetString(bytes);
