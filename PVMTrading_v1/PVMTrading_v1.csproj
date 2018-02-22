@@ -49,11 +49,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="GitSharp, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -203,7 +203,6 @@
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LandingPageController.cs" />
-    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Migrations\201802181038462_TempCart.cs" />
     <Compile Include="Migrations\201802181038462_TempCart.Designer.cs">
       <DependentUpon>201802181038462_TempCart.cs</DependentUpon>
@@ -223,6 +222,10 @@
     <Compile Include="Migrations\201802211240560_AddDiscountTotempandTransactionItem.cs" />
     <Compile Include="Migrations\201802211240560_AddDiscountTotempandTransactionItem.Designer.cs">
       <DependentUpon>201802211240560_AddDiscountTotempandTransactionItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802220517021_Update3.cs" />
+    <Compile Include="Migrations\201802220517021_Update3.Designer.cs">
+      <DependentUpon>201802220517021_Update3.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\TypeOfTransaction.cs" />
     <Compile Include="ViewModels\Item.cs" />
@@ -844,6 +847,7 @@
     <Content Include="Resources\css\jquery-ui.css" />
     <Content Include="Resources\css\megamenu.css" />
     <Content Include="Resources\css\style.css" />
+    <Content Include="Resources\id pic samp.jpg" />
     <Content Include="Resources\images\b-arrow.png" />
     <Content Include="Resources\images\bag.png" />
     <Content Include="Resources\images\banner1.jpg" />
@@ -891,6 +895,7 @@
     <Content Include="Resources\images\ts2.jpg" />
     <Content Include="Resources\images\ts3.jpg" />
     <Content Include="Resources\images\ts4.jpg" />
+    <Content Include="Resources\user-medium.png" />
     <Content Include="Scripts\bootbox.js" />
     <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -1338,6 +1343,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802211240560_AddDiscountTotempandTransactionItem.resx">
       <DependentUpon>201802211240560_AddDiscountTotempandTransactionItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802220517021_Update3.resx">
+      <DependentUpon>201802220517021_Update3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
