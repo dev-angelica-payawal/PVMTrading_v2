@@ -249,16 +249,16 @@ namespace PVMTrading_v1.Controllers
 
             return PartialView(customerComplete);
         }
+        
+        /* public ActionResult OderByCustomer()
+         {
+             var oder = from c in _context.Customers
+                 orderby c.NameExtension ascending
+                 select c;
 
-       /* public ActionResult OderByCustomer()
-        {
-            var oder = from c in _context.Customers
-                orderby c.NameExtension ascending
-                select c;
+             return View(oder.ToList());
 
-            return View(oder.ToList());
-     
-        }*/
+         }*/
 
 
         public ActionResult CustomerReg()
