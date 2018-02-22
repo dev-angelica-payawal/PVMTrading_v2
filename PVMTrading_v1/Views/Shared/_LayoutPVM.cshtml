@@ -45,17 +45,19 @@
     <div class="top_bg">
         <div class="container">
             <div class="header_top-sec">
-                @*<div class="top_right">
-                        <ul>
-                            <li><a href="#">help</a></li>|
-                            <li><a href="contact.html">Contact</a></li>|
-                            <li><a href="login.html">Track Order</a></li>
-                        </ul>
-                    </div>*@
+                <div class="top_right">
+                    <ul>
+                        <li><a href="#">home</a></li>|
+                        <li><a href="contact.html">Contact</a></li>|
+                        <li><a href="login.html">About Us</a></li>
+
+                    </ul>
+                    
+                    </div>
                 <div class="top_left">
                     <ul>
                         @*<li class="top_link">Email:<a href="mailto@example.com">info(at)gmail.com</a></li>|*@
-                        <li class="top_link"><a href="@Url.Content("~/Account/Login")">Login</a></li>|
+                        <li ><a href="@Url.Content("~/Account/Login")">LOGIN</a></li>|
                     </ul>
                     <div class="social">
                         <ul>
@@ -424,7 +426,7 @@
     <div>
         @RenderBody()
     </div>
-    @Html.Partial("_Footer")
+   @* @Html.Partial("_Footer")*@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

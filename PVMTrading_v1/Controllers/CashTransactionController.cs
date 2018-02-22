@@ -133,7 +133,7 @@ namespace PVMTrading_v1.Controllers
             return RedirectToAction("CashTransactionSummary");
         }
 
-
+        [CustomAuthorize(Roles = RoleName.Admin)]
         public ActionResult Delete(string id)
         {
           
