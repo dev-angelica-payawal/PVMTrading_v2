@@ -12,156 +12,250 @@
                 <h4>Customer Information</h4>
             </div>
             <div class="card-body">
+                <div class="row profile-bottom">
+                    <div class="column col-md-2">
+
+                    </div>
+                    <div class="column col-md-3">
+                        <div class="profile-bottom-top">
+
+                            <div class="col-md-12 ">
+                                <img src="~/Resources/user-medium.png" class="profile-bottom-img" />
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="column col-md-7">
+                        <div>
+                            <div class="col-md-12">
+                                <h5>Name</h5>
+                                <hr />
+                                <strong>First Name :</strong>
+                                @Html.DisplayFor(model => model.Customer.FirstName)
+                                <br />
+                                <strong>Middle Name :</strong>
+                                @Html.DisplayFor(model => model.Customer.MiddleName)
+                                <br />
+                                <strong>Last Name :</strong>
+                                @Html.DisplayFor(model => model.Customer.LastName)
+                                <br />
+                                <strong>Name Extension :</strong>
+                                @Html.DisplayFor(model => model.Customer.NameExtension)
+                               
+                                <br />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column col-md-12">
+                        <hr />
+                        <h5>Complete Information</h5>
+                        <hr/>
+                    </div>
+                    <div class="column col-md-6">
+                        <strong>Mobile Number :</strong>
+                        @Html.DisplayFor(model => model.Customer.Mobile)
+                        <br />
+                        <strong>Registered Date Created :</strong>
+                        @Html.DisplayFor(model => model.Customer.RegisteredDateCreated)
+                        <br />
+                        <strong>Telephone :</strong>
+                        @Html.DisplayFor(model => model.CustomerCompleInfo.Telephone)
+                        <br />
+                        <strong>Email Address :</strong>
+                        @Html.DisplayFor(model => model.CustomerCompleInfo.Email)
+                        <br />
+                        <strong>Tax Identification Number :</strong>
+                        @Html.DisplayFor(model => model.CustomerCompleInfo.TaxIdentificationNumber)
+                    </div>
+
+                    <div class="column col-md-6">
+                        <strong>Birthdate :</strong>
+                        @Html.DisplayFor(model => model.CustomerCompleInfo.Birthdate)
+                        <br />
+                        <strong>Civil Status :</strong>
+                        @Html.DisplayFor(model => model.CustomerCompleInfo.CivilStatusId)
+                        <br />
+                        <strong>Place of Birth :</strong>
+                        @Html.DisplayFor(model => model.CustomerCompleInfo.PlaceOfBirth)
+                        <br />
+                        <strong>Nationality :</strong>
+                        @Html.DisplayFor(model => model.CustomerCompleInfo.Nationality)
+                    </div>
+                    <div class="column col-md-12">
+                        <hr/>
+                        <h5>Address</h5>
+                        <hr/>
+                        <div>
+                            <div class="col-md-12">
+
+                                
+
+                                @Html.DisplayFor(model => model.CustomerCompleInfo.LotHouseNumberAndStreet)
+
+                                @Html.DisplayFor(model => model.CustomerCompleInfo.Barangay)
+
+                                @Html.DisplayFor(model => model.CustomerCompleInfo.CityMunicipality)
+
+                                @Html.DisplayFor(model => model.CustomerCompleInfo.Province)
+
+                                @Html.DisplayFor(model => model.CustomerCompleInfo.Country)
+
+                                @Html.DisplayFor(model => model.CustomerCompleInfo.ZipCode)
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <table class="table table-bordered">
-                    <tr>
+                    @* <tr>
 
-                        <td>
-                            @Html.DisplayNameFor(model => model.Customer.FirstName)
-                            @Html.DisplayFor(model => model.Customer.FirstName)
-                        </td>
-                    </tr>
-                    <tr>
+                            <td>
+                               $1$ @Html.DisplayNameFor(model => model.Customer.FirstName)
+                                @Html.DisplayFor(model => model.Customer.FirstName)#1#
+                            </td>
+                        </tr>*@
+                    @*   <tr>
 
-                        <td>
-                            @Html.DisplayNameFor(model => model.Customer.MiddleName)
-                            @Html.DisplayFor(model => model.Customer.MiddleName)
-                        </td>
-                    </tr>
-                    <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.Customer.MiddleName)
+                                @Html.DisplayFor(model => model.Customer.MiddleName)
+                            </td>
+                        </tr>
+                        <tr>
 
-                        <td>
-                            @Html.DisplayNameFor(model => model.Customer.LastName)
-                            @Html.DisplayFor(model => model.Customer.LastName)
-                        </td>
-                    </tr>
-                    <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.Customer.LastName)
+                                @Html.DisplayFor(model => model.Customer.LastName)
+                            </td>
+                        </tr>*@
+                    @* <tr>
 
-                        <td>
-                            @Html.DisplayNameFor(model => model.Customer.NameExtension)
-                            @Html.DisplayFor(model => model.Customer.NameExtension)
-                        </td>
-                    </tr>
-                    <tr>
+                             <td>
+                                 @Html.DisplayNameFor(model => model.Customer.NameExtension)
+                                 @Html.DisplayFor(model => model.Customer.NameExtension)
+                             </td>
+                         </tr>
+                         <tr>
 
-                        <td>
-                            @Html.DisplayNameFor(model => model.Customer.Mobile)
-                            @Html.DisplayFor(model => model.Customer.Mobile)
-                        </td>
-                    </tr>
-                    <tr>
+                             <td>
+                                 @Html.DisplayNameFor(model => model.Customer.Mobile)
+                                 @Html.DisplayFor(model => model.Customer.Mobile)
+                             </td>
+                         </tr>
+                         <tr>
 
-                        <td>
-                            @Html.DisplayNameFor(model => model.Customer.RegisteredDateCreated)
-                            @Html.DisplayFor(model => model.Customer.RegisteredDateCreated)
-                        </td>
-                    </tr>
-                    <tr>
+                             <td>
+                                 @Html.DisplayNameFor(model => model.Customer.RegisteredDateCreated)
+                                 @Html.DisplayFor(model => model.Customer.RegisteredDateCreated)
+                             </td>
+                         </tr>
+                         <tr>
 
-                        <td>
-                            @Html.DisplayNameFor(model => model.CustomerCompleInfo.Telephone)
-                            @Html.DisplayFor(model => model.CustomerCompleInfo.Telephone)
-                        </td>
-                    </tr>
-                    <tr>
+                             <td>
+                                 @Html.DisplayNameFor(model => model.CustomerCompleInfo.Telephone)
+                                 @Html.DisplayFor(model => model.CustomerCompleInfo.Telephone)
+                             </td>
+                         </tr>
+                         <tr>
 
-                        <td>
-                            @Html.DisplayNameFor(model => model.CustomerCompleInfo.Email)
-                            @Html.DisplayFor(model => model.CustomerCompleInfo.Email)
-                        </td>
-                    </tr>
-                    <tr>
+                             <td>
+                                 @Html.DisplayNameFor(model => model.CustomerCompleInfo.Email)
+                                 @Html.DisplayFor(model => model.CustomerCompleInfo.Email)
+                             </td>
+                         </tr>
+                         <tr>
 
-                        <td>
-                            @Html.DisplayNameFor(model => model.CustomerCompleInfo.Birthdate)
-                            @Html.DisplayFor(model => model.CustomerCompleInfo.Birthdate)
-                        </td>
-                    </tr>
-                    <tr>
+                             <td>
+                                 @Html.DisplayNameFor(model => model.CustomerCompleInfo.Birthdate)
+                                 @Html.DisplayFor(model => model.CustomerCompleInfo.Birthdate)
+                             </td>
+                         </tr>
+                         <tr>
 
-                        <td>
-                            @Html.DisplayNameFor(model => model.CustomerCompleInfo.CivilStatusId)
-                            @Html.DisplayFor(model => model.CustomerCompleInfo.CivilStatusId)
-                        </td>
-                    </tr>
-                    <tr>
+                             <td>
+                                 @Html.DisplayNameFor(model => model.CustomerCompleInfo.CivilStatusId)
+                                 @Html.DisplayFor(model => model.CustomerCompleInfo.CivilStatusId)
+                             </td>
+                         </tr>
+                         <tr>
 
-                        <td>
-                            @Html.DisplayNameFor(model => model.CustomerCompleInfo.PlaceOfBirth)
-                            @Html.DisplayFor(model => model.CustomerCompleInfo.PlaceOfBirth)
-                        </td>
-                    </tr>
-                    <tr>
+                             <td>
+                                 @Html.DisplayNameFor(model => model.CustomerCompleInfo.PlaceOfBirth)
+                                 @Html.DisplayFor(model => model.CustomerCompleInfo.PlaceOfBirth)
+                             </td>
+                         </tr>
+                         <tr>
 
-                        <td>
-                            @Html.DisplayNameFor(model => model.CustomerCompleInfo.Nationality)
-                            @Html.DisplayFor(model => model.CustomerCompleInfo.Nationality)
-                        </td>
-                    </tr>
-                    <tr>
+                             <td>
+                                 @Html.DisplayNameFor(model => model.CustomerCompleInfo.Nationality)
+                                 @Html.DisplayFor(model => model.CustomerCompleInfo.Nationality)
+                             </td>
+                         </tr>
+                         <tr>
 
-                        <td>
-                            @Html.DisplayNameFor(model => model.CustomerCompleInfo.TaxIdentificationNumber)
-                            @Html.DisplayFor(model => model.CustomerCompleInfo.TaxIdentificationNumber)
-                        </td>
-                    </tr>
-                    <tr>
+                             <td>
+                                 @Html.DisplayNameFor(model => model.CustomerCompleInfo.TaxIdentificationNumber)
+                                 @Html.DisplayFor(model => model.CustomerCompleInfo.TaxIdentificationNumber)
+                             </td>
+                         </tr>
+                        $1$ <tr>
 
-                        <td>
-                            @Html.DisplayNameFor(model => model.CustomerCompleInfo.LotHouseNumberAndStreet)
-                            @Html.DisplayFor(model => model.CustomerCompleInfo.LotHouseNumberAndStreet)
-                        </td>
-                    </tr>
-                    <tr>
+                             <td>
+                                 @Html.DisplayNameFor(model => model.CustomerCompleInfo.LotHouseNumberAndStreet)
+                                 @Html.DisplayFor(model => model.CustomerCompleInfo.LotHouseNumberAndStreet)
+                             </td>
+                         </tr>
+                         <tr>
 
-                        <td>
-                            @Html.DisplayNameFor(model => model.CustomerCompleInfo.Barangay)
-                            @Html.DisplayFor(model => model.CustomerCompleInfo.Barangay)
-                        </td>
-                    </tr>
-                    <tr>
+                             <td>
+                                 @Html.DisplayNameFor(model => model.CustomerCompleInfo.Barangay)
+                                 @Html.DisplayFor(model => model.CustomerCompleInfo.Barangay)
+                             </td>
+                         </tr>
+                         <tr>
 
-                        <td>
-                            @Html.DisplayNameFor(model => model.CustomerCompleInfo.CityMunicipality)
-                            @Html.DisplayFor(model => model.CustomerCompleInfo.CityMunicipality)
-                        </td>
-                    </tr>
-                    <tr>
+                             <td>
+                                 @Html.DisplayNameFor(model => model.CustomerCompleInfo.CityMunicipality)
+                                 @Html.DisplayFor(model => model.CustomerCompleInfo.CityMunicipality)
+                             </td>
+                         </tr>
+                         <tr>
 
-                        <td>
-                            @Html.DisplayNameFor(model => model.CustomerCompleInfo.Province)
-                            @Html.DisplayFor(model => model.CustomerCompleInfo.Province)
-                        </td>
-                    </tr>
-                    <tr>
+                             <td>
+                                 @Html.DisplayNameFor(model => model.CustomerCompleInfo.Province)
+                                 @Html.DisplayFor(model => model.CustomerCompleInfo.Province)
+                             </td>
+                         </tr>
+                         <tr>
 
-                        <td>
-                            @Html.DisplayNameFor(model => model.CustomerCompleInfo.Country)
-                            @Html.DisplayFor(model => model.CustomerCompleInfo.Country)
-                        </td>
-                    </tr>
-                    <tr>
+                             <td>
+                                 @Html.DisplayNameFor(model => model.CustomerCompleInfo.Country)
+                                 @Html.DisplayFor(model => model.CustomerCompleInfo.Country)
+                             </td>
+                         </tr>
+                         <tr>
 
-                        <td>
-                            @Html.DisplayNameFor(model => model.CustomerCompleInfo.ZipCode)
-                            @Html.DisplayFor(model => model.CustomerCompleInfo.ZipCode)
-                        </td>
-                    </tr>
-                    <tr>
+                             <td>
+                                 @Html.DisplayNameFor(model => model.CustomerCompleInfo.ZipCode)
+                                 @Html.DisplayFor(model => model.CustomerCompleInfo.ZipCode)
+                             </td>
+                         </tr>
+                         <tr>#1#
 
-                        <td>
-                            @Html.DisplayNameFor(model => model.CustomerCompleInfo.Image)
-                            @Html.DisplayFor(model => model.CustomerCompleInfo.Image)
-                        </td>
-                    </tr>
+                             <td>
+                                 @Html.DisplayNameFor(model => model.CustomerCompleInfo.Image)
+                                 @Html.DisplayFor(model => model.CustomerCompleInfo.Image)
+                             </td>
+                         </tr>*@
 
 
 
                 </table>
             </div>
         </div>
-        
 
-      
+
+
 
 
 

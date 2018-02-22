@@ -268,14 +268,14 @@ namespace PVMTrading_v1.Controllers
             {
                 return HttpNotFound();
             }
-            var customerComplete = new CustomerViewModel
+            var customerView = new CustomerViewModel
             {
                 Customer = customer,
                 CustomerCompleInfo = customerInfo,
                 CustomerTypes = _context.CustomerTypes.ToList(),
                 CivilStatuses = _context.CivilStatus.ToList()
             };
-            return View(customerComplete);
+            return View(customerView);
         }
 
 
