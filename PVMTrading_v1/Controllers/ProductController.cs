@@ -5,7 +5,6 @@ using System.Data.Entity;
  using System.IO;
  using System.Linq;
  using System.Text;
-using System.Linq;
  using System.Web;
  using System.Web.Mvc;
 using Microsoft.Ajax.Utilities;
@@ -73,7 +72,6 @@ namespace PVMTrading_v1.Controllers
     
         [HttpPost]
         [ValidateAntiForgeryToken]
-
         public ActionResult Save(Product product, ProductInclusion productInclusion, ProductPrice productPrice/*, Product model, HttpPostedFileBase file*/)
 
         {
@@ -194,7 +192,7 @@ namespace PVMTrading_v1.Controllers
         }
 
 
-        //        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         [CustomAuthorize(Roles = RoleName.Admin)]
         public ActionResult Edit(int id)
         {

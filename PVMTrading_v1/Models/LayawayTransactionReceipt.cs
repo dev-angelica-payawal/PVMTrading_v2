@@ -12,7 +12,8 @@ namespace PVMTrading_v1.Models
         public int Id { get; set; }
 
         public LayAwayTransaction LayAwayTransaction { get; set; }
-        public int LayAwayTransactionId { get; set; }
+        [Required]
+        public string LayAwayTransactionId { get; set; }
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0: MM:dd:yyyy}", ApplyFormatInEditMode = true)]

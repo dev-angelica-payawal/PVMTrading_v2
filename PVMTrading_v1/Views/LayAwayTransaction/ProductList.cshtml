@@ -1,0 +1,122 @@
+
+@model List<PVMTrading_v1.Models.ProductPrice>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+
+    <div class="container-fluid">
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <h2>Product List</h2>
+                   </div> 
+                   <div class="container">
+
+                                <div class="card-body">
+                                    <div class="row">
+                                        <table id="product">
+                                        @if (!Model.Any())
+                                        {
+                                            <p> We don't have any Products yet.</p>
+                                        }
+                                        else
+                                        {
+
+                                            foreach (var product in Model)
+                                            {
+                                                <div class="col-lg-4 product-model-sec">
+                                                    
+                                                    <div class="card col-md-12">
+                                                        <div class="">
+                                                        <div class="more-product"><span> </span></div>
+                                                                <div class="b-wrapper">
+                                                                    <img src="@Url.Content("~/Content/PVMcssandjs/images/1.jpg")" class="img-responsive" alt=""><!--Product Image-->
+                                                                    <div class="">
+                                                                    </div>
+                                                                </div>
+                                                         
+                                                            <div class="product-info simpleCart_shelfItem">
+                                                                <div class="product-info-cust prt_name">
+                                                                    <h4>@product.Product.Name</h4><!--Buy now Button-->
+                                                                    <p>@product.Product.Model</p><!--Product Id-->
+                                                                    <span class="item_price">@product.SellingPrice</span>
+                                                                    <br />
+                                                                    @Html.ActionLink("Add to cart", "BuyNow", "LayAwayTransaction", new {id = product.Product.Id, price = product.SellingPrice }, new {@class = "btn btn-info"})<!--Buy now Button-->
+                                                                    
+                                                                    </div>
+                                                                <div class="clearfix"> </div>
+                                                                <br />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            }
+
+                                        }
+
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                                </div>
+                            
+
+                       
+
+                <link href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+
+
+                @section scripts{
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js">
+                    </script>
+                    <script>
+                        function createModal(url) {
+                            $('#modelContent').load(url);
+                            $('#myModal').modal('show');
+                        }
+                    </script>
+                    <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+                    <script>
+                        $(document).ready(function () {
+                            $('#product').DataTable({/*
+            "ajax": {
+                "url": "/customer/Loaddata",
+                "type": "GET",
+                "datatype":"json"
+            },*/
+                                "column": [
+                                    { "autowidth": true },
+                                    { "ScrollY": (0.6 * $(window).height()) },
+
+
+                                    /* { "data": "FirstName", "autowidth": true },
+                                     { "data": "MiddleName", "autowidth": true },
+                                     { "data": "LastName", "autowidth": true },
+                                     { "data": "NameExtension", "autowidth": true },
+                                     { "data": "Mobile", "autowidth": true },
+                                      { "data": "Telephone", "autowidth": true },
+                                      { "data": "Sex.Label", "autowidth": true },
+                                     { "data": "RegisteredDateCreated", "autowidth": true },
+                                     { "data": "PlaceOfBirth", "autowidth": true },
+                                     { "data": "Nationality", "autowidth": true },
+                                     { "data": "TaxIdentificationNumber", "autowidth": true },
+                                     { "data": "CustomerType", "autowidth": true },
+                                     { "data": "ZipCode", "autowidth": true }
+                 */
+
+                                ]
+
+
+
+                            });
+                        });
+                    </script>
+                }
+

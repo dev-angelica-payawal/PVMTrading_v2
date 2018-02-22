@@ -1,4 +1,5 @@
-﻿@using PVMTrading_v1.Models
+﻿
+@using PVMTrading_v1.ViewModels
 @model PVMTrading_v1.ViewModels.CashTransactionListViewModel
 @{
     ViewBag.Title = "Details";
@@ -7,41 +8,62 @@
 
 <h2>Details</h2>
 <div class="content-wrapper">
-    <table>
-        <tr>
-            <td>Transaction #</td>
-            <td>Customer Name</td>
-            <td>Date of Transaction</td>
-            <td>TotalAmount</td>
-            <td>Discount</td>
-            <td>Total w/ Discount</td>
-            <td>OR #</td>
-            <td>Remarks</td>
-            <td>Void</td>
-        </tr>
-        <tr>
-            <td>@Model.CashTransaction.Id</td>
-            <td>@Model.Customer.FirstName @Model.Customer.MiddleName @Model.Customer.LastName</td>
-            <td>@Model.CashTransaction.CashTransactionDate</td>
-            <td>@Model.CashTransaction.OriginalTotalAmount</td>
-            <td>@Model.CashTransaction.TotalDiscountedAmount</td>
-            <td>@Model.CashTransaction.TotalAmount</td>
-            <td>@Model.CashTransaction.OR</td>
-            <td>@Model.CashTransaction.Remarks</td>
-            <td>@Model.CashTransaction.IsVoid</td>
-        </tr>
+    <div class="form-horizontal">
+        <table class="table-responsive table-bordered">
+            <tr>
+                <td>Transaction #</td>
+                <td>Customer Name</td>
+                <td>Date of Transaction</td>
+                <td>TotalAmount</td>
+                <td>Discount</td>
+                <td>Total w/ Discount</td>
+                <td>OR #</td>
+                <td>Remarks</td>
+                <td>Void</td>
+            </tr>
+            <tr>
+                <td>@Model.CashTransaction.Id</td>
+                <td>@Model.Customer.FirstName @Model.Customer.MiddleName @Model.Customer.LastName</td>
+                <td>@Model.CashTransaction.CashTransactionDate</td>
+                <td>@Model.CashTransaction.OriginalTotalAmount</td>
+                <td>@Model.CashTransaction.TotalDiscountedAmount</td>
+                <td>@Model.CashTransaction.TotalAmount</td>
+                <td>@Model.CashTransaction.OR</td>
+                <td>@Model.CashTransaction.Remarks</td>
+                <td>@Model.CashTransaction.IsVoid</td>
+            </tr>
+
+        </table>
         
         
 
-    </table>
-    
-    @*<table>
-        @foreach (var c in ViewData["ListItem"] as IList<CashTransactionItem>)
-        {
-            @c.Product.Name
-            
-        }
-        <tr>List</tr>
-        <tr></tr>
-    </table>*@
+        <table>
+
+          
+            <tr>
+                <td>Product Name</td>
+                <td>Model</td>
+                <td>Quantity</td>
+                <td>Price</td>
+            </tr>
+            @foreach (var c in ViewData["ListItem"] as IList<CashTransactionListViewModel>)
+            {
+                <tr>
+                    <td>@c.Product.Name</td>
+                    <td>@c.Product.Model</td>
+                    <td>@c.CashTransactionItem.Quantity</td>
+                    <td>@c.CashTransactionItem.ProductPrice</td>
+                  </tr>
+                
+
+            }
+            List
+            <tr></tr>
+        </table>
+
+
+
+
+
+    </div>
 </div>

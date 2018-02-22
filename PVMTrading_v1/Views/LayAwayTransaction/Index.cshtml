@@ -1,10 +1,8 @@
-﻿@model List<PVMTrading_v1.Models.CashTransaction>
-
+﻿@model List<PVMTrading_v1.Models.LayAwayTransaction>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <div>
     <div class="content-wrapper">
         <div class="container-fluid">
@@ -17,7 +15,7 @@
                         <div id="dataTable_wrapper" class="dataTables_wrapper container-fluid">
 
 
-                            @Html.ActionLink("New Cash Transaction", "ProductList", "SearchProduct", new { @class = "btn btn-primary" }, null)
+                            @Html.ActionLink("New Transaction", "ProductList", "LayAwayTransaction", new { @class = "btn btn-primary" }, null)
 
 
                             @if (!Model.Any())
@@ -31,12 +29,13 @@
                                         <tr>
                                             <th>No.</th>
                                             <th>Customer</th>
+                                            <td>Product</td>
+                                            <td>Quantity</td>
                                             <th>Total Amount</th>
-                                            <th>Discount</th>
-                                            <th>Total Amount w/ Discount</th>
-                                            <th>Date</th>
+                                            <th>Paid</th>
+                                            <th>Balance</th>
                                             <th>Remarks</th>
-                                            <th>OR</th>
+                                            <th>Date</th>
                                             <th>Void</th>
                                             <th></th>
 
@@ -51,14 +50,15 @@
                                             <tr>
                                                 <td>@cash.Id</td>
                                                 <td>@cash.Customer.FirstName @cash.Customer.LastName</td>
-                                                <td>@cash.OriginalTotalAmount</td>
-                                                <td>@cash.TotalDiscountedAmount</td>
+                                                <td>@cash.Product.Name</td>
+                                                <td>@cash.Quantity</td>
                                                 <td>@cash.TotalAmount</td>
-                                                <td>@cash.CashTransactionDate</td>
+                                                <td>@cash.TotalPaidAmount</td>
+                                                <td>@cash.RemainingBalance</td>
                                                 <td>@cash.Remarks</td>
-                                                <td>@cash.OR</td>
+                                                <td>@cash.TransactionDate</td>
                                                 <td>@cash.IsVoid</td>
-                                                <td>@Html.ActionLink("Void", "Delete", new { id = cash.Id }) | @Html.ActionLink("Details", "Details", new { id = cash.Id })
+                                               <td>@Html.ActionLink("Void", "Delete", new { id = cash.Id }) | @Html.ActionLink("Details", "Details", new { id = cash.Id })
                                                 </td>
 
                                             </tr>
@@ -81,18 +81,15 @@
 
     <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             $('#cashtransact').DataTable({
-
                 "column": [
                     { "autowidth": true },
                     { "ScrollY": (0.6 * $(window).height()) }
                 ]
 
 
-
             });
         });
     </script>
 }
-

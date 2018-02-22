@@ -75,6 +75,8 @@ namespace PVMTrading_v1.Models
 
         public DbSet<TempCart> TempCarts { get; set; }
 
+        public DbSet<LayAwayTransaction> LayAwayTransactions { get; set; }
+
 
 
         public ApplicationDbContext() 
@@ -91,7 +93,7 @@ namespace PVMTrading_v1.Models
 
         public System.Data.Entity.DbSet<PVMTrading_v1.Models.archieved.ProductReturnReason> ProductReturnReasons { get; set; }
 
-       
+      
     }
 
     

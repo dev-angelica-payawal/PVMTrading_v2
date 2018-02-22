@@ -8,8 +8,8 @@ namespace PVMTrading_v1.Models
 {
     public class LayAwayTransaction
     {
-        [Key]
-        public int Id { get; set; }
+       
+        public string Id { get; set; }
         
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0: MM:dd:yyyy}", ApplyFormatInEditMode = true)]
@@ -44,6 +44,8 @@ namespace PVMTrading_v1.Models
 
         [StringLength(500)]
         public string Remarks { get; set; }
+
+        public int Quantity { get; set; }
 
 
     }
