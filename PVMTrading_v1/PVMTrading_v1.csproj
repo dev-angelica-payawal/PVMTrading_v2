@@ -244,6 +244,10 @@
     <Compile Include="Migrations\201802212217071_deleteDiscountTempCart.Designer.cs">
       <DependentUpon>201802212217071_deleteDiscountTempCart.cs</DependentUpon>
     </Compile>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9291359cba0918b47bb9c2cc1ae5200512a68ba9
     <Compile Include="Migrations\201802221116048_Update4.cs" />
     <Compile Include="Migrations\201802221116048_Update4.Designer.cs">
       <DependentUpon>201802221116048_Update4.cs</DependentUpon>
@@ -255,6 +259,10 @@
     <Compile Include="Migrations\201802221433279_AddQuantity.cs" />
     <Compile Include="Migrations\201802221433279_AddQuantity.Designer.cs">
       <DependentUpon>201802221433279_AddQuantity.cs</DependentUpon>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9291359cba0918b47bb9c2cc1ae5200512a68ba9
     </Compile>
     <Compile Include="Models\TypeOfTransaction.cs" />
     <Compile Include="ViewModels\Item.cs" />
@@ -1378,6 +1386,10 @@
     <EmbeddedResource Include="Migrations\201802211240560_AddDiscountTotempandTransactionItem.resx">
       <DependentUpon>201802211240560_AddDiscountTotempandTransactionItem.cs</DependentUpon>
     </EmbeddedResource>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9291359cba0918b47bb9c2cc1ae5200512a68ba9
     <EmbeddedResource Include="Migrations\201802220517021_Update3.resx">
       <DependentUpon>201802220517021_Update3.cs</DependentUpon>
     </EmbeddedResource>
@@ -1389,15 +1401,29 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802212217071_deleteDiscountTempCart.resx">
       <DependentUpon>201802212217071_deleteDiscountTempCart.cs</DependentUpon>
+<<<<<<< HEAD
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802221116048_Update4.resx">
       <DependentUpon>201802221116048_Update4.cs</DependentUpon>
+=======
+
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802221116048_Update4.resx">
+      <DependentUpon>201802221116048_Update4.cs</DependentUpon>
+
+
+
+>>>>>>> 9291359cba0918b47bb9c2cc1ae5200512a68ba9
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802221344486_AddLayAwayTable.resx">
       <DependentUpon>201802221344486_AddLayAwayTable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802221433279_AddQuantity.resx">
       <DependentUpon>201802221433279_AddQuantity.cs</DependentUpon>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9291359cba0918b47bb9c2cc1ae5200512a68ba9
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

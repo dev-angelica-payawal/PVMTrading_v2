@@ -46,7 +46,7 @@
                 <td>Quantity</td>
                 <td>Price</td>
             </tr>
-            @foreach (var c in ViewData["ListItem"] as IList<CashTransactionListViewModel>)
+            @foreach(var c in ViewData["ListItem"] as IList<CashTransactionListViewModel>)
             {
                 <tr>
                     <td>@c.Product.Name</td>
@@ -54,9 +54,7 @@
                     <td>@c.CashTransactionItem.Quantity</td>
                     <td>@c.CashTransactionItem.ProductPrice</td>
                   </tr>
-                
-
-            }
+                }
             List
             <tr></tr>
         </table>
