@@ -63,7 +63,7 @@ namespace PVMTrading_v1.Controllers
 
             var isProduct = _context.TempCarts.Count(p => p.ProductId == id);
 
-            var productQuantity = _context.TempCarts.Where(p => p.ProductId == id);
+           // var productQuantity = _context.TempCarts.Where(p => p.ProductId == id);
 
             if (isProduct == 0)
             {

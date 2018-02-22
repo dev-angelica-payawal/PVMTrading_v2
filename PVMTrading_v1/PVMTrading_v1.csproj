@@ -244,11 +244,11 @@
     <Compile Include="Migrations\201802212217071_deleteDiscountTempCart.Designer.cs">
       <DependentUpon>201802212217071_deleteDiscountTempCart.cs</DependentUpon>
     </Compile>
-<<<<<<< HEAD
+
     <Compile Include="Migrations\201802221116048_Update4.cs" />
     <Compile Include="Migrations\201802221116048_Update4.Designer.cs">
       <DependentUpon>201802221116048_Update4.cs</DependentUpon>
-=======
+    </Compile>
     <Compile Include="Migrations\201802221344486_AddLayAwayTable.cs" />
     <Compile Include="Migrations\201802221344486_AddLayAwayTable.Designer.cs">
       <DependentUpon>201802221344486_AddLayAwayTable.cs</DependentUpon>
@@ -256,7 +256,7 @@
     <Compile Include="Migrations\201802221433279_AddQuantity.cs" />
     <Compile Include="Migrations\201802221433279_AddQuantity.Designer.cs">
       <DependentUpon>201802221433279_AddQuantity.cs</DependentUpon>
->>>>>>> cc56dde8a2f77b13a4350898b5c9c2864e2e3be7
+
     </Compile>
     <Compile Include="Models\TypeOfTransaction.cs" />
     <Compile Include="ViewModels\Item.cs" />
@@ -1379,13 +1379,7 @@
     <EmbeddedResource Include="Migrations\201802211240560_AddDiscountTotempandTransactionItem.resx">
       <DependentUpon>201802211240560_AddDiscountTotempandTransactionItem.cs</DependentUpon>
     </EmbeddedResource>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
 
->>>>>>> cc56dde8a2f77b13a4350898b5c9c2864e2e3be7
->>>>>>> ee03460082ae282a12767a7a90d335c254335a54
     <EmbeddedResource Include="Migrations\201802220517021_Update3.resx">
       <DependentUpon>201802220517021_Update3.cs</DependentUpon>
     </EmbeddedResource>
@@ -1397,22 +1391,20 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802212217071_deleteDiscountTempCart.resx">
       <DependentUpon>201802212217071_deleteDiscountTempCart.cs</DependentUpon>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
+
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802221116048_Update4.resx">
       <DependentUpon>201802221116048_Update4.cs</DependentUpon>
-=======
 
->>>>>>> ee03460082ae282a12767a7a90d335c254335a54
+
+
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802221344486_AddLayAwayTable.resx">
       <DependentUpon>201802221344486_AddLayAwayTable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802221433279_AddQuantity.resx">
       <DependentUpon>201802221433279_AddQuantity.cs</DependentUpon>
->>>>>>> cc56dde8a2f77b13a4350898b5c9c2864e2e3be7
+
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

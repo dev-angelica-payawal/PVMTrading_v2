@@ -160,8 +160,10 @@ namespace PVMTrading_v1.Controllers
             var customer = _context.Customers.SingleOrDefault(c => c.Id == Transact.CustomerId);
             var voidItems = _context.CashTransactionItems.Where(c => c.CashTransactionId == id);
             /* var product = new Product();*/
-
-            ViewData["ListItem"] = voidItems.ToList();
+            foreach (var c in voidItems.ToList())
+            {
+                ViewData["ListItem"]  = c;
+            }
             
             var vm = new CashTransactionListViewModel
             {
