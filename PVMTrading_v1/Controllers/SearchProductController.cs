@@ -86,14 +86,16 @@ namespace PVMTrading_v1.Controllers
 
 	    public ActionResult DeleteAllProdsInCart()
 	    {
-	        var deleteAll = _context.TempCarts.ToList();
-
-	        foreach (var d in deleteAll)
+	        var temp = _context.TempCarts;
+	        
+	        foreach (var d in temp.ToList())
 	        {
-	            _context.TempCarts.Remove(d);
-	        }
-	       
-	        return View();
+	            _context.TempCarts.Remove(_context.TempCarts.SingleOrDefault(c => c.Id == d.Id));
+            }
+
+	      
+	        _context.SaveChanges();
+	        return RedirectToAction("Index");
 	    }
 
 	 

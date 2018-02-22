@@ -19,7 +19,7 @@ namespace PVMTrading_v1.Models
         public int Quantity { get; set; }
         public double ProductPrice { get; set; }
 
-        public double Discount { get; set; }
+       
     }
 
     

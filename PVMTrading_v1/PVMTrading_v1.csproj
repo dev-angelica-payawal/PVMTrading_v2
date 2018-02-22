@@ -56,6 +56,10 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="FoolproofValidation, Version=0.9.5851.39121, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Foolproof.0.9.4518\lib\net45\FoolproofValidation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="GitSharp, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\GitSharp.0.3\lib\GitSharp.dll</HintPath>
       <Private>True</Private>
@@ -222,6 +226,18 @@
     <Compile Include="Migrations\201802211240560_AddDiscountTotempandTransactionItem.cs" />
     <Compile Include="Migrations\201802211240560_AddDiscountTotempandTransactionItem.Designer.cs">
       <DependentUpon>201802211240560_AddDiscountTotempandTransactionItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802211841101_AddDiscount.cs" />
+    <Compile Include="Migrations\201802211841101_AddDiscount.Designer.cs">
+      <DependentUpon>201802211841101_AddDiscount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802212216077_DeleteDiscountCashItem.cs" />
+    <Compile Include="Migrations\201802212216077_DeleteDiscountCashItem.Designer.cs">
+      <DependentUpon>201802212216077_DeleteDiscountCashItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802212217071_deleteDiscountTempCart.cs" />
+    <Compile Include="Migrations\201802212217071_deleteDiscountTempCart.Designer.cs">
+      <DependentUpon>201802212217071_deleteDiscountTempCart.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\TypeOfTransaction.cs" />
     <Compile Include="ViewModels\Item.cs" />
@@ -510,6 +526,12 @@
     <Content Include="App_Data\aspnet-PVMTrading_v1-20180109093125_log.ldf">
       <DependentUpon>aspnet-PVMTrading_v1-20180109093125.mdf</DependentUpon>
     </Content>
+    <Content Include="Client Scripts\mvcfoolproof.unobtrusive.js" />
+    <Content Include="Client Scripts\mvcfoolproof.unobtrusive.min.js" />
+    <Content Include="Client Scripts\MvcFoolproofJQueryValidation.js" />
+    <Content Include="Client Scripts\MvcFoolproofJQueryValidation.min.js" />
+    <Content Include="Client Scripts\MvcFoolproofValidation.js" />
+    <Content Include="Client Scripts\MvcFoolproofValidation.min.js" />
     <Content Include="Content\background.css" />
     <Content Include="Content\bootstrap-lumen.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -1123,7 +1145,7 @@
     <Content Include="Views\Shared\_GridPager.cshtml" />
     <Content Include="Views\Shared\_Grid.cshtml" />
     <Content Include="Views\CashTransaction\Grid.cshtml" />
-    <Content Include="Views\CashTransaction\SearchProduct.cshtml" />
+    <Content Include="Views\CashTransaction\CashTransactionItemListSummary.cshtml" />
     <Content Include="Views\CashTransaction\SearchCustomer.cshtml" />
     <Content Include="Views\Customer\Details.cshtml" />
     <Content Include="Views\Product\Details.cshtml" />
@@ -1335,6 +1357,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802211240560_AddDiscountTotempandTransactionItem.resx">
       <DependentUpon>201802211240560_AddDiscountTotempandTransactionItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802211841101_AddDiscount.resx">
+      <DependentUpon>201802211841101_AddDiscount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802212216077_DeleteDiscountCashItem.resx">
+      <DependentUpon>201802212216077_DeleteDiscountCashItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802212217071_deleteDiscountTempCart.resx">
+      <DependentUpon>201802212217071_deleteDiscountTempCart.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

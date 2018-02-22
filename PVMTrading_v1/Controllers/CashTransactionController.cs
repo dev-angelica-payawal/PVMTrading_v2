@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using System.Web.UI.WebControls;
 using PVMTrading_v1.Models;
 using PVMTrading_v1.ViewModels;
+using PVMTrading_v1.Controllers;
 
 namespace PVMTrading_v1.Controllers
 {
@@ -65,10 +66,38 @@ namespace PVMTrading_v1.Controllers
             return View(viewModel);
         }
 
-        public ActionResult Save(CashTransaction cashTransaction)
+
+        public ActionResult CashTransactionItemListSummary()
         {
-           
-            return View();
+
+            return View(_context.TempCarts.ToList());
+        }
+
+        public ActionResult Save(CashTransaction cashTransaction,CashTransactionViewModel viewModel)
+
+        {   var cashTransactionItem = new CashTransactionItem();
+            foreach (var item in _context.TempCarts.ToList())
+            {
+              cashTransactionItem.ProductId = item.ProductId;
+             cashTransactionItem.CashTransactionId =cashTransaction.Id ;
+             cashTransactionItem.ProductPrice = item.ProductPrice;
+             cashTransactionItem.Quantity = item.Quantity;
+                 _context.CashTransactionItems.Add(cashTransactionItem);
+            }
+
+            var cash = _context.CashTransactions.SingleOrDefault(c => c.Id == cashTransaction.Id);
+            cash.CustomerId = cashTransaction.CustomerId;
+            cash.CashTransactionDate = DateTime.Now;
+            cash.OR = cashTransaction.OR;
+            cash.TotalAmount = cash.OriginalTotalAmount - cash.TotalDiscountedAmount;
+            cash.TotalDiscountedAmount = cashTransaction.TotalDiscountedAmount;
+            cash.Remarks = cashTransaction.Remarks;
+
+
+            _context.SaveChanges();
+            RedirectToAction("DeleteAllProdsInCart","SearchProduct");
+       
+            return RedirectToAction("Index");
         }
 
         public ActionResult Select(int id)
@@ -77,19 +106,16 @@ namespace PVMTrading_v1.Controllers
             var cashId = Convert.ToString(DateTime.Today.Year) + "00" + Convert.ToString(count + 1) + Convert.ToString(DateTime.Today.Day);
 
             var cashTransaction = new CashTransaction();
-          //  var cashTransactionItem = new CashTransactionItem();
+        
             double totalPrice = 0;
+          
             foreach (var c in _context.TempCarts.ToList())
             {
-
-                ViewData["products"] = c;
-               /* cashTransactionItem.ProductId = c.ProductId;
-                cashTransactionItem.CashTransactionId = Convert.ToInt32(cashId);
-                cashTransactionItem.ProductPrice = c.ProductPrice;
-                cashTransactionItem.Quantity = c.Quantity;*/
                 totalPrice = totalPrice + (c.ProductPrice * c.Quantity);
-               /* _context.CashTransactionItems.Add(cashTransactionItem);*/
+               
             }
+
+
 
             var selectCustomer = _context.Customers.SingleOrDefault(c => c.Id == id);
             cashTransaction.Id = cashId;

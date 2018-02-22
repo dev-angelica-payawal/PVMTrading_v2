@@ -2,13 +2,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-<<<<<<< HEAD
  using System.IO;
  using System.Linq;
  using System.Text;
-=======
 using System.Linq;
->>>>>>> a5866c31766cff410be01c9eb8953d754a0efb84
  using System.Web;
  using System.Web.Mvc;
 using Microsoft.Ajax.Utilities;
@@ -76,17 +73,15 @@ namespace PVMTrading_v1.Controllers
     
         [HttpPost]
         [ValidateAntiForgeryToken]
-<<<<<<< HEAD
-        public ActionResult Save(Product product, ProductInclusion productInclusion, ProductPrice productPrice,HttpPostedFile file)
-=======
+
         public ActionResult Save(Product product, ProductInclusion productInclusion, ProductPrice productPrice/*, Product model, HttpPostedFileBase file*/)
->>>>>>> a5866c31766cff410be01c9eb8953d754a0efb84
+
         {
-            var decodedString = Convert.ToBase64String(product.ProductImage)
-                .Replace("-", "");
+           /* var decodedString = Convert.ToBase64String(product.ProductImage).Replace("-", "");
             var bytes = Convert.FromBase64String(decodedString);
+
             var encodedString = Encoding.UTF8.GetString(bytes);
-            Console.WriteLine(encodedString);
+            Console.WriteLine(encodedString);*/
 
             var isProductExist = _context.Products.Count(c => c.Name == product.Name);
 

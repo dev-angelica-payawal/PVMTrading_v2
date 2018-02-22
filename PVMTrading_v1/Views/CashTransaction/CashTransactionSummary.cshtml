@@ -1,4 +1,7 @@
-﻿@model PVMTrading_v1.ViewModels.CashTransactionViewModel
+﻿@using System.Diagnostics
+@using System.Web.UI.WebControls
+@using Foolproof    
+@model PVMTrading_v1.ViewModels.CashTransactionViewModel
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -10,24 +13,27 @@
     @Html.AntiForgeryToken()
     <div class="content-wrapper">
         <div class="form-horizontal">
-            <h4>Cash Transaction List</h4>
-
-
+            <h4>Cash Transaction Summary</h4>
+            
+            
+            <p>
+                @{ Html.RenderAction("CashTransactionItemListSummary", "CashTransaction"); }   
+            </p>
+         
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
                 @Html.LabelFor(model => model.CashTransaction.CashTransactionDate, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.CashTransaction.CashTransactionDate, new { Value = DateTime.Now, @disabled = "disabled", @readonly = "readonly" })
+                    @Html.TextBoxFor(model => model.CashTransaction.CashTransactionDate, new { @class = "col-2 form-control",  id = "transactDate", Value = DateTime.Now, @readonly = "readonly" })
                     @Html.ValidationMessageFor(model => model.CashTransaction.CashTransactionDate, "", new { @class = "text-danger" })
                 </div>
             </div>
-
-
+           
 
             <div class="form-group">
                 @Html.LabelFor(model => model.Customer.FirstName, "Customer Name", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.TextBoxFor(m => m.Customer.FirstName, new { @class = "form-control" }) @Html.TextBoxFor(m => m.Customer.LastName, new { @class = "form-control" })
+                <div class="col-10">
+                    @Html.TextBoxFor(m => m.Customer.FirstName, new { @class = "col-2 form-control", @readonly = "true"}) @Html.TextBoxFor(m => m.Customer.LastName, new { @class = "col-2 form-control", @readonly = "true" })
                 </div>
             </div>
 
@@ -36,7 +42,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.CashTransaction.TotalDiscountedAmount, "Discount", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.CashTransaction.TotalDiscountedAmount, new { @class = "txt form-control" })
+                    @Html.TextBoxFor(model => model.CashTransaction.TotalDiscountedAmount, new { type ="integer",Value="",id = "TotalDiscount", @class = "col-2 form-control txt" })
                     @Html.ValidationMessageFor(model => model.CashTransaction.TotalDiscountedAmount, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -44,24 +50,21 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.CashTransaction.OriginalTotalAmount, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.CashTransaction.OriginalTotalAmount, new { @class = "txt form-control" })
+                    @Html.TextBoxFor(model => model.CashTransaction.OriginalTotalAmount, new { id = "OrigAmount", @class = "col-2 form-control txt", @readonly="true" })
                     @Html.ValidationMessageFor(model => model.CashTransaction.OriginalTotalAmount, "", new { @class = "text-danger" })
+                    
                 </div>
             </div>
-            <div class="form-group">
-                @Html.LabelFor(model => model.CashTransaction.TotalAmount, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.CashTransaction.TotalAmount, new { id = "sum", @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.CashTransaction.TotalAmount, "", new { @class = "text-danger" })
-                </div>
+           <div class="form-group">
+                @Html.LabelFor(model => model.CashTransaction.TotalAmount, htmlAttributes: new { @class = "control-label col-md-2" }) <span style="border: lightgray solid 1px; padding: .4em 7em .4em 7em; border-radius: .3em; background:#E9ECEF " id="sum">0</span>
+                
+            </div>
+            
 
-            </div>
-            @*<span id="sum"></span>
-*@
             <div class="form-group">
-                @Html.LabelFor(model => model.CashTransaction.Remarks, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.CashTransaction.Remarks, htmlAttributes: new {  @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.CashTransaction.Remarks, new { @class = "form-control" })
+                    @Html.TextAreaFor(model => model.CashTransaction.Remarks, new { id = "Remarks" ,@class = "col-lg-2 form-control "})
                     @Html.ValidationMessageFor(model => model.CashTransaction.Remarks, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -69,19 +72,20 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.CashTransaction.OR, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.CashTransaction.OR, new { @class = "form-control" })
+                    @Html.TextBoxFor(model => model.CashTransaction.OR, new { Value = "", id = "Or",@class = "col-lg-2 form-control" })
                     @Html.ValidationMessageFor(model => model.CashTransaction.OR, "", new { @class = "text-danger" })
                 </div>
             </div>
+            @Html.HiddenFor(c => c.CashTransaction.Id ,new { id = "Id"})
+            @Html.HiddenFor(c => c.CashTransaction.CustomerId, new { id = "CustomerId" })
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
+                    <input type="submit" value="Save Transaction" @*onclick="getTotal();"*@ class="btn btn-default" />
                 </div>
             </div>
         </div>
     </div>
-
-
+    
 
 }
 <div>
@@ -106,25 +110,58 @@
 <script>
 
 
-    $(document).ready(function () {
+    $(document).ready(function() {
 
         //iterate through each textboxes and add keyup
         //handler to trigger sum event
-        $(".txt").each(function () {
+        $(".txt").each(function() {
 
-            $(this).keyup(function () {
+            $(this).keyup(function() {
                 calculateSum();
-               
+                StringCompare();
+
+
             });
         });
 
     });
 
+    //if discount if greater than orig amount
+    function StringCompare() {
+        var discount = document.getElementById("TotalDiscount").value;
+        var orig = document.getElementById("OrigAmount").value;
+
+        if (parseFloat(discount) > parseFloat(orig)) {
+                document.getElementById("TotalDiscount").value = 0;
+        }
+        alert(document.getElementById('sum').innerHTML)
+        }
+    
+
     function getTotal() {
-        return alert(document.getElementById('sum').innerHTML);
+
+        $.ajax({
+            url: '@Url.Action("Save")',
+            data: {
+                CustomerId: $('#CustomerId').val(),
+                Id: $('#Id').val(),
+                OR: $('#Or').val(),
+                Remarks: $('#Remarks').val(),
+                CashTransactionDate: $('#transactDate').val(),
+                TotalDiscountedAmount: $('#TotalDiscount').val(), 
+                OriginalTotalAmount: $('#OrigAmount').val(), 
+                TotalAmount: document.getElementById('sum').innerHTML
+            },
+            type: 'POST',
+            success: function(){alert(success.data);},
+            error: function () {
+            alert("error");
+        }
+    });
     }
 
-    $.post("Product/Save", { TotalAmount: document.getElementById('sum').innerHTML });
+    
+
   
     function calculateSum() {
 

@@ -12,7 +12,7 @@ namespace PVMTrading_v1.Models
         public int Id { get; set; }
 
         public CashTransaction CashTransaction { get; set; }
-        public int CashTransactionId { get; set; }
+        public string CashTransactionId { get; set; }
 
         public Product Product { get; set; }
         [Display(Name = "Product")]
@@ -23,9 +23,7 @@ namespace PVMTrading_v1.Models
         public double ProductPrice { get; set; }
 
 
-        public double Discount { get; set; }
-
-        public int Quantity { get; set; }
+       public int Quantity { get; set; }
 
     }
 }
