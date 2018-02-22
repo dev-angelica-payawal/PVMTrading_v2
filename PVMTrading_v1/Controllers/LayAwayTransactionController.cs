@@ -1,24 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
-using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.UI.WebControls;
+using Microsoft.Ajax.Utilities;
 using PVMTrading_v1.Models;
 using PVMTrading_v1.ViewModels;
-using PVMTrading_v1.Controllers;
 
 namespace PVMTrading_v1.Controllers
 {
-    public class CashTransactionController : Controller
+    public class LayAwayTransactionController : Controller
     {
-
         private ApplicationDbContext _context;
 
-        public CashTransactionController()
+        public LayAwayTransactionController()
         {
             _context = new ApplicationDbContext();
         }
@@ -32,10 +28,11 @@ namespace PVMTrading_v1.Controllers
         public ActionResult Index()
         {
 
-            var cashtransact = _context.CashTransactions.Include(c => c.Customer).ToList();
+            var layAway = _context.LayAwayTransactions.Include(c => c.Product)
+                                                      .Include(c => c.Customer).ToList();
 
 
-            return View(cashtransact);
+            return View(layAway);
         }
 
         //select customer search
@@ -43,26 +40,58 @@ namespace PVMTrading_v1.Controllers
         {
             var customers = _context.Customers;
 
-            var customersList = customers.ToList();
-            return View(customersList);
+           
+            return View(customers.ToList());
         }
 
-      
-        
-        public ActionResult CashTransactionSummary()
+
+        public ActionResult ProductList()
+        {
+            //selection of product by branch query missing
+            var prod = _context.ProductPrices.Include(p => p.Product).OrderByDescending(p => p.Id).DistinctBy(p => p.ProductId);
+            ViewBag.productCounts = _context.Products.Count();
+
+
+            return View(prod.ToList());
+
+        }
+
+
+        public ActionResult BuyNow(int id, double price)
+        {
+            var tempCart = new TempCart();
+
+            var isProduct = _context.TempCarts.Count(p => p.ProductId == id);
+
+            var productQuantity = _context.TempCarts.Where(p => p.ProductId == id);
+
+            if (isProduct == 0)
+            {
+                tempCart.ProductId = id;
+                tempCart.Quantity = 1;
+                tempCart.ProductPrice = price;
+                _context.TempCarts.Add(tempCart);
+            }
+          
+
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult LayAwayTransactionSummary()
         {
             var count = _context.CashTransactions.Count();
             var cashId = Convert.ToString(DateTime.Today.Year) + "00" + Convert.ToString(count) + Convert.ToString(DateTime.Today.Day);
             var cashTransaction = _context.CashTransactions.SingleOrDefault(c => c.Id == cashId);
             var customer = _context.Customers.SingleOrDefault(c => c.Id == cashTransaction.CustomerId);
-           
+
             var viewModel = new CashTransactionViewModel
             {
                 CashTransaction = cashTransaction,
                 Customer = customer
 
             };
- 
+
             return View(viewModel);
         }
 
@@ -73,16 +102,17 @@ namespace PVMTrading_v1.Controllers
             return View(_context.TempCarts.ToList());
         }
 
-        public ActionResult Save(CashTransaction cashTransaction,CashTransactionViewModel viewModel)
+        public ActionResult Save(CashTransaction cashTransaction, CashTransactionViewModel viewModel)
 
-        {   var cashTransactionItem = new CashTransactionItem();
+        {
+            var cashTransactionItem = new CashTransactionItem();
             foreach (var item in _context.TempCarts.ToList())
             {
-              cashTransactionItem.ProductId = item.ProductId;
-             cashTransactionItem.CashTransactionId =cashTransaction.Id ;
-             cashTransactionItem.ProductPrice = item.ProductPrice;
-             cashTransactionItem.Quantity = item.Quantity;
-               _context.CashTransactionItems.Add(cashTransactionItem);
+                cashTransactionItem.ProductId = item.ProductId;
+                cashTransactionItem.CashTransactionId = cashTransaction.Id;
+                cashTransactionItem.ProductPrice = item.ProductPrice;
+                cashTransactionItem.Quantity = item.Quantity;
+                _context.CashTransactionItems.Add(cashTransactionItem);
             }
 
             var cash = _context.CashTransactions.SingleOrDefault(c => c.Id == cashTransaction.Id);
@@ -101,8 +131,8 @@ namespace PVMTrading_v1.Controllers
             }
 
             _context.SaveChanges();
-            
-       
+
+
             return RedirectToAction("Index");
         }
 
@@ -112,13 +142,13 @@ namespace PVMTrading_v1.Controllers
             var cashId = Convert.ToString(DateTime.Today.Year) + "00" + Convert.ToString(count + 1) + Convert.ToString(DateTime.Today.Day);
 
             var cashTransaction = new CashTransaction();
-        
+
             double totalPrice = 0;
-          
+
             foreach (var c in _context.TempCarts.ToList())
             {
                 totalPrice = totalPrice + (c.ProductPrice * c.Quantity);
-               
+
             }
 
 
@@ -130,25 +160,25 @@ namespace PVMTrading_v1.Controllers
             cashTransaction.Remarks = "";
             _context.CashTransactions.Add(cashTransaction);
             _context.SaveChanges();
-            return RedirectToAction("CashTransactionSummary");
+            return RedirectToAction("");
         }
 
-        [CustomAuthorize(Roles = RoleName.Admin)]
+
         public ActionResult Delete(string id)
         {
-          
+
             var voidTransact = _context.CashTransactions.SingleOrDefault(c => c.Id == id);
             var voidItems = _context.CashTransactionItems.Where(c => c.CashTransactionId == id);
             var product = new Product();
             foreach (var c in voidItems.ToList())
             {
-                product =  _context.Products.SingleOrDefault(b => b.Id == c.ProductId);
+                product = _context.Products.SingleOrDefault(b => b.Id == c.ProductId);
                 product.AvailableForSelling = product.AvailableForSelling + c.Quantity;
             }
 
             voidTransact.IsVoid = true;
 
-            
+
 
             _context.SaveChanges();
             return RedirectToAction("Index");
@@ -162,107 +192,16 @@ namespace PVMTrading_v1.Controllers
             /* var product = new Product();*/
 
             ViewData["ListItem"] = voidItems.ToList();
-            
+
             var vm = new CashTransactionListViewModel
             {
                 CashTransaction = Transact,
-                
+
                 Customer = customer
             };
 
 
             return View(vm);
         }
-
-        /*public JsonResult AutocompleteSuggestions(string searchstring)
-        {
-            
-        var suggestions = from s in _context.Customers
-            select s.FirstName;
-            var suggest = _context.Customers.ToList();
-        var namelist = suggestions.Where(n => n.ToLower().StartsWith(searchstring.ToLower()));
-
-            return Json(namelist, JsonRequestBehavior.AllowGet);
-    }*/
-
-        /*  public ActionResult Grid()
-          {
-              var result = (from c in _context.Customers
-                  select new Customer
-                  {
-                      Id = c.Id,
-                      FirstName = c.FirstName,
-                      MiddleName = c.MiddleName,
-                      LastName = c.LastName
-                  }).ToList().AsQueryable(); ;
-              return View(result);
-          }
-    */
-        /*  protected string RenderRazorViewToString(string viewName, object model)
-          {
-              if (model != null)
-              {
-                  ViewData.Model = model;
-              }
-
-              using (var sw = new StringWriter())
-              {
-                  var viewResult = ViewEngines.Engines.FindPartialView(ControllerContext, viewName);
-                  var viewContext = new ViewContext(ControllerContext,viewResult.View,ViewData,TempData,sw);
-                  viewResult.View.Render(viewContext,sw);
-                  viewResult.ViewEngine.ReleaseView(ControllerContext,viewResult.View);
-                  return sw.GetStringBuilder().ToString();
-              }
-
-          }*/
-
-
-
-        /*  public ActionResult ProductInfo(int id)
-          {
-
-              var product = _context.Products.SingleOrDefault(c => c.Id == id);
-              /*if (product == null)
-              {
-                  return HttpNotFound();
-              }
-              var productInfo = new ProductViewModel()
-              {
-                  Product = product
-
-              };
-
-
-              return PartialView(productInfo);#1#
-
-              /*var order = (Product)Session["Order"];
-              return PartialView(order.Model);#1#
-
-              return View(product);
-          }*/
-
-        /*       public ActionResult ProductView()
-               {
-                   var product = _context.Products.ToList();
-
-                   if (product == null)
-                   {
-                       return HttpNotFound();
-                   }
-                   var Productsview = new CashTransactionViewModel()
-                   {
-                       Product = product,
-                       CustomerCompleInfo = customerInfo,
-                       CustomerTypes = _context.CustomerTypes.ToList(),
-                       CivilStatuses = _context.CivilStatus.ToList()
-                   };
-
-
-                   return PartialView(Productsview);
-
-               }*/
-
-
-
     }
 }

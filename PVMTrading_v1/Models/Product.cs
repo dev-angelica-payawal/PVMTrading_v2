@@ -17,6 +17,7 @@ namespace PVMTrading_v1.Models
         [MaxLength(255)]
         public string Name { get; set; }
 
+
         [MaxLength(2000)]
         public string Description { get; set; }
 

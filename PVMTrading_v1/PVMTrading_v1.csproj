@@ -207,6 +207,7 @@
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LandingPageController.cs" />
+    <Compile Include="Controllers\LayAwayTransactionController.cs" />
     <Compile Include="Migrations\201802181038462_TempCart.cs" />
     <Compile Include="Migrations\201802181038462_TempCart.Designer.cs">
       <DependentUpon>201802181038462_TempCart.cs</DependentUpon>
@@ -243,9 +244,19 @@
     <Compile Include="Migrations\201802212217071_deleteDiscountTempCart.Designer.cs">
       <DependentUpon>201802212217071_deleteDiscountTempCart.cs</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="Migrations\201802221116048_Update4.cs" />
     <Compile Include="Migrations\201802221116048_Update4.Designer.cs">
       <DependentUpon>201802221116048_Update4.cs</DependentUpon>
+=======
+    <Compile Include="Migrations\201802221344486_AddLayAwayTable.cs" />
+    <Compile Include="Migrations\201802221344486_AddLayAwayTable.Designer.cs">
+      <DependentUpon>201802221344486_AddLayAwayTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802221433279_AddQuantity.cs" />
+    <Compile Include="Migrations\201802221433279_AddQuantity.Designer.cs">
+      <DependentUpon>201802221433279_AddQuantity.cs</DependentUpon>
+>>>>>>> cc56dde8a2f77b13a4350898b5c9c2864e2e3be7
     </Compile>
     <Compile Include="Models\TypeOfTransaction.cs" />
     <Compile Include="ViewModels\Item.cs" />
@@ -1160,7 +1171,6 @@
     <Content Include="Views\Customer\Details.cshtml" />
     <Content Include="Views\Product\Details.cshtml" />
     <Content Include="Views\SearchProduct\ProductList.cshtml" />
-    <Content Include="Views\Product\AddQuantityToProduct.cshtml" />
     <Content Include="Views\CashTransaction\CashTransactionList.cshtml" />
     <Content Include="Views\SearchProduct\SearchProduct.cshtml" />
     <Content Include="Views\Product\ReadOnlyView.cshtml" />
@@ -1171,17 +1181,18 @@
     <Content Include="Views\Role\Details.cshtml" />
     <Content Include="Views\Role\Delete.cshtml" />
     <Content Include="Views\Shared\AuthorizeFailed.cshtml" />
-    <Content Include="Views\Product\CartSummary.cshtml" />
     <Content Include="Views\SearchProduct\Cart.cshtml" />
-    <Content Include="Views\Product\CartSummary.cshtml" />
-    <Content Include="Views\Product\Cart.cshtml" />
     <Content Include="Views\CashTransaction\Index.cshtml" />
-    <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Customer\CustomerReg.cshtml" />
     <Content Include="Views\LandingPage\Index.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Customer\CustomerProfile.cshtml" />
     <Content Include="Views\CashTransaction\Details.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\LayAwayTransaction\Cart.cshtml" />
+    <Content Include="Views\LayAwayTransaction\ProductList.cshtml" />
+    <Content Include="Views\LayAwayTransaction\SearchCustomer.cshtml" />
+    <Content Include="Views\LayAwayTransaction\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\loginImage\" />
@@ -1371,6 +1382,10 @@
     <EmbeddedResource Include="Migrations\201802211240560_AddDiscountTotempandTransactionItem.resx">
       <DependentUpon>201802211240560_AddDiscountTotempandTransactionItem.cs</DependentUpon>
     </EmbeddedResource>
+<<<<<<< HEAD
+=======
+
+>>>>>>> cc56dde8a2f77b13a4350898b5c9c2864e2e3be7
     <EmbeddedResource Include="Migrations\201802220517021_Update3.resx">
       <DependentUpon>201802220517021_Update3.cs</DependentUpon>
     </EmbeddedResource>
@@ -1382,9 +1397,19 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802212217071_deleteDiscountTempCart.resx">
       <DependentUpon>201802212217071_deleteDiscountTempCart.cs</DependentUpon>
+<<<<<<< HEAD
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802221116048_Update4.resx">
       <DependentUpon>201802221116048_Update4.cs</DependentUpon>
+=======
+
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802221344486_AddLayAwayTable.resx">
+      <DependentUpon>201802221344486_AddLayAwayTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802221433279_AddQuantity.resx">
+      <DependentUpon>201802221433279_AddQuantity.cs</DependentUpon>
+>>>>>>> cc56dde8a2f77b13a4350898b5c9c2864e2e3be7
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

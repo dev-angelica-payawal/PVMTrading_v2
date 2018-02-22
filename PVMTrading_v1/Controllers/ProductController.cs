@@ -5,7 +5,6 @@ using System.Data.Entity;
  using System.IO;
  using System.Linq;
  using System.Text;
-using System.Linq;
  using System.Web;
  using System.Web.Mvc;
 using Microsoft.Ajax.Utilities;
@@ -78,8 +77,13 @@ namespace PVMTrading_v1.Controllers
             /*var decodedString = Convert.ToBase64String(product.ProductImage)
                 .Replace("-", "");
 
+<<<<<<< HEAD
         public ActionResult Save(Product product, ProductInclusion productInclusion, ProductPrice productPrice/*, Product model, HttpPostedFileBase file*/
            /* var decodedString = Convert.ToBase64String(product.ProductImage).Replace("-", "");
+=======
+           /* var decodedString = Convert.ToBase64String(product.ProductImage).Replace("-", "");
+
+>>>>>>> cc56dde8a2f77b13a4350898b5c9c2864e2e3be7
             var bytes = Convert.FromBase64String(decodedString);
 
             var encodedString = Encoding.UTF8.GetString(bytes);
@@ -196,7 +200,7 @@ namespace PVMTrading_v1.Controllers
         }
 
 
-        //        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         [CustomAuthorize(Roles = RoleName.Admin)]
         public ActionResult Edit(int id)
         {
