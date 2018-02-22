@@ -249,7 +249,7 @@ namespace PVMTrading_v1.Controllers
 
             return PartialView(customerComplete);
         }
-        
+
         /* public ActionResult OderByCustomer()
          {
              var oder = from c in _context.Customers
@@ -259,6 +259,24 @@ namespace PVMTrading_v1.Controllers
              return View(oder.ToList());
 
          }*/
+        public ActionResult CustomerView(int id)
+        {
+
+            var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
+            var customerInfo = _context.CustomerCompleInfos.SingleOrDefault(ci => ci.CustomerId == id);
+            if (customer == null)
+            {
+                return HttpNotFound();
+            }
+            var customerComplete = new CustomerViewModel
+            {
+                Customer = customer,
+                CustomerCompleInfo = customerInfo,
+                CustomerTypes = _context.CustomerTypes.ToList(),
+                CivilStatuses = _context.CivilStatus.ToList()
+            };
+            return View(customerComplete);
+        }
 
 
         public ActionResult CustomerReg()
