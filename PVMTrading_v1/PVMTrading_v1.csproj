@@ -49,11 +49,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="FoolproofValidation, Version=0.9.5851.39121, Culture=neutral, processorArchitecture=MSIL">
@@ -228,6 +228,11 @@
     <Compile Include="Migrations\201802211240560_AddDiscountTotempandTransactionItem.Designer.cs">
       <DependentUpon>201802211240560_AddDiscountTotempandTransactionItem.cs</DependentUpon>
     </Compile>
+<<<<<<< HEAD
+    <Compile Include="Migrations\201802220517021_Update3.cs" />
+    <Compile Include="Migrations\201802220517021_Update3.Designer.cs">
+      <DependentUpon>201802220517021_Update3.cs</DependentUpon>
+=======
     <Compile Include="Migrations\201802211841101_AddDiscount.cs" />
     <Compile Include="Migrations\201802211841101_AddDiscount.Designer.cs">
       <DependentUpon>201802211841101_AddDiscount.cs</DependentUpon>
@@ -239,6 +244,7 @@
     <Compile Include="Migrations\201802212217071_deleteDiscountTempCart.cs" />
     <Compile Include="Migrations\201802212217071_deleteDiscountTempCart.Designer.cs">
       <DependentUpon>201802212217071_deleteDiscountTempCart.cs</DependentUpon>
+>>>>>>> 3e414bd9f6da58aaff80477c01614f3a2b33adc0
     </Compile>
     <Compile Include="Migrations\201802221344486_AddLayAwayTable.cs" />
     <Compile Include="Migrations\201802221344486_AddLayAwayTable.Designer.cs">
@@ -874,6 +880,7 @@
     <Content Include="Resources\css\jquery-ui.css" />
     <Content Include="Resources\css\megamenu.css" />
     <Content Include="Resources\css\style.css" />
+    <Content Include="Resources\id pic samp.jpg" />
     <Content Include="Resources\images\b-arrow.png" />
     <Content Include="Resources\images\bag.png" />
     <Content Include="Resources\images\banner1.jpg" />
@@ -921,6 +928,7 @@
     <Content Include="Resources\images\ts2.jpg" />
     <Content Include="Resources\images\ts3.jpg" />
     <Content Include="Resources\images\ts4.jpg" />
+    <Content Include="Resources\user-medium.png" />
     <Content Include="Scripts\bootbox.js" />
     <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -1370,6 +1378,10 @@
     <EmbeddedResource Include="Migrations\201802211240560_AddDiscountTotempandTransactionItem.resx">
       <DependentUpon>201802211240560_AddDiscountTotempandTransactionItem.cs</DependentUpon>
     </EmbeddedResource>
+<<<<<<< HEAD
+    <EmbeddedResource Include="Migrations\201802220517021_Update3.resx">
+      <DependentUpon>201802220517021_Update3.cs</DependentUpon>
+=======
     <EmbeddedResource Include="Migrations\201802211841101_AddDiscount.resx">
       <DependentUpon>201802211841101_AddDiscount.cs</DependentUpon>
     </EmbeddedResource>
@@ -1378,6 +1390,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802212217071_deleteDiscountTempCart.resx">
       <DependentUpon>201802212217071_deleteDiscountTempCart.cs</DependentUpon>
+>>>>>>> 3e414bd9f6da58aaff80477c01614f3a2b33adc0
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802221344486_AddLayAwayTable.resx">
       <DependentUpon>201802221344486_AddLayAwayTable.cs</DependentUpon>
