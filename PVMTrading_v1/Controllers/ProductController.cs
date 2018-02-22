@@ -47,6 +47,24 @@ namespace PVMTrading_v1.Controllers
 
         }
 
+        public ViewResult ProductFilter()
+        {
+            var products = _context.Products.Include(c => c.Brand)
+                .Include(q => q.Branch)
+                .Include(w => w.ProductCategory)
+                .Include(e => e.ProductCondition)
+                .Include(w => w.Warranty).ToList();
+
+
+            /* For UserRoles Limiting Users who can manage Products*/
+            if (User.IsInRole(RoleName.Admin))
+                return View(products);
+
+
+            return View(products);
+
+        }
+
         [CustomAuthorize(Roles = RoleName.Admin)]
         public ActionResult New()
         {
