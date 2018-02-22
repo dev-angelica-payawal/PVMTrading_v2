@@ -1,0 +1,35 @@
+﻿@model IEnumerable<PVMTrading_v1.Models.TempCart>
+
+
+            <div class="container">
+                <h5>List of Item</h5>
+                <div class="new-products">
+                
+                 
+                    <table class="table-responsive-md table-bordered">
+                   
+
+                        <tr >
+                            <th>Product</th>
+                            <th>Model</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                        </tr>
+                        @foreach (var product in Model)
+                        {
+                        <tr>
+                            <td>@product.Product.Name</td>
+                            <td>@product.Product.Model</td>
+                            <td>@product.ProductPrice</td>
+                            <td>@product.Quantity</td>
+                            
+                        </tr>
+                    }
+
+                    </table>
+      
+</div>
+            </div>
+     
+
+

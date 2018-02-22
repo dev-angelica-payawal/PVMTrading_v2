@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using System.Web.UI.WebControls;
 using PVMTrading_v1.Models;
 using PVMTrading_v1.ViewModels;
+using PVMTrading_v1.Controllers;
 
 namespace PVMTrading_v1.Controllers
 {
@@ -65,10 +66,44 @@ namespace PVMTrading_v1.Controllers
             return View(viewModel);
         }
 
-        public ActionResult Save(CashTransaction cashTransaction)
+
+        public ActionResult CashTransactionItemListSummary()
         {
-           
-            return View();
+
+            return View(_context.TempCarts.ToList());
+        }
+
+        public ActionResult Save(CashTransaction cashTransaction,CashTransactionViewModel viewModel)
+
+        {   var cashTransactionItem = new CashTransactionItem();
+            foreach (var item in _context.TempCarts.ToList())
+            {
+              cashTransactionItem.ProductId = item.ProductId;
+             cashTransactionItem.CashTransactionId =cashTransaction.Id ;
+             cashTransactionItem.ProductPrice = item.ProductPrice;
+             cashTransactionItem.Quantity = item.Quantity;
+               _context.CashTransactionItems.Add(cashTransactionItem);
+            }
+
+            var cash = _context.CashTransactions.SingleOrDefault(c => c.Id == cashTransaction.Id);
+            cash.CustomerId = cashTransaction.CustomerId;
+            cash.CashTransactionDate = DateTime.Now;
+            cash.OR = cashTransaction.OR;
+            cash.TotalAmount = cash.OriginalTotalAmount - cash.TotalDiscountedAmount;
+            cash.TotalDiscountedAmount = cashTransaction.TotalDiscountedAmount;
+            cash.Remarks = cashTransaction.Remarks;
+
+            var temp = _context.TempCarts;
+
+            foreach (var d in temp.ToList())
+            {
+                _context.TempCarts.Remove(_context.TempCarts.SingleOrDefault(c => c.Id == d.Id));
+            }
+
+            _context.SaveChanges();
+            
+       
+            return RedirectToAction("Index");
         }
 
         public ActionResult Select(int id)
@@ -77,19 +112,15 @@ namespace PVMTrading_v1.Controllers
             var cashId = Convert.ToString(DateTime.Today.Year) + "00" + Convert.ToString(count + 1) + Convert.ToString(DateTime.Today.Day);
 
             var cashTransaction = new CashTransaction();
-          //  var cashTransactionItem = new CashTransactionItem();
+        
             double totalPrice = 0;
+          
             foreach (var c in _context.TempCarts.ToList())
             {
-
-                ViewData["products"] = c;
-               /* cashTransactionItem.ProductId = c.ProductId;
-                cashTransactionItem.CashTransactionId = Convert.ToInt32(cashId);
-                cashTransactionItem.ProductPrice = c.ProductPrice;
-                cashTransactionItem.Quantity = c.Quantity;*/
                 totalPrice = totalPrice + (c.ProductPrice * c.Quantity);
-               /* _context.CashTransactionItems.Add(cashTransactionItem);*/
+               
             }
+
 
             var selectCustomer = _context.Customers.SingleOrDefault(c => c.Id == id);
             cashTransaction.Id = cashId;
@@ -100,6 +131,51 @@ namespace PVMTrading_v1.Controllers
             _context.CashTransactions.Add(cashTransaction);
             _context.SaveChanges();
             return RedirectToAction("CashTransactionSummary");
+        }
+
+
+        public ActionResult Delete(string id)
+        {
+          
+            var voidTransact = _context.CashTransactions.SingleOrDefault(c => c.Id == id);
+            var voidItems = _context.CashTransactionItems.Where(c => c.CashTransactionId == id);
+            var product = new Product();
+            foreach (var c in voidItems.ToList())
+            {
+                product =  _context.Products.SingleOrDefault(b => b.Id == c.ProductId);
+                product.AvailableForSelling = product.AvailableForSelling + c.Quantity;
+            }
+
+            voidTransact.IsVoid = true;
+
+            
+
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Details(string id)
+        {
+            var Transact = _context.CashTransactions.SingleOrDefault(c => c.Id == id);
+            var customer = _context.Customers.SingleOrDefault(c => c.Id == Transact.CustomerId);
+            var voidItems = _context.CashTransactionItems.Where(c => c.CashTransactionId == id);
+            /* var product = new Product();*/
+            foreach (var c in voidItems.ToList())
+            {
+
+                ViewData["ListItem"] = c;
+
+            }
+
+            var vm = new CashTransactionListViewModel
+            {
+                CashTransaction = Transact,
+
+                Customer = customer
+            };
+
+
+            return View(vm);
         }
 
         /*public JsonResult AutocompleteSuggestions(string searchstring)
@@ -113,85 +189,84 @@ namespace PVMTrading_v1.Controllers
             return Json(namelist, JsonRequestBehavior.AllowGet);
     }*/
 
-    /*  public ActionResult Grid()
-      {
-          var result = (from c in _context.Customers
-              select new Customer
+        /*  public ActionResult Grid()
+          {
+              var result = (from c in _context.Customers
+                  select new Customer
+                  {
+                      Id = c.Id,
+                      FirstName = c.FirstName,
+                      MiddleName = c.MiddleName,
+                      LastName = c.LastName
+                  }).ToList().AsQueryable(); ;
+              return View(result);
+          }
+    */
+        /*  protected string RenderRazorViewToString(string viewName, object model)
+          {
+              if (model != null)
               {
-                  Id = c.Id,
-                  FirstName = c.FirstName,
-                  MiddleName = c.MiddleName,
-                  LastName = c.LastName
-              }).ToList().AsQueryable(); ;
-          return View(result);
-      }
-*/
-    /*  protected string RenderRazorViewToString(string viewName, object model)
-      {
-          if (model != null)
+                  ViewData.Model = model;
+              }
+
+              using (var sw = new StringWriter())
+              {
+                  var viewResult = ViewEngines.Engines.FindPartialView(ControllerContext, viewName);
+                  var viewContext = new ViewContext(ControllerContext,viewResult.View,ViewData,TempData,sw);
+                  viewResult.View.Render(viewContext,sw);
+                  viewResult.ViewEngine.ReleaseView(ControllerContext,viewResult.View);
+                  return sw.GetStringBuilder().ToString();
+              }
+
+          }*/
+
+
+
+        /*  public ActionResult ProductInfo(int id)
           {
-              ViewData.Model = model;
-          }
 
-          using (var sw = new StringWriter())
-          {
-              var viewResult = ViewEngines.Engines.FindPartialView(ControllerContext, viewName);
-              var viewContext = new ViewContext(ControllerContext,viewResult.View,ViewData,TempData,sw);
-              viewResult.View.Render(viewContext,sw);
-              viewResult.ViewEngine.ReleaseView(ControllerContext,viewResult.View);
-              return sw.GetStringBuilder().ToString();
-          }
+              var product = _context.Products.SingleOrDefault(c => c.Id == id);
+              /*if (product == null)
+              {
+                  return HttpNotFound();
+              }
+              var productInfo = new ProductViewModel()
+              {
+                  Product = product
 
-      }*/
+              };
 
 
+              return PartialView(productInfo);#1#
 
-    /*  public ActionResult ProductInfo(int id)
-      {
+              /*var order = (Product)Session["Order"];
+              return PartialView(order.Model);#1#
 
-          var product = _context.Products.SingleOrDefault(c => c.Id == id);
-          /*if (product == null)
-          {
-              return HttpNotFound();
-          }
-          var productInfo = new ProductViewModel()
-          {
-              Product = product
+              return View(product);
+          }*/
 
-          };
-
-
-          return PartialView(productInfo);#1#
-
-          /*var order = (Product)Session["Order"];
-          return PartialView(order.Model);#1#
-
-          return View(product);
-      }*/
-
-    /*       public ActionResult ProductView()
-           {
-               var product = _context.Products.ToList();
-
-               if (product == null)
+        /*       public ActionResult ProductView()
                {
-                   return HttpNotFound();
-               }
-               var Productsview = new CashTransactionViewModel()
-               {
-                   Product = product,
-                   CustomerCompleInfo = customerInfo,
-                   CustomerTypes = _context.CustomerTypes.ToList(),
-                   CivilStatuses = _context.CivilStatus.ToList()
-               };
+                   var product = _context.Products.ToList();
+
+                   if (product == null)
+                   {
+                       return HttpNotFound();
+                   }
+                   var Productsview = new CashTransactionViewModel()
+                   {
+                       Product = product,
+                       CustomerCompleInfo = customerInfo,
+                       CustomerTypes = _context.CustomerTypes.ToList(),
+                       CivilStatuses = _context.CivilStatus.ToList()
+                   };
 
 
-               return PartialView(Productsview);
+                   return PartialView(Productsview);
 
-           }*/
-
-
+               }*/
 
 
-}
+
+    }
 }

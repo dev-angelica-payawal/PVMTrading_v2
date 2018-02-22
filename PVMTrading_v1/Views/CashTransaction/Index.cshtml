@@ -16,18 +16,6 @@
                     <div class="table-responsive">
                         <div id="dataTable_wrapper" class="dataTables_wrapper container-fluid">
 
-                            <!-- Modal -->
-                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-
-
-                                        @{Html.RenderAction("SearchCustomer", "CashTransaction");}
-
-
-                                    </div>
-                                </div>
-                            </div>
 
                             @Html.ActionLink("New Cash Transaction", "ProductList", "SearchProduct", new { @class = "btn btn-primary" }, null)
 
@@ -43,15 +31,13 @@
                                         <tr>
                                             <th>No.</th>
                                             <th>Customer</th>
-                                            <td>Total Amount</td>
-                                            <td>Discount</td>
+                                            <th>Total Amount</th>
+                                            <th>Discount</th>
                                             <th>Total Amount w/ Discount</th>
                                             <th>Date</th>
                                             <th>Remarks</th>
-                                            <td>OR Number</td>
-
-                                            <th>Is Void</th>
                                             <th>OR</th>
+                                            <th>Void</th>
                                             <th></th>
 
 
@@ -64,16 +50,15 @@
 
                                             <tr>
                                                 <td>@cash.Id</td>
-                                                <td>@cash.Customer</td>
+                                                <td>@cash.Customer.FirstName @cash.Customer.LastName</td>
                                                 <td>@cash.OriginalTotalAmount</td>
                                                 <td>@cash.TotalDiscountedAmount</td>
                                                 <td>@cash.TotalAmount</td>
                                                 <td>@cash.CashTransactionDate</td>
                                                 <td>@cash.Remarks</td>
-
                                                 <td>@cash.OR</td>
-                                                <td>
-                                                    @Html.ActionLink("Edit", "Edit", new { id = cash.Id }) | @Html.ActionLink("Edit", "Edit", new { id = cash.Id }) | @Html.ActionLink("Edit", "Edit", new { id = cash.Id })|
+                                                <td>@cash.IsVoid</td>
+                                                <td>@Html.ActionLink("Void", "Delete", new { id = cash.Id }) | @Html.ActionLink("Details", "Details", new { id = cash.Id })
                                                 </td>
 
                                             </tr>

@@ -240,8 +240,8 @@ namespace PVMTrading_v1.Controllers
             }
             var customerComplete = new CustomerViewModel
             { 
-                    Customer = customer,
-                    CustomerCompleInfo = customerInfo,
+                Customer = customer,
+                CustomerCompleInfo = customerInfo,
                 CustomerTypes = _context.CustomerTypes.ToList(),
                 CivilStatuses = _context.CivilStatus.ToList()
             };

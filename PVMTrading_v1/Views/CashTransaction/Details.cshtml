@@ -1,0 +1,47 @@
+﻿@using PVMTrading_v1.Models
+@model PVMTrading_v1.ViewModels.CashTransactionListViewModel
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+<div class="content-wrapper">
+    <table>
+        <tr>
+            <td>Transaction #</td>
+            <td>Customer Name</td>
+            <td>Date of Transaction</td>
+            <td>TotalAmount</td>
+            <td>Discount</td>
+            <td>Total w/ Discount</td>
+            <td>OR #</td>
+            <td>Remarks</td>
+            <td>Void</td>
+        </tr>
+        <tr>
+            <td>@Model.CashTransaction.Id</td>
+            <td>@Model.Customer.FirstName @Model.Customer.MiddleName @Model.Customer.LastName</td>
+            <td>@Model.CashTransaction.CashTransactionDate</td>
+            <td>@Model.CashTransaction.OriginalTotalAmount</td>
+            <td>@Model.CashTransaction.TotalDiscountedAmount</td>
+            <td>@Model.CashTransaction.TotalAmount</td>
+            <td>@Model.CashTransaction.OR</td>
+            <td>@Model.CashTransaction.Remarks</td>
+            <td>@Model.CashTransaction.IsVoid</td>
+        </tr>
+        
+        
+
+    </table>
+    
+    @*<table>
+        @foreach (var c in ViewData["ListItem"] as IList<CashTransactionItem>)
+        {
+            @c.Product.Name
+            
+        }
+        <tr>List</tr>
+        <tr></tr>
+    </table>*@
+</div>

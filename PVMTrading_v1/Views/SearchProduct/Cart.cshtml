@@ -49,6 +49,7 @@
                     </script>
                     <div class="col-4">
                         @Html.ActionLink("Add More Products", "ProductList", "Product", new {@class = "btn btn-primary"})
+                        @Html.ActionLink("Delete All", "DeleteAllProdsInCart","SearchProduct")
                     </div>
                     @foreach (var item in Model)
                     {

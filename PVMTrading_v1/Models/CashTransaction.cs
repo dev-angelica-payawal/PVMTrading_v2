@@ -4,6 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Data.Entity.ModelConfiguration.Configuration;
 using System.Linq;
 using System.Web;
+using System.Web.UI.WebControls;
+using Foolproof;
+
 
 namespace PVMTrading_v1.Models
 {
@@ -12,11 +15,13 @@ namespace PVMTrading_v1.Models
       
         public string Id { get; set; }
 
-       
+        [Range(0, double.MaxValue, ErrorMessage = "Value should not be negative")]
+        [LessThanOrEqualTo("OriginalTotalAmount", ErrorMessage = "Value should Less Than or Equal To Total Amount")]
         [Display(Name = "Total Discount Amount")]
         public double TotalDiscountedAmount { get; set; }
 
         [Display(Name = "Total Original Amount")]
+        [GreaterThanOrEqualTo("TotalDiscountedAmount", ErrorMessage = "Value should Less Than or Equal To Total Amount")]
         public double OriginalTotalAmount { get; set; }
 
         [DataType(DataType.Date)]
@@ -25,6 +30,9 @@ namespace PVMTrading_v1.Models
         public DateTime CashTransactionDate { get; set; }
 
         [Display(Name = "Total Amount")]
+        //[DisplayFormat(DataFormatString = "{0:#.####}", ApplyFormatInEditMode = true)]
+        [Range(0, double.MaxValue, ErrorMessage = "Discount Value ")]
+        [DisplayFormat(DataFormatString = "{0:C0}", ApplyFormatInEditMode = true)]
         public double TotalAmount { get; set; }
 
     //    public int EmployeeId { get; set; }
@@ -40,7 +48,8 @@ namespace PVMTrading_v1.Models
         [StringLength(500)]
         public string Remarks { get; set; }
 
-   //     public int? DeliveryChargedId { get; set; }
+        //     public int? DeliveryChargedId { get; set; }
+        [Range(0, int.MaxValue, ErrorMessage = "Does not accept negative")]
         public int OR { get; set; }
     }
 }
