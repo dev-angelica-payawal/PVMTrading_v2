@@ -6,7 +6,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="content-wrapper">
-<h2>Details</h2>
+
 
     <div>
         <h4>Product Reservation Details</h4>
@@ -94,18 +94,19 @@
     
     <table class="table-responsive table-bordered">
         <tr>
-            <td>Or #</td>
-            <td>Date Paid</td>
-            <td>Amount Paid</td>
+            <th>Or #</th>
+            <th>Amount Paid</th>
+            <th>Date Paid</th>
         </tr>
         @foreach (var receipt in ViewData["ListItem"] as List<LayAwayTransactionReceipt>)
         {
             <tr>
                 <td>@receipt.OR
                 </td>
-                <td> @receipt.DateTransaction
-                </td>
                 <td>    @receipt.AmountPaid
+                </td>
+                <td>
+                    @receipt.DateTransaction
                 </td>
             </tr>
         }

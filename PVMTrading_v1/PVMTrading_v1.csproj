@@ -244,13 +244,6 @@
     <Compile Include="Migrations\201802212217071_deleteDiscountTempCart.Designer.cs">
       <DependentUpon>201802212217071_deleteDiscountTempCart.cs</DependentUpon>
     </Compile>
-<<<<<<< HEAD
-=======
-    <Compile Include="Migrations\201802221116048_Update4.cs" />
-    <Compile Include="Migrations\201802221116048_Update4.Designer.cs">
-      <DependentUpon>201802221116048_Update4.cs</DependentUpon>
-    </Compile>
->>>>>>> f3aed38205fb451b6fe8a1aaa824a8084f3eb21c
     <Compile Include="Migrations\201802221344486_AddLayAwayTable.cs" />
     <Compile Include="Migrations\201802221344486_AddLayAwayTable.Designer.cs">
       <DependentUpon>201802221344486_AddLayAwayTable.cs</DependentUpon>
@@ -258,8 +251,6 @@
     <Compile Include="Migrations\201802221433279_AddQuantity.cs" />
     <Compile Include="Migrations\201802221433279_AddQuantity.Designer.cs">
       <DependentUpon>201802221433279_AddQuantity.cs</DependentUpon>
-<<<<<<< HEAD
-=======
     </Compile>
     <Compile Include="Migrations\201802222013595_AddLayAwayReceiptTable.cs" />
     <Compile Include="Migrations\201802222013595_AddLayAwayReceiptTable.Designer.cs">
@@ -268,7 +259,6 @@
     <Compile Include="Migrations\201802222318243_deletedatecolumnLayawaytransact.cs" />
     <Compile Include="Migrations\201802222318243_deletedatecolumnLayawaytransact.Designer.cs">
       <DependentUpon>201802222318243_deletedatecolumnLayawaytransact.cs</DependentUpon>
->>>>>>> f3aed38205fb451b6fe8a1aaa824a8084f3eb21c
     </Compile>
     <Compile Include="Models\TypeOfTransaction.cs" />
     <Compile Include="ViewModels\Item.cs" />
@@ -1219,14 +1209,11 @@
     <Content Include="Views\LayAwayTransaction\ProductList.cshtml" />
     <Content Include="Views\LayAwayTransaction\SearchCustomer.cshtml" />
     <Content Include="Views\LayAwayTransaction\Index.cshtml" />
-<<<<<<< HEAD
     <Content Include="Views\Customer\CustomerView.cshtml" />
     <Content Include="Views\Product\ProductFilter.cshtml" />
-=======
     <Content Include="Views\LayAwayTransaction\LayAwayTransactionSummary.cshtml" />
     <Content Include="Views\LayAwayTransaction\Details.cshtml" />
     <Content Include="Views\LayAwayTransaction\Update.cshtml" />
->>>>>>> f3aed38205fb451b6fe8a1aaa824a8084f3eb21c
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1428,27 +1415,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802212217071_deleteDiscountTempCart.resx">
       <DependentUpon>201802212217071_deleteDiscountTempCart.cs</DependentUpon>
-<<<<<<< HEAD
-=======
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201802221116048_Update4.resx">
-      <DependentUpon>201802221116048_Update4.cs</DependentUpon>
->>>>>>> f3aed38205fb451b6fe8a1aaa824a8084f3eb21c
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802221344486_AddLayAwayTable.resx">
       <DependentUpon>201802221344486_AddLayAwayTable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802221433279_AddQuantity.resx">
       <DependentUpon>201802221433279_AddQuantity.cs</DependentUpon>
-<<<<<<< HEAD
-=======
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802222013595_AddLayAwayReceiptTable.resx">
       <DependentUpon>201802222013595_AddLayAwayReceiptTable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802222318243_deletedatecolumnLayawaytransact.resx">
       <DependentUpon>201802222318243_deletedatecolumnLayawaytransact.cs</DependentUpon>
->>>>>>> f3aed38205fb451b6fe8a1aaa824a8084f3eb21c
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
