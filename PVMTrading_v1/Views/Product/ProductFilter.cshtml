@@ -1,0 +1,96 @@
+﻿
+@model List<PVMTrading_v1.Models.Product>
+@{
+    ViewBag.Title = "ProductFilter";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div>
+    <div>
+        <div class="content-wrapper">
+            <div class="container-fluid">
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <h2>Products Filter</h2>
+                    </div>
+                    <div class="card-body">
+                        <h5>List of Products</h5>
+                        <div class="table-responsive">
+                            <div id="dataTable_wrapper" class="dataTables_wrapper container-fluid">
+
+
+                                @if (!Model.Any())
+                                {
+                                    <p>We don't have any Products available yet.</p>
+                                }
+                                else
+                                {
+                                    <table class="table table-bordered" id="product" style="margin: 0">
+                                        <thead>
+                                        <tr>
+                                            <th>Product Name</th>
+                                            <th>Warranty</th>
+                                            <th>Stocks</th>
+                                            <th>Branch</th>
+
+
+
+
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach (var product in Model)
+                                        {
+
+                                            <tr>
+                                                <td>@product.Name</td>
+                                                <td>@product.Warranty</td>
+                                                <td>@product.AvailableForSelling</td>
+                                                <td>@product.Branch</td>
+
+
+
+
+
+
+
+
+
+                                            </tr>
+                                        }
+                                        </tbody>
+                                    </table>
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<link href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
+@section scripts{
+    <script>
+        function createModal(url){
+            $('#modelContent').load(url);
+            $('#myModal').modal('show');
+        }
+    </script>
+    <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#product').DataTable({
+
+                "column": [
+                    { "autowidth": true },
+                    { "ScrollY": (0.6 * $(window).height()) }
+                ]
+
+
+
+            });
+        });
+    </script>
+}

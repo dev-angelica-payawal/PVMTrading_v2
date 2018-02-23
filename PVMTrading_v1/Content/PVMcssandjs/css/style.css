@@ -28,7 +28,7 @@ body a{
 }	
 /*-- header_top --*/
 .top_bg {
-    background: #0A7F21;
+	background: #0A7F21;
 }
 .header_top-sec{
   padding: 15px 0 8px;
@@ -269,20 +269,20 @@ a i.google:hover {
   right: 8px;
 }
 .menu_sec {
-    border-top: 1px solid #00cc00;
-    border-bottom: 1px solid #00cc00;
-    padding: 7px 0;
+	border-top: 1px solid #00cc00;
+	border-bottom: 1px solid #00cc00;
+	padding: 7px 0;
 }
 .menu2_sec {
-    border-top: 1px solid #00cc00;
-    border-bottom: 1px solid #00cc00;
-    padding: 7px 0;
+	border-top: 1px solid #00cc00;
+	border-bottom: 1px solid #00cc00;
+	padding: 7px 0;
 }
 
 .menu3_sec {
-    border-top: 1px solid #00cc00;
-    border-bottom: 1px solid #00cc00;
-    padding: 7px 0;
+	border-top: 1px solid #00cc00;
+	border-bottom: 1px solid #00cc00;
+	padding: 7px 0;
 }
 
 .header_right{
@@ -998,13 +998,13 @@ ul.dropdown-menu1 li a:hover{
 
 .sky-form [class^="icon-"] {
 	display: block;
-    width: 18px;
-    height: 18px;
-    background: url(../images/star.png) 0 -3px;
-    float:left;
-    font-family: FontAwesome;
-    font-style: normal;
-    font-weight: normal;
+	width: 18px;
+	height: 18px;
+	background: url(../images/star.png) 0 -3px;
+	float:left;
+	font-family: FontAwesome;
+	font-style: normal;
+	font-weight: normal;
   -webkit-font-smoothing: antialiased;
 }
 /* checked state */
@@ -1794,7 +1794,7 @@ a.cpns:hover{
 }
 .check {
   width: 100%;
-    margin-top: 1em;
+	margin-top: 1em;
 }
 .form-control {
   width: auto!important;
@@ -1828,13 +1828,13 @@ a i.facebook:hover{
   background-position: -3px -39px;
 }
 a i.twitter:hover{
-    background-position: -43px -39px;
+	background-position: -43px -39px;
 }
 a i.dribble:hover{
-    background-position: -83px -38px;
+	background-position: -83px -38px;
 }
 a i.google:hover{
-    background-position: -126px -39px;
+	background-position: -126px -39px;
 }
 .top_left ul {
   vertical-align: text-top;
@@ -2002,7 +2002,7 @@ a i.google:hover{
 }
 .navbar-form .form-group {
   display: inline-block;
-    padding-left: 15px;
+	padding-left: 15px;
 }
 .det{
 	padding:0;
@@ -2343,7 +2343,7 @@ float: none;
 a.continue {
   padding: 8px 1em;
   font-size: 0.9em;
-    margin: 0px auto 2em auto;
+	margin: 0px auto 2em auto;
 }
 .price-details h3 {
  font-size: 0.9em;
@@ -2446,37 +2446,159 @@ a.order{
 
 /* Style the tab */
 div.tab {
-    overflow: hidden;
-    border: 1px solid #ccc;
-    background-color: #f1f1f1;
+	overflow: hidden;
+	border: 1px solid #ccc;
+	background-color: #f1f1f1;
 }
 
-    /* Style the buttons inside the tab */
-    div.tab button {
-        background-color: inherit;
-        float: left;
-        border: none;
-        outline: none;
-        cursor: pointer;
-        padding: 5px 80.75px;
-        transition: 0.6s;
-        font-size: 17px;
-    }
+	/* Style the buttons inside the tab */
+	div.tab button {
+		background-color: inherit;
+		float: left;
+		border: none;
+		outline: none;
+		cursor: pointer;
+		padding: 5px 80.75px;
+		transition: 0.6s;
+		font-size: 17px;
+	}
 
-        /* Change background color of buttons on hover */
-        div.tab button:hover {
-            background-color: #ddd;
-        }
+		/* Change background color of buttons on hover */
+		div.tab button:hover {
+			background-color: #ddd;
+		}
 
-        /* Create an active/current tablink class */
-        div.tab button.active {
-            background-color: #ccc;
-        }
+		/* Create an active/current tablink class */
+		div.tab button.active {
+			background-color: #ccc;
+		}
 
 /* Style the tab content */
 .tabcontent {
-    /*display: inline;*/
-    padding: 6px 12px;
-    border: 1px solid #ccc;
-    border-top: none;
+	/*display: inline;*/
+	padding: 6px 12px;
+	border: 1px solid #ccc;
+	border-top: none;
+}
+.profile{
+	min-height:800px;
+	padding:1em;
+}
+.profile-bottom{
+	width: 55%;
+	margin: 0em auto;
+		background-color: #fff;
+	padding: 1em 0 ;
+	 border: 1px solid #ebeff6;
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-o-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-ms-border-radius: 4px;
+	-webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
+	box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}
+.profile-bottom h3{
+	font-size: 1.4em;
+	color:#000;
+	 padding: 0em 0.9em 1em;
+	border-bottom: 1px solid #F3F3F4;
+	margin-bottom: 1em;
+}
+.profile-bottom h3 i{
+	font-size: 16px;
+	width: 28px;
+	height: 28px;
+	background: #F7F7F7;
+	border-radius: 100px;
+	-webkit-border-radius: 100px;
+	-o-border-radius: 100px;
+	-moz-border-radius: 100px;
+	-ms-border-radius: 100px;
+	text-align: center;
+	line-height: 1.7em;
+	color: #8E8E8E;
+	margin-right: 1%;
+}
+.profile-text h6{
+	font-size: 1.5em;
+	color:#000;
+	padding: 0em 0.4em 0.3em;
+}
+.profile-text td{
+	font-size: 0.9em;
+	color:#999;
+	padding: 0.3em 1em;
+}
+.profile-text td a{
+	color:#D95459;
+}
+.profile-bottom-top img {
+	border-radius: 100px;
+	-webkit-border-radius: 100px;
+	-o-border-radius: 100px;
+	-moz-border-radius: 100px;
+	-ms-border-radius: 100px;
+}
+.profile-fo h4{
+	font-size: 2em;
+	color:#000;
+	
+}
+.profile-fo {
+	text-align:center;
+}
+.profile-fo p{
+	font-size: 0.9em;
+	color:#999;
+	margin: 0.5em 0;
+}
+.profile-fo a{
+	text-decoration: none;
+	font-size: 0.9em;
+	color: #fff;
+	padding: 0.5em;
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-o-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-ms-border-radius: 4px;
+	background: #D95459;
+	display: block;
+	text-align: center;
+}
+.profile-fo a.pro{
+	background: #FBB03B;
+}
+.profile-fo a.pro1{
+	background: #3BB2D0;
+}
+.profile-fo a:hover{
+	background: #1ABC9C;
+}
+.profile-fo a i{
+	margin-right:2%;
+}
+.profile-btn {
+	padding: 1em 1em 0;
+	 border-top: 1px solid #F3F3F4;
+}
+.profile-btn button.btn.bg-red{
+	 border-radius: 4px;
+	 -webkit-border-radius: 4px;
+	-o-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-ms-border-radius: 4px;
+	 background:#1abc9c;
+	 color:#fff;
+	 float: right;
+}
+.profile-bottom-bottom {
+	padding: 2em 0;
+}
+.profile-bottom {
+	width: 95%;
+}
+.profile-bottom-img{
+	text-align:center;
 }
