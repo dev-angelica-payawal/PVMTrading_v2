@@ -73,16 +73,21 @@ namespace PVMTrading_v1.Controllers
             return View(_context.TempCarts.ToList());
         }
 
-        public ActionResult Save(CashTransaction cashTransaction,CashTransactionViewModel viewModel)
+        public ActionResult Save(CashTransaction cashTransaction)
 
         {   var cashTransactionItem = new CashTransactionItem();
+
+
+         
             foreach (var item in _context.TempCarts.ToList())
             {
               cashTransactionItem.ProductId = item.ProductId;
-             cashTransactionItem.CashTransactionId =cashTransaction.Id ;
+             cashTransactionItem.CashTransactionId =cashTransaction.Id;
              cashTransactionItem.ProductPrice = item.ProductPrice;
              cashTransactionItem.Quantity = item.Quantity;
                _context.CashTransactionItems.Add(cashTransactionItem);
+                //minus product stock to available for selling
+                _context.Products.SingleOrDefault(p => p.Id == item.ProductId).AvailableForSelling = _context.Products.SingleOrDefault(p => p.Id == item.ProductId).AvailableForSelling - item.Quantity;
             }
 
             var cash = _context.CashTransactions.SingleOrDefault(c => c.Id == cashTransaction.Id);
@@ -144,6 +149,7 @@ namespace PVMTrading_v1.Controllers
             {
                 product =  _context.Products.SingleOrDefault(b => b.Id == c.ProductId);
                 product.AvailableForSelling = product.AvailableForSelling + c.Quantity;
+                
             }
 
             voidTransact.IsVoid = true;
@@ -160,11 +166,9 @@ namespace PVMTrading_v1.Controllers
             var customer = _context.Customers.SingleOrDefault(c => c.Id == Transact.CustomerId);
             var voidItems = _context.CashTransactionItems.Where(c => c.CashTransactionId == id);
             /* var product = new Product();*/
-            foreach (var c in voidItems.ToList())
-            {
-                ViewData["ListItem"]  = c;
-            }
-            
+            ViewData["ListItem"] = voidItems.ToList();
+
+
             var vm = new CashTransactionListViewModel
             {
                 CashTransaction = Transact,

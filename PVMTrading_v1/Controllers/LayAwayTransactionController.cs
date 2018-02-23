@@ -27,11 +27,9 @@ namespace PVMTrading_v1.Controllers
         // GET: CashTransaction
         public ActionResult Index()
         {
-
             var layAway = _context.LayAwayTransactions.Include(c => c.Product)
                                                       .Include(c => c.Customer).ToList();
-
-
+          
             return View(layAway);
         }
 
@@ -60,68 +58,159 @@ namespace PVMTrading_v1.Controllers
         public ActionResult BuyNow(int id, double price)
         {
             var tempCart = new TempCart();
-
+            var tempCartCount = _context.TempCarts.Count();
             var isProduct = _context.TempCarts.Count(p => p.ProductId == id);
 
            // var productQuantity = _context.TempCarts.Where(p => p.ProductId == id);
-
-            if (isProduct == 0)
+            if (tempCartCount <1)
             {
-                tempCart.ProductId = id;
-                tempCart.Quantity = 1;
-                tempCart.ProductPrice = price;
-                _context.TempCarts.Add(tempCart);
+                 if (isProduct == 0)
+                {
+                    tempCart.ProductId = id;
+                    tempCart.Quantity = 1;
+                    tempCart.ProductPrice = price;
+                    _context.TempCarts.Add(tempCart);
+                    _context.SaveChanges();
+                }
+
             }
-          
+            
+            return RedirectToAction("Cart");
+        }
+
+        public ActionResult Cart()
+        {
+            var tempCartList = _context.TempCarts.Include(c => c.Product).ToList();
+            ViewBag.CountofProducts = _context.TempCarts.Count();
+            return View( tempCartList);
+        }
+
+      
+
+
+        public ActionResult DeleteFromCart(int id)
+        {
+            var deleteItem = _context.TempCarts.SingleOrDefault(c => c.Id == id);
+            if (deleteItem != null)
+                _context.TempCarts.Remove(deleteItem);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult DeleteAllProdsInCart()
+        {
+            var temp = _context.TempCarts;
+
+            foreach (var d in temp.ToList())
+            {
+                _context.TempCarts.Remove(_context.TempCarts.SingleOrDefault(c => c.Id == d.Id));
+            }
+
 
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
 
+
+
+
+        public ActionResult AddQuantity(int id, int quantity)
+        {
+            var tempCart = _context.TempCarts.SingleOrDefault(p => p.Id == id);
+            if (tempCart != null && tempCart.Quantity < quantity)
+            {
+                ++tempCart.Quantity;
+
+                _context.SaveChanges();
+            }
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult LessQuantity(int id, int quantity)
+        {
+            var tempCart = _context.TempCarts.SingleOrDefault(p => p.Id == id);
+            if (tempCart != null && tempCart.Quantity > 0)
+            {
+                --tempCart.Quantity;
+                _context.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
+        }
+
+      
+
+        public ActionResult Select(int id)
+        {
+            var count = _context.LayAwayTransactions.Count();
+            var cashId = Convert.ToString(DateTime.Today.Year) + "00" + Convert.ToString(count + 1) + Convert.ToString(DateTime.Today.Day);
+
+            var layAway = new LayAwayTransaction();
+
+            double totalPrice = 0;
+            var product = 0;
+            var quantity = 0;
+            foreach (var c in _context.TempCarts.ToList())
+            {
+                totalPrice = totalPrice + (c.ProductPrice * c.Quantity);
+
+                product = c.ProductId;
+                quantity = c.Quantity;
+            }
+
+            //add product quantity to reserved and minus to available for selling
+            var reservedItem = _context.Products.SingleOrDefault(p => p.Id == product);
+            reservedItem.AvailableForSelling = reservedItem.AvailableForSelling - quantity;
+            reservedItem.Reserved = reservedItem.Reserved + quantity;
+
+            var selectCustomer = _context.Customers.SingleOrDefault(c => c.Id == id);
+            layAway.Id = cashId;
+            layAway.CustomerId = selectCustomer.Id;
+            layAway.TotalAmount = totalPrice;
+            layAway.RemainingBalance = totalPrice;
+            layAway.Remarks = "";
+            layAway.ProductId = product;
+            layAway.Quantity = quantity;
+            layAway.TotalPaidAmount =0 ;
+            _context.LayAwayTransactions.Add(layAway);
+            _context.SaveChanges();
+            return RedirectToAction("LayAwayTransactionSummary");
+        }
+
         public ActionResult LayAwayTransactionSummary()
         {
-            var count = _context.CashTransactions.Count();
-            var cashId = Convert.ToString(DateTime.Today.Year) + "00" + Convert.ToString(count) + Convert.ToString(DateTime.Today.Day);
-            var cashTransaction = _context.CashTransactions.SingleOrDefault(c => c.Id == cashId);
-            var customer = _context.Customers.SingleOrDefault(c => c.Id == cashTransaction.CustomerId);
+            var count = _context.LayAwayTransactions.Count();
+            var layAwayId = Convert.ToString(DateTime.Today.Year) + "00" + Convert.ToString(count) + Convert.ToString(DateTime.Today.Day);
+            var layAwayTransaction = _context.LayAwayTransactions.SingleOrDefault(c => c.Id == layAwayId);
+            var customer = _context.Customers.SingleOrDefault(c => c.Id == layAwayTransaction.CustomerId);
+            var product = _context.Products.SingleOrDefault(p => p.Id == layAwayTransaction.ProductId);
 
-            var viewModel = new CashTransactionViewModel
+            var viewModel = new LayAwayTransactionViewModel
             {
-                CashTransaction = cashTransaction,
-                Customer = customer
+                LayAwayTransaction = layAwayTransaction,
+                Customer = customer,
+                Product = product
 
             };
 
             return View(viewModel);
         }
 
+       
 
-        public ActionResult CashTransactionItemListSummary()
+        public ActionResult Save(LayAwayTransactionViewModel vm)
         {
+            var LayAinDb = _context.LayAwayTransactions.SingleOrDefault(c => c.Id == vm.LayAwayTransaction.Id);
+            LayAinDb.CustomerId = vm.LayAwayTransaction.CustomerId;
+            LayAinDb.TotalPaidAmount = vm.LayAwayTransactionReceipt.AmountPaid;
+            LayAinDb.ProductId = vm.LayAwayTransaction.ProductId;
+            LayAinDb.Remarks = vm.LayAwayTransaction.Remarks;
+            LayAinDb.RemainingBalance = vm.LayAwayTransaction.TotalAmount - vm.LayAwayTransactionReceipt.AmountPaid;
 
-            return View(_context.TempCarts.ToList());
-        }
-
-        public ActionResult Save(CashTransaction cashTransaction, CashTransactionViewModel viewModel)
-
-        {
-            var cashTransactionItem = new CashTransactionItem();
-            foreach (var item in _context.TempCarts.ToList())
-            {
-                cashTransactionItem.ProductId = item.ProductId;
-                cashTransactionItem.CashTransactionId = cashTransaction.Id;
-                cashTransactionItem.ProductPrice = item.ProductPrice;
-                cashTransactionItem.Quantity = item.Quantity;
-                _context.CashTransactionItems.Add(cashTransactionItem);
-            }
-
-            var cash = _context.CashTransactions.SingleOrDefault(c => c.Id == cashTransaction.Id);
-            cash.CustomerId = cashTransaction.CustomerId;
-            cash.CashTransactionDate = DateTime.Now;
-            cash.OR = cashTransaction.OR;
-            cash.TotalAmount = cash.OriginalTotalAmount - cash.TotalDiscountedAmount;
-            cash.TotalDiscountedAmount = cashTransaction.TotalDiscountedAmount;
-            cash.Remarks = cashTransaction.Remarks;
+            
+            vm.LayAwayTransactionReceipt.DateTransaction = DateTime.Now;
+            vm.LayAwayTransactionReceipt.LayAwayTransactionId = vm.LayAwayTransaction.Id;
+            _context.LayAwayTransactionReceipts.Add(vm.LayAwayTransactionReceipt);
 
             var temp = _context.TempCarts;
 
@@ -136,48 +225,24 @@ namespace PVMTrading_v1.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult Select(int id)
-        {
-            var count = _context.CashTransactions.Count();
-            var cashId = Convert.ToString(DateTime.Today.Year) + "00" + Convert.ToString(count + 1) + Convert.ToString(DateTime.Today.Day);
-
-            var cashTransaction = new CashTransaction();
-
-            double totalPrice = 0;
-
-            foreach (var c in _context.TempCarts.ToList())
-            {
-                totalPrice = totalPrice + (c.ProductPrice * c.Quantity);
-
-            }
-
-
-            var selectCustomer = _context.Customers.SingleOrDefault(c => c.Id == id);
-            cashTransaction.Id = cashId;
-            cashTransaction.CustomerId = selectCustomer.Id;
-            cashTransaction.CashTransactionDate = DateTime.Now;
-            cashTransaction.OriginalTotalAmount = totalPrice;
-            cashTransaction.Remarks = "";
-            _context.CashTransactions.Add(cashTransaction);
-            _context.SaveChanges();
-            return RedirectToAction("");
-        }
-
-
+      
         public ActionResult Delete(string id)
         {
 
-            var voidTransact = _context.CashTransactions.SingleOrDefault(c => c.Id == id);
-            var voidItems = _context.CashTransactionItems.Where(c => c.CashTransactionId == id);
-            var product = new Product();
-            foreach (var c in voidItems.ToList())
-            {
-                product = _context.Products.SingleOrDefault(b => b.Id == c.ProductId);
-                product.AvailableForSelling = product.AvailableForSelling + c.Quantity;
-            }
+            var voidTransact = _context.LayAwayTransactions.SingleOrDefault(c => c.Id == id);
 
+            voidTransact.TotalPaidAmount = voidTransact.TotalPaidAmount * 0.10;
             voidTransact.IsVoid = true;
 
+
+            var product = new Product();
+
+            product = _context.Products.SingleOrDefault(b => b.Id == voidTransact.ProductId);
+            product.AvailableForSelling = product.AvailableForSelling + voidTransact.Quantity;
+            product.Reserved = product.AvailableForSelling - voidTransact.Quantity;
+
+           
+            
 
 
             _context.SaveChanges();
@@ -186,22 +251,39 @@ namespace PVMTrading_v1.Controllers
 
         public ActionResult Details(string id)
         {
-            var Transact = _context.CashTransactions.SingleOrDefault(c => c.Id == id);
-            var customer = _context.Customers.SingleOrDefault(c => c.Id == Transact.CustomerId);
-            var voidItems = _context.CashTransactionItems.Where(c => c.CashTransactionId == id);
+            var transact = _context.LayAwayTransactions.SingleOrDefault(c => c.Id == id);
+            var customer = _context.Customers.SingleOrDefault(c => c.Id == transact.CustomerId);
+            var product = _context.Products.SingleOrDefault(c => c.Id == transact.ProductId);
+            var voidItems = _context.LayAwayTransactionReceipts.Where(c => c.LayAwayTransactionId == id);
             /* var product = new Product();*/
 
             ViewData["ListItem"] = voidItems.ToList();
 
-            var vm = new CashTransactionListViewModel
+            var vm = new LayAwayTransactionViewModel()
             {
-                CashTransaction = Transact,
-
-                Customer = customer
+                LayAwayTransaction = transact,
+                Product = product,
+                Customer = customer,
             };
 
 
             return View(vm);
+        }
+
+        public ActionResult Update()
+        {
+
+            return View();
+        }
+        
+        public ActionResult Update(LayAwayTransactionReceipt layAway)
+        {
+            var transact = _context.LayAwayTransactions.SingleOrDefault(c => c.Id == layAway.LayAwayTransactionId);
+            transact.TotalPaidAmount = transact.TotalPaidAmount + layAway.AmountPaid;
+
+            _context.LayAwayTransactionReceipts.Add(layAway);
+            _context.SaveChanges();
+            return View();
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Web;
 
 namespace PVMTrading_v1.Models
 {
-    public class LayawayTransactionReceipt
+    public class LayAwayTransactionReceipt
     {
         [Key]
         public int Id { get; set; }
@@ -18,13 +18,13 @@ namespace PVMTrading_v1.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0: MM:dd:yyyy}", ApplyFormatInEditMode = true)]
         [Display(Name = "Transaction Date")]
-
         public DateTime DateTransaction { get; set; }
 
         public double AmountPaid { get; set; }
 
         /*public int EmployeeId { get; set; }*/
-
+        [Range(0, int.MaxValue, ErrorMessage = "Does not accept negative")]
+        [Required]
         public int OR { get; set; }
 
     }

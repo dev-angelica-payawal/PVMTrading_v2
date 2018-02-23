@@ -1,0 +1,127 @@
+﻿@using PVMTrading_v1.Models
+@model PVMTrading_v1.ViewModels.LayAwayTransactionViewModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="content-wrapper">
+<h2>Details</h2>
+
+    <div>
+        <h4>Product Reservation Details</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Customer.FirstName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Customer.FirstName)
+            </dd>
+
+            <dt>
+                Product
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Product.Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LayAwayTransaction.TotalPaidAmount)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LayAwayTransaction.TotalPaidAmount)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LayAwayTransaction.RemainingBalance)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LayAwayTransaction.RemainingBalance)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LayAwayTransaction.TotalAmount)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LayAwayTransaction.TotalAmount)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LayAwayTransaction.IsVoid)
+            </dt>
+
+            <dd>@{
+                    if (@Model.LayAwayTransaction.IsVoid.Equals(true))
+                    {
+                        <div>Void Transaction</div>
+                    }
+                    else
+                    {
+                        <div>Transaction is Not Void</div>
+                    }
+                }
+             </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LayAwayTransaction.Remarks)
+            </dt>
+
+            <dd>
+
+                @if (@Model.LayAwayTransaction.Remarks == (null))
+                {
+                    <div>No Given Remarks For This Payment</div>
+                }
+                @Html.DisplayFor(model => model.LayAwayTransaction.Remarks)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LayAwayTransaction.Quantity)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LayAwayTransaction.Quantity)
+            </dd>
+
+        </dl>
+    </div>
+    
+    <table class="table-responsive table-bordered">
+        <tr>
+            <td>Or #</td>
+            <td>Date Paid</td>
+            <td>Amount Paid</td>
+        </tr>
+        @foreach (var receipt in ViewData["ListItem"] as List<LayAwayTransactionReceipt>)
+        {
+            <tr>
+                <td>@receipt.OR
+                </td>
+                <td> @receipt.DateTransaction
+                </td>
+                <td>    @receipt.AmountPaid
+                </td>
+            </tr>
+        }
+
+
+    </table>
+    
+    
+    
+    
+    
+    
+    
+
+    <p>
+    @Html.ActionLink("Update Payment", "Update", new { id = Model.LayAwayTransaction.Id ,@class="btn btn-primary"}) 
+    @Html.ActionLink("Back to List", "Index")
+</p>
+</div>

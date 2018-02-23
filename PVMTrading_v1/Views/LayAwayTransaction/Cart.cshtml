@@ -18,12 +18,12 @@
 <script src="~/Content/PVMcssandjs/js/responsiveslides.min.js"></script>
 
 <!-- Modal -->
-<div class="modal fade" id="SearchCustomerModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="SearchCustomer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
                                             
                                             
-            @{Html.RenderAction("SearchCustomer", "CashTransaction");}
+            @{Html.RenderAction("SearchCustomer", "LayAwayTransaction");}
             
         </div>
     </div>
@@ -49,12 +49,12 @@
                     </script>
                     <div class="col-4">
                         @Html.ActionLink("Add More Products", "ProductList", "Product", new {@class = "btn btn-primary"})
-                        @Html.ActionLink("Delete All", "DeleteAllProdsInCart","SearchProduct")
+                        @Html.ActionLink("Delete All", "DeleteAllProdsInCart","LayAwayTransaction")
                     </div>
                     @foreach (var item in Model)
                     {
                         <div class="cart-header">
-                            <div class="close1">@Html.ActionLink("X", "DeleteFromCart", new {id = item.Id, @class = "close1"})</div>
+                            <div class="close1">@Html.ActionLink("X", "DeleteFromCart", new {id = item.Id, @class = "close1",style="border:Green solid 1px"})</div>
                             <div class="cart-sec">
                                 <div class="cart-item cyc">
                                     <img src="@Url.Content("~/Resources/images/ts4.jpg")" class="img-responsive" alt="">
@@ -64,7 +64,7 @@
                                 <div class="cart-item-info">
                                     <h3>@item.Product.Name<span>Model :@item.Product.Model</span></h3>
                                     <h4>&#8369; @item.ProductPrice</h4>
-                                    <p class="qty">Qty :@Html.ActionLink("-","LessQuantity",new {id=item.Id,quantity = item.Product.AvailableForSelling},new { @class = "btn btn-xs btn-primary" })|<h3>   @item.Quantity   </h3>|@Html.ActionLink("+", "AddQuantity", new { id = item.Id, quantity = item.Product.AvailableForSelling }, new { @class = "btn btn-xs btn-primary" })  </p>
+                                    <p class="qty">Qty :@Html.ActionLink("-","LessQuantity",new {id=item.Id,quantity = item.Product.AvailableForSelling},new { @class = "btn btn-xs btn-primary" })|   @item.Quantity   |@Html.ActionLink("+", "AddQuantity", new { id = item.Id, quantity = item.Product.AvailableForSelling }, new { @class = "btn btn-xs btn-primary" })  </p>
                                     <p><span>Avail Prod: </span> @item.Product.AvailableForSelling</p>
                                 </div>
 
@@ -74,7 +74,7 @@
                         </div>
                     }
                     <div class="cart-total">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#SearchCustomerModal">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#SearchCustomer">
                             Pay Out
                         </button>
 
