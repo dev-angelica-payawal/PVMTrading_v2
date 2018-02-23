@@ -244,14 +244,6 @@
     <Compile Include="Migrations\201802212217071_deleteDiscountTempCart.Designer.cs">
       <DependentUpon>201802212217071_deleteDiscountTempCart.cs</DependentUpon>
     </Compile>
-<<<<<<< HEAD
-=======
-
->>>>>>> 9291359cba0918b47bb9c2cc1ae5200512a68ba9
-    <Compile Include="Migrations\201802221116048_Update4.cs" />
-    <Compile Include="Migrations\201802221116048_Update4.Designer.cs">
-      <DependentUpon>201802221116048_Update4.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\201802221344486_AddLayAwayTable.cs" />
     <Compile Include="Migrations\201802221344486_AddLayAwayTable.Designer.cs">
       <DependentUpon>201802221344486_AddLayAwayTable.cs</DependentUpon>
@@ -259,10 +251,6 @@
     <Compile Include="Migrations\201802221433279_AddQuantity.cs" />
     <Compile Include="Migrations\201802221433279_AddQuantity.Designer.cs">
       <DependentUpon>201802221433279_AddQuantity.cs</DependentUpon>
-<<<<<<< HEAD
-=======
-
->>>>>>> 9291359cba0918b47bb9c2cc1ae5200512a68ba9
     </Compile>
     <Compile Include="Models\TypeOfTransaction.cs" />
     <Compile Include="ViewModels\Item.cs" />
@@ -554,7 +542,12 @@
     <Content Include="Client Scripts\MvcFoolproofValidation.js" />
     <Content Include="Client Scripts\MvcFoolproofValidation.min.js" />
     <Content Include="Content\background.css" />
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-lumen.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.min.js" />
     <Content Include="Content\css\sb-admin.css" />
@@ -848,6 +841,7 @@
     <Content Include="Content\PVMcssandjs\js\responsiveslides.min.js" />
     <Content Include="Content\PVMcssandjs\js\script.js" />
     <Content Include="Content\PVMcssandjs\js\simpleCart.min.js" />
+    <Content Include="Content\style.css" />
     <Content Include="Content\textext.core.css" />
     <Content Include="Content\textext.plugin.autocomplete.css" />
     <Content Include="Content\vendor\bootstrap\css\bootstrap-grid.css" />
@@ -937,6 +931,8 @@
     <Content Include="Resources\user-medium.png" />
     <Content Include="Scripts\bootbox.js" />
     <Content Include="Scripts\bootbox.min.js" />
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\pug\blank.pug" />
@@ -1010,8 +1006,17 @@
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\common.scss" />
     <Content Include="Grid.mvc.readme" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-grid.css.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.min.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap4.js" />
@@ -1095,12 +1100,13 @@
     <Content Include="Scripts\gridmvc.js" />
     <Content Include="Scripts\gridmvc.lang.ru.js" />
     <Content Include="Scripts\gridmvc.min.js" />
-    <Content Include="Scripts\jquery-3.0.0.js" />
-    <Content Include="Scripts\jquery-3.0.0.min.js" />
-    <Content Include="Scripts\jquery-3.0.0.slim.js" />
-    <Content Include="Scripts\jquery-3.0.0.slim.min.js" />
-    <Content Include="Scripts\jquery-3.0.0.slim.min.map" />
-    <Content Include="Scripts\jquery-3.0.0.min.map" />
+    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.3.1.js" />
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.3.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.ui.all.css" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -1196,6 +1202,7 @@
     <Content Include="Views\LayAwayTransaction\SearchCustomer.cshtml" />
     <Content Include="Views\LayAwayTransaction\Index.cshtml" />
     <Content Include="Views\Customer\CustomerView.cshtml" />
+    <Content Include="Views\Product\ProductFilter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1386,10 +1393,6 @@
     <EmbeddedResource Include="Migrations\201802211240560_AddDiscountTotempandTransactionItem.resx">
       <DependentUpon>201802211240560_AddDiscountTotempandTransactionItem.cs</DependentUpon>
     </EmbeddedResource>
-<<<<<<< HEAD
-=======
-
->>>>>>> 9291359cba0918b47bb9c2cc1ae5200512a68ba9
     <EmbeddedResource Include="Migrations\201802220517021_Update3.resx">
       <DependentUpon>201802220517021_Update3.cs</DependentUpon>
     </EmbeddedResource>
@@ -1401,29 +1404,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802212217071_deleteDiscountTempCart.resx">
       <DependentUpon>201802212217071_deleteDiscountTempCart.cs</DependentUpon>
-<<<<<<< HEAD
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201802221116048_Update4.resx">
-      <DependentUpon>201802221116048_Update4.cs</DependentUpon>
-=======
-
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201802221116048_Update4.resx">
-      <DependentUpon>201802221116048_Update4.cs</DependentUpon>
-
-
-
->>>>>>> 9291359cba0918b47bb9c2cc1ae5200512a68ba9
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802221344486_AddLayAwayTable.resx">
       <DependentUpon>201802221344486_AddLayAwayTable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802221433279_AddQuantity.resx">
       <DependentUpon>201802221433279_AddQuantity.cs</DependentUpon>
-<<<<<<< HEAD
-=======
-
->>>>>>> 9291359cba0918b47bb9c2cc1ae5200512a68ba9
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -18,9 +18,9 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <div id="dataTable_wrapper" class="dataTables_wrapper container-fluid">
+                            <div id="dataTable_wrapper" class="dataTables_wrapper">
                                 <p>
-                                    @Html.ActionLink("Create New", "New")
+                                    @Html.ActionLink("Create New", "New","Customer", new { @class = "btn btn-primary" })
                                     @*<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#1">
                                         New Customer
                                     </button>
@@ -103,20 +103,25 @@
                                                         <td>@customer.CustomerCompleInfo.CustomerType.Label</td>
                                                         <td>@customer.CustomerCompleInfo.LotHouseNumberAndStreet, @customer.CustomerCompleInfo.Barangay, @customer.CustomerCompleInfo.CityMunicipality, @customer.CustomerCompleInfo.Province, @customer.CustomerCompleInfo.Country</td>"
                                                         <td>@customer.CustomerCompleInfo.ZipCode</td>#1#*@
-                                                    <td>@*@Html.ActionLink("Edit", "Edit", new { id = customer.Id }, null)*@ <span class="btn btn-xs btn-primary" id="edit_@customer.Id" onclick="createModal('@Url.Action("Edit", "Customer" , new {id=customer.Id })')">Edit</span> | @Html.ActionLink("Delete", "Delete", new { id = customer.Id }, null) | @*@Html.ActionLink("Details", "Details", "Customer", new { id = customer.Id }, null)*@  <span class="btn btn-xs btn-primary" id="edit_@customer.Id" onclick="createModal('@Url.Action("Details", "Customer" , new {id=customer.Id })')">Details</span>
-                                                                                                                                                                                                                                                                                  
+                                                    <td>
+                                                        @*@Html.ActionLink("Edit", "Edit", new { id = customer.Id }, null)*@ @Html.ActionLink("Edit", "Edit", new { id = customer.Id }, new {@class= "btn btn-xs btn-primary" })
+                                                        @Html.ActionLink("Delete", "Delete", new { id = customer.Id }, new { @class = "btn btn-xs btn-primary" })
+                                                        @*@Html.ActionLink("Details", "Details", "Customer", new { id = customer.Id }, null)*@
+                                                        <span class="btn btn-xs btn-primary" id="edit_@customer.Id" onclick="createModal('@Url.Action("Details", "Customer" , new {id=customer.Id })')">Details</span>
 
 
 
 
-                                                    @* <td>@Html.ActionLink("OderByCustomer", "OderByCustomer")</td>*@
+
+                                                        @* <td>@Html.ActionLink("OderByCustomer", "OderByCustomer")</td>*@
+                                                    </td>
                                                 </tr>
-                                             }
+                                            }
                                         </tbody>
                                     </table>
-                                    <div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+                                    <div class="modal fade" id="customerModel" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
                                         <div class="modal-dialog">
-                                            <div class="modal-content" id="modelContent">
+                                            <div class="modal-content" id="customerContent">
                                             </div>
                                         </div>
                                     </div>
@@ -139,8 +144,8 @@
     </script>
     <script>
         function createModal(url){
-            $('#modelContent').load(url);
-            $('#myModal').modal('show');
+            $('#customerContent').load(url);
+            $('#customerModel').modal('show');
         }
     </script>
     <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
