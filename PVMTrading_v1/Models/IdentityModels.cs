@@ -69,13 +69,13 @@ namespace PVMTrading_v1.Models
         public DbSet<CustomerType> CustomerTypes { get; set; }
         public DbSet<CustomerCompleInfo> CustomerCompleInfos { get; set; }
 
-
         public DbSet<CashTransaction> CashTransactions { get; set; }
         public DbSet<CashTransactionItem> CashTransactionItems { get; set; }
 
         public DbSet<TempCart> TempCarts { get; set; }
 
         public DbSet<LayAwayTransaction> LayAwayTransactions { get; set; }
+        public DbSet<LayAwayTransactionReceipt> LayAwayTransactionReceipts{ get; set; }
 
 
 

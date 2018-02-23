@@ -50,6 +50,7 @@ namespace PVMTrading_v1.Models
 
         //     public int? DeliveryChargedId { get; set; }
         [Range(0, int.MaxValue, ErrorMessage = "Does not accept negative")]
+        [Required]
         public int OR { get; set; }
     }
 }

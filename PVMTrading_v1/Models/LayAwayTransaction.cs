@@ -8,18 +8,12 @@ namespace PVMTrading_v1.Models
 {
     public class LayAwayTransaction
     {
-       
         public string Id { get; set; }
-        
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0: MM:dd:yyyy}", ApplyFormatInEditMode = true)]
-        [Display(Name = "Transaction Date")]
-        public DateTime TransactionDate { get; set; }
-
-        [Display(Name = "Total Discount Amount")]
+       
+        [Display(Name = "Total Paid Amount")]
         public double TotalPaidAmount { get; set; }
 
-        [Display(Name = "Total Original Amount")]
+        [Display(Name = "Remaining Balance")]
         public double RemainingBalance { get; set; }
 
 

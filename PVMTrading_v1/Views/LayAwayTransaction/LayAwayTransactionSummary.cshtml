@@ -1,0 +1,174 @@
+﻿
+@model PVMTrading_v1.ViewModels.LayAwayTransactionViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Index</h2>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+@using (Html.BeginForm("Save", "LayAwayTransaction", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="content-wrapper">
+        <div class="form-horizontal">
+            <h4>Layaway Summary</h4>
+
+
+
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.LayAwayTransactionReceipt.DateTransaction, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.LayAwayTransactionReceipt.DateTransaction, new { @class = "col-2 form-control", id = "transactDate", Value = DateTime.Now, @readonly = "readonly" })
+                    @Html.ValidationMessageFor(model => model.LayAwayTransactionReceipt.DateTransaction, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Customer.FirstName, "Customer Name", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-10">
+                    @Html.TextBoxFor(m => m.Customer.FirstName, new { @class = "col-2 form-control", @readonly = "true" }) @Html.TextBoxFor(m => m.Customer.LastName, new { @class = "col-2 form-control", @readonly = "true" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Product.Name, "Product", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Product.Name, new { id = "ProductName", @class = "col-lg-2 form-control", @readonly = "true" })
+
+                    @Html.LabelFor(model => model.Product.Model, "Product Model", htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.TextBoxFor(model => model.Product.Model, new { @class = "col-lg-2 form-control", @readonly = "true" })
+
+                    @Html.LabelFor(model => model.LayAwayTransaction.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.TextBoxFor(model => model.LayAwayTransaction.Quantity, new { id = "Quantity", @class = "col-lg-2 form-control", @readonly = "true" })
+
+                </div>
+            </div>
+            
+            <div class="form-group">
+                @Html.LabelFor(model => model.LayAwayTransactionReceipt.AmountPaid, "Amount Paid", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.LayAwayTransactionReceipt.AmountPaid, new { id = "Paid", @class = "col-2 form-control txt" })
+                    @Html.ValidationMessageFor(model => model.LayAwayTransactionReceipt.AmountPaid, "", new { @class = "text-danger" })
+
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.LayAwayTransaction.TotalAmount, "Total Amount", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => model.LayAwayTransaction.TotalAmount, new { id = "TotalAmount", @class = "col-2 form-control txt", @readonly = "true" })
+                        @Html.ValidationMessageFor(model => model.LayAwayTransaction.TotalAmount, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+
+            </div>
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.LayAwayTransaction.RemainingBalance, "Remaining Balance", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <span style="border: lightgray solid 1px; padding: .4em 7em .4em 7em; border-radius: .3em; background:#E9ECEF " id="sum">0</span>
+                  
+                  
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.LayAwayTransactionReceipt.OR, "OR #", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.LayAwayTransactionReceipt.OR, new { id = "Or", @class = "col-lg-2 form-control" })
+                    @Html.ValidationMessageFor(model => model.LayAwayTransactionReceipt.OR, "", new { @class = "text-danger" })
+
+
+                </div>
+
+
+               <div class="form-group">
+                    @Html.LabelFor(model => model.LayAwayTransaction.Remarks, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(model => model.LayAwayTransaction.Remarks, new { id = "Remarks", @class = "col-lg-2 form-control " })
+                        @Html.ValidationMessageFor(model => model.LayAwayTransaction.Remarks, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @Html.HiddenFor(c => c.LayAwayTransaction.ProductId, new { id = "productId" })
+                @Html.HiddenFor(c => c.LayAwayTransaction.Id, new { id = "Id" })
+                @Html.HiddenFor(c => c.LayAwayTransaction.CustomerId, new { id = "CustomerId" })
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Save Transaction" @*onclick="getTotal();"*@ class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+}
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
+
+
+<script>
+
+
+    $(document).ready(function () {
+
+        //iterate through each textboxes and add keyup
+        //handler to trigger sum event
+        $(".txt").each(function () {
+
+            $(this).keyup(function () {
+                calculateSum();
+                StringCompare();
+
+
+            });
+        });
+
+    });
+
+    //if discount if greater than orig amount
+    function StringCompare() {
+        var totalAmount = document.getElementById("TotalAmount").value;
+        var paid = document.getElementById("Paid").value;
+
+        if (parseFloat(paid) > parseFloat(totalAmount)) {
+            document.getElementById("Paid").value = 0;
+        }
+
+    }
+
+
+
+
+    function calculateSum() {
+
+        var sum = 0;
+        //iterate through each textboxes and add the values
+        $(".txt").each(function () {
+
+            //add only if the value is number
+            if (!isNaN(this.value) && this.value.length != 0) {
+                sum = parseFloat(this.value) -sum;
+            }
+
+        });
+        //.toFixed() method will roundoff the final sum to 2 decimal places
+        $("#sum").html(sum.toFixed(2));
+    }
+</script>
+
+
+

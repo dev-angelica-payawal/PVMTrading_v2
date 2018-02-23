@@ -8,7 +8,7 @@
         <div class="container-fluid">
             <div class="card mb-3">
                 <div class="card-header">
-                    <h4>Cash Transactions</h4>
+                    <h4>List of Lay Away Transactions</h4>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -35,7 +35,6 @@
                                             <th>Paid</th>
                                             <th>Balance</th>
                                             <th>Remarks</th>
-                                            <th>Date</th>
                                             <th>Void</th>
                                             <th></th>
 
@@ -56,9 +55,8 @@
                                                 <td>@cash.TotalPaidAmount</td>
                                                 <td>@cash.RemainingBalance</td>
                                                 <td>@cash.Remarks</td>
-                                                <td>@cash.TransactionDate</td>
                                                 <td>@cash.IsVoid</td>
-                                               <td>@Html.ActionLink("Void", "Delete", new { id = cash.Id }) | @Html.ActionLink("Details", "Details", new { id = cash.Id })
+                                                <td>@Html.ActionLink("Void", "Delete", new { id = cash.Id }) | @Html.ActionLink("Details", "Details", new { id = cash.Id })|@Html.ActionLink("Update", "Update", new { id = cash.Id })
                                                 </td>
 
                                             </tr>

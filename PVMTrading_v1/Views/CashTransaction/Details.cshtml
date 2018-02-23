@@ -1,4 +1,6 @@
 ﻿
+@using System.Collections
+@using PVMTrading_v1.Models
 @using PVMTrading_v1.ViewModels
 @model PVMTrading_v1.ViewModels.CashTransactionListViewModel
 @{
@@ -37,27 +39,28 @@
         
         
 
-        <table>
+            <table>
 
           
-            <tr>
-                <td>Product Name</td>
-                <td>Model</td>
-                <td>Quantity</td>
-                <td>Price</td>
-            </tr>
-            @foreach(var c in ViewData["ListItem"] as IList<CashTransactionListViewModel>)
-            {
                 <tr>
-                    <td>@c.Product.Name</td>
-                    <td>@c.Product.Model</td>
-                    <td>@c.CashTransactionItem.Quantity</td>
-                    <td>@c.CashTransactionItem.ProductPrice</td>
-                  </tr>
-                }
-            List
-            <tr></tr>
-        </table>
+                    <td>Product Name</td>
+                    <td>Model</td>
+                    <td>Quantity</td>
+                    <td>Price</td>
+                </tr>
+                    @foreach (var c in ViewData["ListItem"] as IList<CashTransactionViewModel>)
+                      {
+                              <tr>
+                              <td>@c.Product.Name</td>
+                              <td>@c.Product.Model</td>
+                              <td>@c.CashTransactionItem.Quantity</td>
+                              <td>@c.CashTransactionItem.ProductPrice</td>
+                        </tr>
+
+                      }
+           
+         
+            </table>
 
 
 
