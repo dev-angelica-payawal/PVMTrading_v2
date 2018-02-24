@@ -273,6 +273,10 @@
     <Compile Include="Migrations\201802241002257_AddProductImageTable.Designer.cs">
       <DependentUpon>201802241002257_AddProductImageTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201802241917134_UpdateNew.cs" />
+    <Compile Include="Migrations\201802241917134_UpdateNew.Designer.cs">
+      <DependentUpon>201802241917134_UpdateNew.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\archieved\LoadApplicantSouceOfIncom.cs" />
     <Compile Include="Models\TypeOfTransaction.cs" />
     <Compile Include="ViewModels\Item.cs" />
@@ -1238,6 +1242,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Images\" />
     <Folder Include="Content\loginImage\" />
     <Folder Include="Views\Cart\" />
     <Folder Include="Views\Profile\" />
@@ -1457,6 +1462,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802241002257_AddProductImageTable.resx">
       <DependentUpon>201802241002257_AddProductImageTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802241917134_UpdateNew.resx">
+      <DependentUpon>201802241917134_UpdateNew.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
