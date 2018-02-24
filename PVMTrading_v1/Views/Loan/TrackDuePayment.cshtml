@@ -31,7 +31,7 @@
         <th>
             @Html.DisplayNameFor(model => model.LoanDuePayment.OR)
         </th>
-        <th></th>
+       
     </tr>
 
 @foreach (var item in Model) {
@@ -57,11 +57,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.LoanDuePayment.OR)
         </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new {id = item.LoanDuePayment.Id}) |
-            @Html.ActionLink("Details", "Details", new {id = item.LoanDuePayment.Id}) |
-            @Html.ActionLink("Delete", "Delete", new {id = item.LoanDuePayment.Id})
-        </td>
+       
     </tr>
 }
 
