@@ -286,10 +286,6 @@
     <Compile Include="Migrations\201802241706171_addOrToDuePayment.Designer.cs">
       <DependentUpon>201802241706171_addOrToDuePayment.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201802241940133_UpdateNew3.cs" />
-    <Compile Include="Migrations\201802241940133_UpdateNew3.Designer.cs">
-      <DependentUpon>201802241940133_UpdateNew3.cs</DependentUpon>
-    </Compile>
     <Compile Include="Models\archieved\LoadApplicantSouceOfIncom.cs" />
     <Compile Include="Models\TypeOfTransaction.cs" />
     <Compile Include="ViewModels\Item.cs" />
@@ -1256,7 +1252,7 @@
     <Content Include="Views\Loan\Approve.cshtml" />
     <Content Include="Views\Loan\Update.cshtml" />
     <Content Include="Views\Loan\TrackDuePayment.cshtml" />
-    <Content Include="Views\Reports\ExportToExcel.cshtml" />
+    <Content Include="Views\Reports\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1488,9 +1484,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802241706171_addOrToDuePayment.resx">
       <DependentUpon>201802241706171_addOrToDuePayment.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201802241940133_UpdateNew3.resx">
-      <DependentUpon>201802241940133_UpdateNew3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

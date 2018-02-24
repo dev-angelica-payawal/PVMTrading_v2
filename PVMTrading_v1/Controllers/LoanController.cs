@@ -319,6 +319,10 @@ namespace PVMTrading_v1.Controllers
             return View(duePayment);
           
                         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> b34764e237972802a565eec386eba241374ad091
         [CustomAuthorize(Roles = "Admin,Cashier")]
         public ActionResult SaveUpdateLoan(LoanDuePayment ldp)
         {
@@ -331,6 +335,7 @@ namespace PVMTrading_v1.Controllers
             var loan = _context.Loans.SingleOrDefault(c => c.Id == loanDue.LoanId);
             loan.LoanTotalPayment = loan.LoanTotalPayment + ldp.TotalAmountDue;
 
+<<<<<<< HEAD
         /*  public ActionResult Update(LayAwayTransactionReceipt layAway)
              {
               var transact = _context.LayAwayTransactions.SingleOrDefault(c => c.Id == layAway.LayAwayTransactionId);
@@ -341,6 +346,8 @@ namespace PVMTrading_v1.Controllers
                                                 }*/
         
 
+=======
+>>>>>>> b34764e237972802a565eec386eba241374ad091
             var DueDate = new LoanDuePayment();
             DueDate.LoanId = loanDue.LoanId;
             if (loan.ModeOfPaymentId == 1)
@@ -397,9 +404,16 @@ namespace PVMTrading_v1.Controllers
 
                     return View(loandue);
 
-                }
-
-      /*  public ActionResult CreateTrackDuePayment(LoanDuePayment ldp)
+        }
+        /*  public ActionResult Update(LayAwayTransactionReceipt layAway)
+           {
+            var transact = _context.LayAwayTransactions.SingleOrDefault(c => c.Id == layAway.LayAwayTransactionId);
+             transact.TotalPaidAmount = transact.TotalPaidAmount + layAway.AmountPaid;
+             _context.LayAwayTransactionReceipts.Add(layAway);
+                                  _context.SaveChanges();
+                                  return View();
+                                              }*/
+        public ActionResult CreateTrackDuePayment(LoanDuePayment ldp)
         {
             var loanDue = _context.LoanDuePayments.SingleOrDefault(c => c.Id == ldp.Id);
             loanDue.OR = ldp.OR;
@@ -444,8 +458,11 @@ namespace PVMTrading_v1.Controllers
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
             return;
         }*/
+=======
+>>>>>>> b34764e237972802a565eec386eba241374ad091
 
 
         public ActionResult TrackDuePayment()
@@ -454,6 +471,9 @@ namespace PVMTrading_v1.Controllers
             return View();
         }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> b34764e237972802a565eec386eba241374ad091
     }
 }
