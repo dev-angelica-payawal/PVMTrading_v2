@@ -44,6 +44,11 @@ namespace PVMTrading_v1.Models
         public string Remarks { get; set; }
 
 
+        public Customer Customer { get; set; }
+        [Display(Name = "Customer Name")]
+        [Required]
+        public int CustomerId { get; set; }
+
    //     public int CreditInvestigatorId { get; set; }
 
         [DataType(DataType.Date)]

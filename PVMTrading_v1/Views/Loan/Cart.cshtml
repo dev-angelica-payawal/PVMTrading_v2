@@ -23,7 +23,7 @@
         <div class="modal-content">
                                             
                                             
-            @{Html.RenderAction("SearchCustomer", "LayAwayTransaction");}
+            @{Html.RenderAction("SearchCustomer", "Loan");}
             
         </div>
     </div>
@@ -48,8 +48,8 @@
                         });
                     </script>
                     <div class="col-4">
-                        @Html.ActionLink("Add More Products", "ProductList", "LayAwayTransaction", new {@class = "btn btn-primary"})
-                        @Html.ActionLink("Delete All", "DeleteAllProdsInCart","LayAwayTransaction")
+                        @Html.ActionLink("Add More Products", "ProductList", "Loan", new {@class = "btn btn-primary"})
+                        @Html.ActionLink("Delete All", "DeleteAllProdsInCart","Loan")
                     </div>
                     @foreach (var item in Model)
                     {
