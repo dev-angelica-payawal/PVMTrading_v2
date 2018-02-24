@@ -269,6 +269,10 @@
     <Compile Include="Migrations\201802240052311_AddCustomerForeign.Designer.cs">
       <DependentUpon>201802240052311_AddCustomerForeign.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201802241002257_AddProductImageTable.cs" />
+    <Compile Include="Migrations\201802241002257_AddProductImageTable.Designer.cs">
+      <DependentUpon>201802241002257_AddProductImageTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\archieved\LoadApplicantSouceOfIncom.cs" />
     <Compile Include="Models\TypeOfTransaction.cs" />
     <Compile Include="ViewModels\Item.cs" />
@@ -1450,6 +1454,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802240052311_AddCustomerForeign.resx">
       <DependentUpon>201802240052311_AddCustomerForeign.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802241002257_AddProductImageTable.resx">
+      <DependentUpon>201802241002257_AddProductImageTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -32,7 +32,14 @@ namespace PVMTrading_v1.Controllers
             
             var loans = _context.Loans.Include(c => c.Customer)
                                        .Include(s => s.LoanStatus).ToList();
+           /* var loanstatus = _context.Loans.Where(c => c.LoanStatusId == '1').SelectMany(o => o.Customer).Count();
+            var pending = _context.Loans.Count().CompareTo();
+            var approved = _context.LoanStatus.SqlQuery("Select Count(2) from dbo.Loans where LoanStatusId = 2");
+            var disapproved = _context.LoanStatus.SqlQuery("Select Count(3) from dbo.Loans where LoanStatusId = 3");*/
 
+            /*ViewBag.Pending = pending;
+            ViewBag.Approved = approved;
+            ViewBag.Disapproved = disapproved;*/
             return View(loans);
         }
 
