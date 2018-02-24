@@ -52,17 +52,11 @@ namespace PVMTrading_v1.Models
         public DbSet<BrandType> BrandTypes { get; set; }
         public DbSet<ProductInclusion> ProductInclusions { get; set; }
         public DbSet<CivilStatus> CivilStatus { get; set; }
-
-
-      
+        
         public DbSet<LoanStatus> LoanStatus { get; set; }
         public DbSet<ModeOfPayment> ModeOfPayment { get; set; }
         public DbSet<Sex> Sex { get; set; }
-
-        /*internal static IEnumerable<Customer> SqlQuery<T>(string query)
-        {
-            throw new NotImplementedException();
-        }*/
+        
 
         public DbSet<Warranty> Warranty { get; set; }
         public DbSet<Customer> Customers { get; set; }
@@ -76,6 +70,8 @@ namespace PVMTrading_v1.Models
 
         public DbSet<LayAwayTransaction> LayAwayTransactions { get; set; }
         public DbSet<LayAwayTransactionReceipt> LayAwayTransactionReceipts{ get; set; }
+
+        public DbSet<Loan> Loans { get; set; }
 
 
 

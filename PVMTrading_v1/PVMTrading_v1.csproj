@@ -244,10 +244,6 @@
     <Compile Include="Migrations\201802212217071_deleteDiscountTempCart.Designer.cs">
       <DependentUpon>201802212217071_deleteDiscountTempCart.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201802221116048_Update4.cs" />
-    <Compile Include="Migrations\201802221116048_Update4.Designer.cs">
-      <DependentUpon>201802221116048_Update4.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\201802221344486_AddLayAwayTable.cs" />
     <Compile Include="Migrations\201802221344486_AddLayAwayTable.Designer.cs">
       <DependentUpon>201802221344486_AddLayAwayTable.cs</DependentUpon>
@@ -264,6 +260,11 @@
     <Compile Include="Migrations\201802222318243_deletedatecolumnLayawaytransact.Designer.cs">
       <DependentUpon>201802222318243_deletedatecolumnLayawaytransact.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201802240017182_LoanTable.cs" />
+    <Compile Include="Migrations\201802240017182_LoanTable.Designer.cs">
+      <DependentUpon>201802240017182_LoanTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\archieved\LoadApplicantSouceOfIncom.cs" />
     <Compile Include="Models\TypeOfTransaction.cs" />
     <Compile Include="ViewModels\Item.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -506,8 +507,7 @@
     <Compile Include="Models\archieved\DeliveryStatus.cs" />
     <Compile Include="Models\archieved\Employee.cs" />
     <Compile Include="Models\archieved\LoadApplicant.cs" />
-    <Compile Include="Models\archieved\LoadApplicantSouceOfIncom.cs" />
-    <Compile Include="Models\archieved\LoadDuePayment.cs" />
+    <Compile Include="Models\LoanDuePayment.cs" />
     <Compile Include="Models\LayAwayTransaction.cs" />
     <Compile Include="Models\LayAwayTransactionReceipt.cs" />
     <Compile Include="Models\LoanStatus.cs" />
@@ -527,8 +527,8 @@
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\archieved\DeliveryCharge.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\archieved\LoadProductItem.cs" />
-    <Compile Include="Models\archieved\Loan.cs" />
+    <Compile Include="Models\LoanProductItem.cs" />
+    <Compile Include="Models\Loan.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductCategory.cs" />
@@ -1400,9 +1400,6 @@
     <EmbeddedResource Include="Migrations\201802212217071_deleteDiscountTempCart.resx">
       <DependentUpon>201802212217071_deleteDiscountTempCart.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201802221116048_Update4.resx">
-      <DependentUpon>201802221116048_Update4.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802221344486_AddLayAwayTable.resx">
       <DependentUpon>201802221344486_AddLayAwayTable.cs</DependentUpon>
     </EmbeddedResource>
@@ -1414,6 +1411,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802222318243_deletedatecolumnLayawaytransact.resx">
       <DependentUpon>201802222318243_deletedatecolumnLayawaytransact.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802240017182_LoanTable.resx">
+      <DependentUpon>201802240017182_LoanTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
@@ -1433,7 +1433,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>7186</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

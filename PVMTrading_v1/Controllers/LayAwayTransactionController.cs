@@ -231,7 +231,6 @@ namespace PVMTrading_v1.Controllers
 
             var voidTransact = _context.LayAwayTransactions.SingleOrDefault(c => c.Id == id);
 
-            voidTransact.TotalPaidAmount = voidTransact.TotalPaidAmount * 0.10;
             voidTransact.IsVoid = true;
 
 
