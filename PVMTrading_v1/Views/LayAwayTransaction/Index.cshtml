@@ -12,10 +12,10 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <div id="dataTable_wrapper" class="dataTables_wrapper container-fluid">
+                        <div id="dataTable_wrapper" class="dataTables_wrapper">
 
 
-                            @Html.ActionLink("New Transaction", "ProductList", "LayAwayTransaction", new { @class = "btn btn-primary" }, null)
+                            @Html.ActionLink("New Transaction", "ProductList", "LayAwayTransaction", new { @class = "btn btn-primary" })
 
 
                             @if (!Model.Any())
@@ -26,43 +26,56 @@
                             {
                                 <table class="table table-bordered" id="cashtransact" style="margin: 0">
                                     <thead>
-                                        <tr>
-                                            <th>No.</th>
-                                            <th>Customer</th>
-                                            <td>Product</td>
-                                            <td>Quantity</td>
-                                            <th>Total Amount</th>
-                                            <th>Paid</th>
-                                            <th>Balance</th>
-                                            <th>Remarks</th>
-                                            <th>Void</th>
-                                            <th></th>
+                                    <tr>
+                                        <th>No.</th>
+                                        <th>Customer</th>
+                                        <th>Product</th>
+                                        <th>Quantity</th>
+                                        <th>Total Amount</th>
+                                        <th>Paid</th>
+                                        <th>Balance</th>
+                                        <th>Remarks</th>
+                                        <th>Void</th>
+                                        <th></th>
 
 
 
-                                        </tr>
+                                    </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach (var cash in Model)
-                                        {
+                                    @foreach (var cash in Model)
+                                    {
 
-                                            <tr>
-                                                <td>@cash.Id</td>
-                                                <td>@cash.Customer.FirstName @cash.Customer.LastName</td>
-                                                <td>@cash.Product.Name</td>
-                                                <td>@cash.Quantity</td>
-                                                <td>@cash.TotalAmount</td>
-                                                <td>@cash.TotalPaidAmount</td>
-                                                <td>@cash.RemainingBalance</td>
-                                                <td>@cash.Remarks</td>
-                                                <td>@cash.IsVoid</td>
-                                                <td>@Html.ActionLink("Void", "Delete", new { id = cash.Id }) | @Html.ActionLink("Details", "Details", new { id = cash.Id })|@Html.ActionLink("Update", "Update", new { id = cash.Id })
-                                                </td>
+                                        <tr>
+                                            <td>@cash.Id</td>
+                                            <td>@cash.Customer.FirstName @cash.Customer.LastName</td>
+                                            <td>@cash.Product.Name</td>
+                                            <td>@cash.Quantity</td>
+                                            <td>@cash.TotalAmount</td>
+                                            <td>@cash.TotalPaidAmount</td>
+                                            <td>@cash.RemainingBalance</td>
+                                            <td>@cash.Remarks</td>
+                                            <td>@cash.IsVoid</td>
+                                            <td>
+                                                @Html.ActionLink("Void", "Delete", new { id = cash.Id }, new { @class = "btn btn-xs btn-primary" })
+                                                @*
+    <span class="btn btn-xs btn-primary" id="details_@cash.Id" onclick="createModal('@Url.Action("Details", "Details" , new {id=cash.Id })')">Details</span>
+                                                *@
+                                                @Html.ActionLink("Details", "Details", new { id = cash.Id }, new { @class = "btn btn-xs btn-primary" })
 
-                                            </tr>
-                                        }
+                                                @Html.ActionLink("Update", "Update", new { id = cash.Id }, new { @class = "btn btn-xs btn-primary" })
+                                            </td>
+
+                                        </tr>
+                                    }
                                     </tbody>
                                 </table>
+                                <div class="modal fade" id="layawayModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content" id="layawayContent">
+                                        </div>
+                                    </div>
+                                </div>
                             }
 
                         </div>
@@ -76,7 +89,12 @@
 
 <link href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
 @section scripts{
-
+    <script>
+        function createModal(url){
+            $('#layawayContent').load(url);
+            $('#layawayModal').modal('show');
+        }
+    </script>
     <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script>
         $(document).ready(function() {

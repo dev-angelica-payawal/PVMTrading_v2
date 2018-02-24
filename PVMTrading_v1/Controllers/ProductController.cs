@@ -90,7 +90,7 @@ namespace PVMTrading_v1.Controllers
     
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Save(Product product, ProductInclusion productInclusion, ProductPrice productPrice/*, Product model, HttpPostedFileBase file*/)
+        public ActionResult Save(Product product, ProductInclusion productInclusion, ProductPrice productPrice, ProductViewModel model, HttpPostedFileBase file)
         {
             /*var decodedString = Convert.ToBase64String(product.ProductImage)
                 .Replace("-", "");
@@ -142,14 +142,20 @@ namespace PVMTrading_v1.Controllers
 
             if (product.Id == 0)
             {
+                String fileName = "";
+                
+
                 if (isProductExist == 0)
                 {
                     if (productInclusion.FreeItem != null &&
-                        (productInclusion.Quantity != 0 || productInclusion.Quantity != null)/* && file != null*/)
+                        (productInclusion.Quantity != 0 || productInclusion.Quantity != null) && file != null)
                     {
                         /*model.ProductImage = new byte[file.ContentLength];
                         file.InputStream.Read(model.ProductImage, 0, file.ContentLength);*/
-
+                        fileName = System.Guid.NewGuid().ToString() + System.IO.Path.GetExtension(file.FileName);
+                        string physicalPath = Server.MapPath("~/Images/Uploads" + fileName);
+                        // save image in folder
+                        file.SaveAs(physicalPath);
 
 
                         productInclusion.ProductId = product.Id;
@@ -267,7 +273,7 @@ namespace PVMTrading_v1.Controllers
         }
 
 
-
+        [HttpGet]
         public ActionResult Details(int id)
         {
             var product = _context.Products.SingleOrDefault(p => p.Id == id);
@@ -291,7 +297,7 @@ namespace PVMTrading_v1.Controllers
 
             };
 
-            return View(viewModel);
+            return PartialView(viewModel);
         }
 
 
