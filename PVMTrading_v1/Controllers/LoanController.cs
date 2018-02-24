@@ -227,7 +227,7 @@ namespace PVMTrading_v1.Controllers
 
               _context.SaveChanges();
 
-
+            Dispose();
               return RedirectToAction("Index");
                        }
 
@@ -270,40 +270,87 @@ namespace PVMTrading_v1.Controllers
                                   return View(vm);
                               }
 
-                      public ActionResult Update(string id)
-                        {
-                            var transact = _context.Loans.SingleOrDefault(c => c.Id == id);
-                            var customer = _context.Customers.SingleOrDefault(c => c.Id == transact.CustomerId);
-                            var product = _context.Products.SingleOrDefault(c => c.Id == transact.ProductId);
-                            var duePayment = _context.LoanDuePayments.Where(c => c.LoanId == id);
+       public ActionResult Update(string id)
+        {
+                            
+          var duePayment = _context.LoanDuePayments.OrderByDescending(c => c.Id).FirstOrDefault(c => c.LoanId == id);
+            
 
+            if (duePayment.DueDateTime.Date.AddMonths(1) <= DateTime.Now.Date && duePayment.DueDateTime.Date.AddMonths(2) > DateTime.Now.Date)
+            {
+                duePayment.TotalAmountDue = duePayment.TotalAmountDue * (duePayment.TotalAmountDue * 0.03);
+                
+            }
+            if (duePayment.DueDateTime.Date.AddMonths(2) <= DateTime.Now.Date && duePayment.DueDateTime.Date.AddMonths(3) > DateTime.Now.Date)
+            {
+                duePayment.TotalAmountDue = duePayment.TotalAmountDue * (duePayment.TotalAmountDue * 0.06);
 
-                            ViewData["ListPayment"] = duePayment.ToList();
+            }
+            if (duePayment.DueDateTime.Date.AddMonths(3) <= DateTime.Now.Date && duePayment.DueDateTime.Date.AddMonths(4) > DateTime.Now.Date)
+            {
+                duePayment.TotalAmountDue = duePayment.TotalAmountDue * (duePayment.TotalAmountDue * 0.09);
 
-                            var vm = new LoanViewModel
-                            {
-                                Loan = transact,
-                                Product = product,
-                                Customer = customer,
-                                LoanStatus = _context.LoanStatus.ToList(),
-                                ModeOfPayment = _context.ModeOfPayment.ToList()
-                            };
+            }
+            if (duePayment.DueDateTime.Date.AddMonths(4) <= DateTime.Now.Date)
+            {
+                var blacklisted = _context.Loans.SingleOrDefault(c => c.Id == duePayment.LoanId);
+                blacklisted.LoanStatusId = 3;
+                var customer = _context.CustomerCompleInfos.SingleOrDefault(c => c.Id == blacklisted.CustomerId);
+                customer.CustomerTypeId = 3;
+                }
 
-
-                            return View(vm);
+            _context.SaveChanges();
+            return View(duePayment);
           
                         }
+        public ActionResult SaveUpdateLoan(LoanDuePayment ldp)
+        {
+            var loanDue = _context.LoanDuePayments.SingleOrDefault(c => c.Id == ldp.Id);
+            loanDue.OR = ldp.OR;
+            loanDue.TotalAmountDue = ldp.TotalAmountDue;
+            loanDue.IsPaid = true;
+            loanDue.PenaltyAmount = ldp.PenaltyAmount;
 
-                    /*  public ActionResult Update(LayAwayTransactionReceipt layAway)
-                         {
-                          var transact = _context.LayAwayTransactions.SingleOrDefault(c => c.Id == layAway.LayAwayTransactionId);
-                           transact.TotalPaidAmount = transact.TotalPaidAmount + layAway.AmountPaid;
-                           _context.LayAwayTransactionReceipts.Add(layAway);
-                                                _context.SaveChanges();
-                                                return View();
-                                            }*/
- 
-                public ActionResult Approve(string id)
+            var loan = _context.Loans.SingleOrDefault(c => c.Id == loanDue.LoanId);
+            loan.LoanTotalPayment = loan.LoanTotalPayment + ldp.TotalAmountDue;
+
+            var DueDate = new LoanDuePayment();
+            DueDate.LoanId = loanDue.LoanId;
+            if (loan.ModeOfPaymentId == 1)
+            {
+                DueDate.DueDateTime = DateTime.Today.AddDays(1);
+                DueDate.TotalAmountDue = loan.DuePayment;
+                DueDate.LoanId = loan.Id;
+
+            }
+
+            if (loan.ModeOfPaymentId == 2)
+            {
+                DueDate.DueDateTime = DateTime.Today.AddDays(7);
+                DueDate.TotalAmountDue = loan.DuePayment;
+                DueDate.LoanId = loan.Id;
+            }
+
+            if (loan.ModeOfPaymentId == 3)
+            {
+                DueDate.DueDateTime = DateTime.Today.AddDays(14);
+                DueDate.TotalAmountDue = loan.DuePayment;
+                DueDate.LoanId = loan.Id;
+            }
+
+            if (loan.ModeOfPaymentId == 4)
+            {
+                DueDate.DueDateTime = DateTime.Today.AddMonths(1);
+                DueDate.TotalAmountDue = loan.DuePayment;
+                DueDate.LoanId = loan.Id;
+            }
+
+            _context.LoanDuePayments.Add(DueDate);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Approve(string id)
                 {
                          var transact = _context.Loans.SingleOrDefault(c => c.Id == id);
                     transact.LoanStatusId = 2;
@@ -338,6 +385,7 @@ namespace PVMTrading_v1.Controllers
                 DueDate.DueDateTime = DateTime.Today.AddDays(1);
                 DueDate.TotalAmountDue = loan.DuePayment;
                 DueDate.LoanId = loan.Id;
+                
             }
 
             if (loan.ModeOfPaymentId == 2)
@@ -360,8 +408,19 @@ namespace PVMTrading_v1.Controllers
                 DueDate.TotalAmountDue = loan.DuePayment;
                 DueDate.LoanId = loan.Id;
             }
-
-            return;
+            
+            _context.LoanDuePayments.Add(DueDate);
+            _context.SaveChanges();
+            return RedirectToAction("Details",new {loan.Id});
         }
+
+
+
+        public ActionResult TrackDuePayment()
+        {
+            var trackDue = _context.LoanDuePayments.Include(c => c.Loan).ToList();
+            return View();
+        }
+
     }
 }
