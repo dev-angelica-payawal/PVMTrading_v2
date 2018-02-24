@@ -48,9 +48,14 @@ namespace PVMTrading_v1.Models
         [Display(Name = "Customer Name")]
         [Required]
         public int CustomerId { get; set; }
+<<<<<<< HEAD
         //     public int CreditInvestigatorId { get; set; }
 
    //     public int CreditInvestigatorId { get; set; }
+=======
+
+        //     public int CreditInvestigatorId { get; set; }
+>>>>>>> b7bf8d9c87532fba7c4b408121c044e99ede3c1c
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0: MM:dd:yyyy}", ApplyFormatInEditMode = true)]

@@ -48,7 +48,7 @@
                     <td>Quantity</td>
                     <td>Price</td>
                 </tr>
-                    @foreach (var c in ViewData["ListItem"] as IList<CashTransactionViewModel>)
+                @foreach (var c in ViewData["ListItem"] as IList<CashTransactionViewModel>)
                       {
                               <tr>
                               <td>@c.Product.Name</td>
