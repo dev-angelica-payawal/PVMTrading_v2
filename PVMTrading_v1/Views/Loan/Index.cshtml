@@ -1,0 +1,95 @@
+﻿@model IEnumerable<PVMTrading_v1.Models.Loan>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="content-wrapper">
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("New Loan", "ProductList")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Customer.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LoanStatus.Label)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ModeOfPayment.Label)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Downpayment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LoanAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Terms)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InterestRate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DuePayment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LoanTotalPayment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Remarks)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LoanDateCreated)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LoanStatus.Label)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ModeOfPayment.Label)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Downpayment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LoanAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Terms)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InterestRate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DuePayment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LoanTotalPayment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Remarks)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LoanDateCreated)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
+</div>

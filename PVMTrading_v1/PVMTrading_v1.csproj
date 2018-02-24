@@ -208,7 +208,11 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LandingPageController.cs" />
     <Compile Include="Controllers\LayAwayTransactionController.cs" />
+<<<<<<< HEAD
     <Compile Include="Controllers\LoanTransactionController.cs" />
+=======
+    <Compile Include="Controllers\LoanController.cs" />
+>>>>>>> 19478e7b1c19325d735dedd73a31bed8c4530265
     <Compile Include="Migrations\201802181038462_TempCart.cs" />
     <Compile Include="Migrations\201802181038462_TempCart.Designer.cs">
       <DependentUpon>201802181038462_TempCart.cs</DependentUpon>
@@ -264,6 +268,10 @@
     <Compile Include="Migrations\201802240017182_LoanTable.cs" />
     <Compile Include="Migrations\201802240017182_LoanTable.Designer.cs">
       <DependentUpon>201802240017182_LoanTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802240052311_AddCustomerForeign.cs" />
+    <Compile Include="Migrations\201802240052311_AddCustomerForeign.Designer.cs">
+      <DependentUpon>201802240052311_AddCustomerForeign.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\archieved\LoadApplicantSouceOfIncom.cs" />
     <Compile Include="Models\TypeOfTransaction.cs" />
@@ -1219,7 +1227,13 @@
     <Content Include="Views\LayAwayTransaction\LayAwayTransactionSummary.cshtml" />
     <Content Include="Views\LayAwayTransaction\Details.cshtml" />
     <Content Include="Views\LayAwayTransaction\Update.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\LoanTransaction\Index.cshtml" />
+=======
+    <Content Include="Views\Loan\Cart.cshtml" />
+    <Content Include="Views\Loan\ProductList.cshtml" />
+    <Content Include="Views\Loan\Index.cshtml" />
+>>>>>>> 19478e7b1c19325d735dedd73a31bed8c4530265
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1436,6 +1450,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802240017182_LoanTable.resx">
       <DependentUpon>201802240017182_LoanTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802240052311_AddCustomerForeign.resx">
+      <DependentUpon>201802240052311_AddCustomerForeign.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
