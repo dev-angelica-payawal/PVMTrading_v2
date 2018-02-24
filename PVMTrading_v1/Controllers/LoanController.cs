@@ -25,7 +25,7 @@ namespace PVMTrading_v1.Controllers
         }
 
 
-        / // GET: Loan
+         // GET: Loan
         public ActionResult Index()
         {
             
