@@ -208,7 +208,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LandingPageController.cs" />
     <Compile Include="Controllers\LayAwayTransactionController.cs" />
-    <Compile Include="Controllers\LoanController.cs" />
     <Compile Include="Migrations\201802181038462_TempCart.cs" />
     <Compile Include="Migrations\201802181038462_TempCart.Designer.cs">
       <DependentUpon>201802181038462_TempCart.cs</DependentUpon>
@@ -264,10 +263,6 @@
     <Compile Include="Migrations\201802240017182_LoanTable.cs" />
     <Compile Include="Migrations\201802240017182_LoanTable.Designer.cs">
       <DependentUpon>201802240017182_LoanTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201802240052311_AddCustomerForeign.cs" />
-    <Compile Include="Migrations\201802240052311_AddCustomerForeign.Designer.cs">
-      <DependentUpon>201802240052311_AddCustomerForeign.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\archieved\LoadApplicantSouceOfIncom.cs" />
     <Compile Include="Models\TypeOfTransaction.cs" />
@@ -862,6 +857,13 @@
     <Content Include="Content\style.css" />
     <Content Include="Content\textext.core.css" />
     <Content Include="Content\textext.plugin.autocomplete.css" />
+    <Content Include="Content\vendor\bootstrap-material-design\css\bootstrap-material-design.min.css" />
+    <Content Include="Content\vendor\bootstrap-material-design\css\google-font-icon.css" />
+    <Content Include="Content\vendor\bootstrap-material-design\css\google-font-roboto.css" />
+    <Content Include="Content\vendor\bootstrap-material-design\js\bootstrap-material-design.iife.min.js" />
+    <Content Include="Content\vendor\bootstrap-material-design\js\ie10-viewport-bug-workaround.js" />
+    <Content Include="Content\vendor\bootstrap-material-design\js\jquery-3.1.0.min.js" />
+    <Content Include="Content\vendor\bootstrap-material-design\js\tether.min.js" />
     <Content Include="Content\vendor\bootstrap\css\bootstrap-grid.css" />
     <Content Include="Content\vendor\bootstrap\css\bootstrap-grid.min.css" />
     <Content Include="Content\vendor\bootstrap\css\bootstrap-reboot.css" />
@@ -939,6 +941,7 @@
     <Content Include="Resources\images\ss4.jpg" />
     <Content Include="Resources\images\ss44.jpg" />
     <Content Include="Resources\images\star.png" />
+    <Content Include="Resources\images\Store-Icon.png" />
     <Content Include="Resources\images\t1.jpg" />
     <Content Include="Resources\images\t2.jpg" />
     <Content Include="Resources\images\ts1.jpg" />
@@ -1034,6 +1037,89 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Content\bootstrap\_variables.scss" />
+    <Content Include="Content\bootstrap\_utilities.scss" />
+    <Content Include="Content\bootstrap\_type.scss" />
+    <Content Include="Content\bootstrap\_transitions.scss" />
+    <Content Include="Content\bootstrap\_tooltip.scss" />
+    <Content Include="Content\bootstrap\_tables.scss" />
+    <Content Include="Content\bootstrap\_root.scss" />
+    <Content Include="Content\bootstrap\_reboot.scss" />
+    <Content Include="Content\bootstrap\_progress.scss" />
+    <Content Include="Content\bootstrap\_print.scss" />
+    <Content Include="Content\bootstrap\_popover.scss" />
+    <Content Include="Content\bootstrap\_pagination.scss" />
+    <Content Include="Content\bootstrap\_navbar.scss" />
+    <Content Include="Content\bootstrap\_nav.scss" />
+    <Content Include="Content\bootstrap\_modal.scss" />
+    <Content Include="Content\bootstrap\_mixins.scss" />
+    <Content Include="Content\bootstrap\_media.scss" />
+    <Content Include="Content\bootstrap\_list-group.scss" />
+    <Content Include="Content\bootstrap\_jumbotron.scss" />
+    <Content Include="Content\bootstrap\_input-group.scss" />
+    <Content Include="Content\bootstrap\_images.scss" />
+    <Content Include="Content\bootstrap\_grid.scss" />
+    <Content Include="Content\bootstrap\_functions.scss" />
+    <Content Include="Content\bootstrap\_forms.scss" />
+    <Content Include="Content\bootstrap\_dropdown.scss" />
+    <Content Include="Content\bootstrap\_custom-forms.scss" />
+    <Content Include="Content\bootstrap\_code.scss" />
+    <Content Include="Content\bootstrap\_close.scss" />
+    <Content Include="Content\bootstrap\_carousel.scss" />
+    <Content Include="Content\bootstrap\_card.scss" />
+    <Content Include="Content\bootstrap\_buttons.scss" />
+    <Content Include="Content\bootstrap\_button-group.scss" />
+    <Content Include="Content\bootstrap\_breadcrumb.scss" />
+    <Content Include="Content\bootstrap\_badge.scss" />
+    <Content Include="Content\bootstrap\_alert.scss" />
+    <Content Include="Content\bootstrap\utilities\_visibility.scss" />
+    <Content Include="Content\bootstrap\utilities\_text.scss" />
+    <Content Include="Content\bootstrap\utilities\_spacing.scss" />
+    <Content Include="Content\bootstrap\utilities\_sizing.scss" />
+    <Content Include="Content\bootstrap\utilities\_screenreaders.scss" />
+    <Content Include="Content\bootstrap\utilities\_position.scss" />
+    <Content Include="Content\bootstrap\utilities\_float.scss" />
+    <Content Include="Content\bootstrap\utilities\_flex.scss" />
+    <Content Include="Content\bootstrap\utilities\_embed.scss" />
+    <Content Include="Content\bootstrap\utilities\_display.scss" />
+    <Content Include="Content\bootstrap\utilities\_clearfix.scss" />
+    <Content Include="Content\bootstrap\utilities\_borders.scss" />
+    <Content Include="Content\bootstrap\utilities\_background.scss" />
+    <Content Include="Content\bootstrap\utilities\_align.scss" />
+    <Content Include="Content\bootstrap\mixins\_visibility.scss" />
+    <Content Include="Content\bootstrap\mixins\_transition.scss" />
+    <Content Include="Content\bootstrap\mixins\_text-truncate.scss" />
+    <Content Include="Content\bootstrap\mixins\_text-hide.scss" />
+    <Content Include="Content\bootstrap\mixins\_text-emphasis.scss" />
+    <Content Include="Content\bootstrap\mixins\_table-row.scss" />
+    <Content Include="Content\bootstrap\mixins\_size.scss" />
+    <Content Include="Content\bootstrap\mixins\_screen-reader.scss" />
+    <Content Include="Content\bootstrap\mixins\_resize.scss" />
+    <Content Include="Content\bootstrap\mixins\_reset-text.scss" />
+    <Content Include="Content\bootstrap\mixins\_pagination.scss" />
+    <Content Include="Content\bootstrap\mixins\_navbar-align.scss" />
+    <Content Include="Content\bootstrap\mixins\_nav-divider.scss" />
+    <Content Include="Content\bootstrap\mixins\_lists.scss" />
+    <Content Include="Content\bootstrap\mixins\_list-group.scss" />
+    <Content Include="Content\bootstrap\mixins\_image.scss" />
+    <Content Include="Content\bootstrap\mixins\_hover.scss" />
+    <Content Include="Content\bootstrap\mixins\_grid.scss" />
+    <Content Include="Content\bootstrap\mixins\_grid-framework.scss" />
+    <Content Include="Content\bootstrap\mixins\_gradients.scss" />
+    <Content Include="Content\bootstrap\mixins\_forms.scss" />
+    <Content Include="Content\bootstrap\mixins\_float.scss" />
+    <Content Include="Content\bootstrap\mixins\_clearfix.scss" />
+    <Content Include="Content\bootstrap\mixins\_caret.scss" />
+    <Content Include="Content\bootstrap\mixins\_buttons.scss" />
+    <Content Include="Content\bootstrap\mixins\_breakpoints.scss" />
+    <Content Include="Content\bootstrap\mixins\_box-shadow.scss" />
+    <Content Include="Content\bootstrap\mixins\_border-radius.scss" />
+    <Content Include="Content\bootstrap\mixins\_badge.scss" />
+    <Content Include="Content\bootstrap\mixins\_background-variant.scss" />
+    <Content Include="Content\bootstrap\mixins\_alert.scss" />
+    <Content Include="Content\bootstrap\bootstrap.scss" />
+    <Content Include="Content\bootstrap\bootstrap-reboot.scss" />
+    <Content Include="Content\bootstrap\bootstrap-grid.scss" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.min.js" />
@@ -1223,9 +1309,6 @@
     <Content Include="Views\LayAwayTransaction\LayAwayTransactionSummary.cshtml" />
     <Content Include="Views\LayAwayTransaction\Details.cshtml" />
     <Content Include="Views\LayAwayTransaction\Update.cshtml" />
-    <Content Include="Views\Loan\Cart.cshtml" />
-    <Content Include="Views\Loan\ProductList.cshtml" />
-    <Content Include="Views\Loan\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1442,9 +1525,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802240017182_LoanTable.resx">
       <DependentUpon>201802240017182_LoanTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201802240052311_AddCustomerForeign.resx">
-      <DependentUpon>201802240052311_AddCustomerForeign.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -5,84 +5,52 @@
     ViewBag.Title = "Log in";
     Layout = "~/Views/Shared/_LoginPartial.cshtml";
 }
-<div class="card-body fa-align-center">
-    <div>
-        <div class="row">
-            <div class="col-lg-4 menu_sec">
-
-            </div>
-            <div class="col-lg-4 login_sec">
-
-
-                <div class="card col-md-12 bg-light">
-                    <section id="loginForm">
-                        @using (Html.BeginForm("Login", "Account", new {ReturnUrl = ViewBag.ReturnUrl}, FormMethod.Post, new {@class = "form-horizontal", role = "form"}))
-                        {
-                            @Html.AntiForgeryToken()
-                            <h4 class="text-center">PVM Trading Login Member</h4>
-                                                  
-                            <hr/>
-                            @Html.ValidationSummary(true, "", new {@class = "text-danger"})
-                            <div class="form-group">
-                                @Html.LabelFor(m => m.Email, new {@class = "col-md-4 control-label"})
-                                <div class="col-md-12">
-                                    @Html.TextBoxFor(m => m.Email, new {@class = "form-control"})
-                                    @Html.ValidationMessageFor(m => m.Email, "", new {@class = "text-danger"})
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(m => m.Password, new {@class = "col-md-4 control-label"})
-                                <div class="col-md-12">
-                                    @Html.PasswordFor(m => m.Password, new {@class = "form-control"})
-                                    @Html.ValidationMessageFor(m => m.Password, "", new {@class = "text-danger"})
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="column col-md-6">
-                                    <div class="form-group">
-                                        <div class="col-md-offset-2 col-md-10">
-                                            <div class="checkbox">
-                                                @Html.CheckBoxFor(m => m.RememberMe)
-                                                @Html.LabelFor(m => m.RememberMe)
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="column col-md-6">
-                                    <div class="form-group">
-
-                                        <div class="col-md-offset-2 col-md-10">
-                                            <div>
-                                                Forgot Password?
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" value="Log in" class="btn btn-default"/>
-                                </div>
-                            </div>
-
-                            @* Enable this once you have account confirmation enabled for password reset functionality
-                                <p>
-                                    @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                                </p>*@
-                        }
-                    </section>
+<section id="loginForm">
+    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="container">
+            <div class="m-x-auto" style="max-width: 25rem; padding: 4rem 1rem 1rem;">
+                <div class="m-x-auto" style="margin-bottom:30px">
+                    <img src="~/Resources/images/Store-Icon.png" class="m-x-auto img-fluid text-primary" style="max-width:6em"/>
                 </div>
+                <div style="text-align: center;">
+                    <h2 class="text-info text-uppercase">PVM Trading</h2>
+                    <address class="text-secondary "><small>Arayat Pampanga, Philippines</small></address>
+                    <h6 class="text-primary text-uppercase">Please Sign in</h6>
+                </div>
+                @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Email, new {@class = "control-label"})
+                    @Html.TextBoxFor(m => m.Email, new {@class = "form-control"})
+                    @Html.ValidationMessageFor(m => m.Email, "", new {@class = "text-danger font-italic small"})
+                    <small id="emailHelp" class="form-text text-muted">We use your email as username.</small>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Password, new {@class = "control-label"})
+                    @Html.PasswordFor(m => m.Password, new {@class = "form-control"})
+                    @Html.ValidationMessageFor(m => m.Password, "", new {@class = "text-danger font-italic small"})
+                </div>
+                @*I applied some css, i just did an inline style since i don't means of reusing it*@
+                <div class="form-check">
+                    @Html.CheckBoxFor(m => m.RememberMe, new
+                    {
+                        @class = "form-check-input",
+                        style = "margin-left: 2px;" +
+                                "position: relative;" +
+                                "width: 1.25rem;" +
+                                "height: 1.25rem;" +
+                                "vertical-align: -4px;"
+                    })
+                    @Html.LabelFor(m => m.RememberMe, new {@class = "form-check-label"})
+                </div>
+                <button type="submit" class="btn btn-primary btn-raised  btn-lg btn-block mt-auto" style="margin-top: 1.25em;">Login</button>
             </div>
         </div>
-    </div>
-</div>
+    }
+</section>
 
 @section Scripts {
-    @Scripts.Render("~/bundles/jquerryval")
+    @Scripts.Render("~/bundles/jqueryval")
 }
-
-
-
 
