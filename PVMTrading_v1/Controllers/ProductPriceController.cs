@@ -24,6 +24,8 @@ namespace PVMTrading_v1.Controllers
             _context.Dispose();
         }
         // GET: ProductPrice
+        [CustomAuthorize(Roles = "Admin,Cashier,Sales Clerk")]
+
         public ViewResult Index()
         {
             
@@ -32,6 +34,7 @@ namespace PVMTrading_v1.Controllers
             return View(productPrices);
         }
 
+        [CustomAuthorize(Roles = "Admin,Cashier")]
 
         public ActionResult Edit(int id/*,int productId*/)
         {
@@ -56,6 +59,8 @@ namespace PVMTrading_v1.Controllers
         }
 
         [HttpPost]
+        [CustomAuthorize(Roles = "Admin,Cashier")]
+
         public ActionResult Save(ProductPrice productPrice)
         {
             var productInDb = _context.ProductPrices.Single(p => p.Id == productPrice.Id);

@@ -71,10 +71,10 @@ namespace PVMTrading_v1.Models
         [Display(Name = "Available For Selling")]
         public int AvailableForSelling { get; set; }
 
-        
+     /*   
         public string ProductImage { get; set; }
 
-
+*/
        // public PvMCart Cart { get; set; }
         //   public int LastChangeByEmployeeId { get; set; }
         //   public int CreatedByEmployeeId { get; set; }

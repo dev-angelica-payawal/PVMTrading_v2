@@ -38,6 +38,8 @@ namespace PVMTrading_v1.Controllers
         }
 
         // GET: Role
+        [CustomAuthorize(Roles = "Admin,Cashier,Sales Clerk")]
+
         public ActionResult Index()
         {
             List<RoleViewModel> list = new List<RoleViewModel>();
@@ -50,11 +52,13 @@ namespace PVMTrading_v1.Controllers
             return View(list);
         }
 
+        [CustomAuthorize(Roles = "Admin,Cashier")]
 
         public ActionResult Create()
         {
             return View();
         }
+        [CustomAuthorize(Roles = "Admin,Cashier")]
 
         [HttpPost]
         public async Task<ActionResult> Create(RoleViewModel model)
@@ -63,6 +67,7 @@ namespace PVMTrading_v1.Controllers
             await RoleManager.CreateAsync(role);
             return RedirectToAction("Index");
         }
+        [CustomAuthorize(Roles = "Admin,Cashier")]
 
         public async Task<ActionResult> Edit(string id)
         {
@@ -71,12 +76,15 @@ namespace PVMTrading_v1.Controllers
         }
 
         [HttpPost]
+        [CustomAuthorize(Roles = "Admin,Cashier")]
+
         public async Task<ActionResult> Edit(RoleViewModel model)
         {
             var role = new ApplicationRole() {Id = model.Id, Name = model.Name};
             await RoleManager.UpdateAsync(role);
             return RedirectToAction("Index");
         }
+        [CustomAuthorize(Roles = "Admin,Cashier")]
 
         public async Task<ActionResult> Details(string id)
         {
@@ -84,12 +92,14 @@ namespace PVMTrading_v1.Controllers
             return View(new RoleViewModel(role));
         }
 
+        [CustomAuthorize(Roles = "Admin")]
 
         public async Task<ActionResult> Delete(string id)
         {
             var role = await RoleManager.FindByIdAsync(id);
             return View(new RoleViewModel(role));
         }
+        [CustomAuthorize(Roles = "Admin")]
 
         public async Task<ActionResult> DeleteConfirmed(string id)
         {

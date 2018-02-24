@@ -57,11 +57,32 @@
                 <div class="top_left">
                     <ul>
                         @*<li class="top_link">Email:<a href="mailto@example.com">info(at)gmail.com</a></li>|*@
-                        <li ><a href="@Url.Content("~/Account/Login")">LOGIN</a></li>|
+                        <li >@using Microsoft.AspNet.Identity
+                            @if (Request.IsAuthenticated)
+                            {
+                                using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                                {
+                                    @Html.AntiForgeryToken()
+
+                                    <ul class="nav navbar-nav navbar-right">
+                                        <li>
+                                            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                                        </li>
+                                        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+                                    </ul>
+                                }
+                            }
+                            else
+                            {
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                                </ul>
+                            }
+                        </li>
                     </ul>
                     <div class="social">
                         <ul>
-                            <li><a href="#"><i class="facebook"></i></a></li>
+                           
 
                         </ul>
                     </div>
