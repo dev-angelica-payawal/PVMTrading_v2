@@ -208,6 +208,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LandingPageController.cs" />
     <Compile Include="Controllers\LayAwayTransactionController.cs" />
+    <Compile Include="Controllers\LoanTransactionController.cs" />
     <Compile Include="Migrations\201802181038462_TempCart.cs" />
     <Compile Include="Migrations\201802181038462_TempCart.Designer.cs">
       <DependentUpon>201802181038462_TempCart.cs</DependentUpon>
@@ -1218,6 +1219,7 @@
     <Content Include="Views\LayAwayTransaction\LayAwayTransactionSummary.cshtml" />
     <Content Include="Views\LayAwayTransaction\Details.cshtml" />
     <Content Include="Views\LayAwayTransaction\Update.cshtml" />
+    <Content Include="Views\LoanTransaction\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
