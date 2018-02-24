@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -26,10 +26,9 @@ namespace PVMTrading_v1.Controllers
 
 
         // GET: Loan
-         // GET: Loan
         public ActionResult Index()
         {
-            
+
             var loans = _context.Loans.Include(c => c.Customer)
                                        .Include(s => s.LoanStatus).ToList();
 
@@ -146,7 +145,7 @@ namespace PVMTrading_v1.Controllers
         public ActionResult Select(int id)
         {
             var count = _context.Loans.Count();
-            var loanId = Convert.ToString(DateTime.Today.Year) + Convert.ToString(DateTime.Today.Month) + "0" + Convert.ToString(count + 1) ;
+            var loanId = Convert.ToString(DateTime.Today.Year) + Convert.ToString(DateTime.Today.Month) + "0" + Convert.ToString(count + 1);
 
             var loan = new Loan();
 

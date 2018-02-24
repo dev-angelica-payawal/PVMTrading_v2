@@ -1309,6 +1309,16 @@
     <Content Include="Views\LayAwayTransaction\LayAwayTransactionSummary.cshtml" />
     <Content Include="Views\LayAwayTransaction\Details.cshtml" />
     <Content Include="Views\LayAwayTransaction\Update.cshtml" />
+
+    <Content Include="Views\LoanTransaction\Index.cshtml" />
+    <Content Include="Views\Loan\Cart.cshtml" />
+    <Content Include="Views\Loan\ProductList.cshtml" />
+    <Content Include="Views\Loan\Index.cshtml" />
+    <Content Include="Views\Loan\Cart.cshtml" />
+    <Content Include="Views\Loan\ProductList.cshtml" />
+    <Content Include="Views\Loan\Index.cshtml" />
+    <Content Include="Views\Loan\SearchCustomer.cshtml" />
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,4 +1,4 @@
-﻿@model List<PVMTrading_v1.Models.CashTransaction>
+﻿@model List<PVMTrading_v1.Models.Loan>
 
 @{
     ViewBag.Title = "Index";
@@ -17,7 +17,7 @@
                         <div id="dataTable_wrapper" class="dataTables_wrapper container-fluid">
 
 
-                            @Html.ActionLink("New Cash Transaction", "ProductList", "SearchProduct", new { @class = "btn btn-primary" }, null)
+                            @Html.ActionLink("New Loan", "ProductList", "SearchProduct", new { @class = "btn btn-primary" }, null)
 
 
                             @if (!Model.Any())
@@ -29,89 +29,79 @@
                                 <table class="table table-bordered" id="cashtransact" style="margin: 0">
                                     <thead>
                                         <tr>
-                                            <th>No.</th>
-                                            <th>Customer</th>
-                                            <th>Total Amount</th>
-                                            <th>Discount</th>
-                                            <th>Total Amount w/ Discount</th>
                                             <th>Date</th>
-                                            <th>Remarks</th>
-                                            <th>OR</th>
-                                            <th>Void</th>
-                                            <th></th>
+                                            <th>Amount</th>
+                                            <th>Status</th>
+                                           
 
 
 
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach (var cash in Model)
+                                        @foreach (var loan in Model)
                                         {
 
                                             <tr>
-                                                <td>@cash.Id</td>
-                                                <td>@cash.Customer.FirstName @cash.Customer.LastName</td>
-                                                <td>@cash.OriginalTotalAmount</td>
-                                                <td>@cash.TotalDiscountedAmount</td>
-                                                <td>@cash.TotalAmount</td>
-                                                <td>@cash.CashTransactionDate</td>
-                                                <td>@cash.Remarks</td>
-                                                <td>@cash.OR</td>
-                                                <td>@cash.IsVoid</td>
+                                                <td>@loan.LoanDateCreated</td>
+                                                <td>@loan.LoanAmount</td>
+                                                <td>@loan.LoanStatus</td>
+                                             
                                                 <td>
                                                     @*@Html.ActionLink("Void", "Delete", new { id = cash.Id })*@
-                                                    <button data-toggle="modal" data-target="#modalDisplay">
+                                                    <button data-toggle="modal" data-target="#loanModal">
                                                         Details
                                                     </button>| @Html.ActionLink("Details", "Details", new { id = cash.Id })
-                                            </td>
+                                                </td>
                                                 <!-- Modal for Details-->
                                                 @*<div class="modal fade" id="modalDisplay" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                        
-                                                            @{Html.RenderAction("Details", "CashTransaction", new {id = cash.Id});}
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+
+                                                                @{Html.RenderAction("Details", "CashTransaction", new {id = cash.Id});}
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </div>*@
-                                                <div class="modal fade" id="modalDisplay" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                    </div>*@
+                                                <div class="modal fade" id="loanModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h5 class="modal-title" id="modalDisplay">Cash Transaction View</h5>
+                                                                <h5 class="modal-title" id="loanModal">Cash Transaction View</h5>
                                                                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                                                     <span aria-hidden="true">×</span>
                                                                 </button>
                                                             </div>
-                                                            <div class="modal-body">@{Html.RenderAction("Details", "CashTransaction", new { id = cash.Id });}</div>
-                                                                <div class="modal-footer">
-                                                                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                                                    <a class="btn btn-primary">@Html.ActionLink("Void", "Delete", new { id = cash.Id })</a>
-                                                                </div>
+                                                            <div class="modal-body">
+                                                                @{Html.RenderAction("Details", "CashTransaction", new { id = cash.Id });}/div>
+                                                            <div class="modal-footer">
+                                                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                                                                <a class="btn btn-primary">@Html.ActionLink("Void", "Delete", new { id = cash.Id })*</a>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                
-                                            </tr>
-                                        }
+                                                </div>
+                                            </div>
+                                        </tr>
+                                                                }
                                     </tbody>
                                 </table>
-                            }
-                        </div>
+                                                                }
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+</div>
 
 
 <link href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
 @section scripts{
     <script>
         function createModal(url){
-            $('#modelContent').load(url);
-            $('#myModal').modal('show');
+            $('#loanContent').load(url);
+            $('#loanModal').modal('show');
         }
     </script>
     <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
