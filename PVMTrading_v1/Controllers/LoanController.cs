@@ -27,6 +27,7 @@ namespace PVMTrading_v1.Controllers
 
 
         // GET: Loans
+        [CustomAuthorize(Roles = "Admin,Cashier,Sales Clerk")]
         public ActionResult Index()
         {
 
@@ -38,6 +39,7 @@ namespace PVMTrading_v1.Controllers
 
             return View(loans);
         }
+        [CustomAuthorize(Roles = "Admin,Cashier")]
 
         //select customer search
         public ActionResult SearchCustomer()
@@ -47,6 +49,7 @@ namespace PVMTrading_v1.Controllers
 
             return View(customers.ToList());
         }
+        [CustomAuthorize(Roles = "Admin,Cashier")]
 
 
         public ActionResult ProductList()
@@ -60,6 +63,7 @@ namespace PVMTrading_v1.Controllers
 
         }
 
+        [CustomAuthorize(Roles = "Admin,Cashier")]
 
         public ActionResult BuyNow(int id, double price)
         {
@@ -83,6 +87,7 @@ namespace PVMTrading_v1.Controllers
 
             return RedirectToAction("Cart");
         }
+        [CustomAuthorize(Roles = "Admin,Cashier")]
 
         public ActionResult Cart()
         {
@@ -93,6 +98,7 @@ namespace PVMTrading_v1.Controllers
 
 
 
+        [CustomAuthorize(Roles = "Admin,Cashier")]
 
         public ActionResult DeleteFromCart(int id)
         {
@@ -102,6 +108,8 @@ namespace PVMTrading_v1.Controllers
             _context.SaveChanges();
             return RedirectToAction("Cart");
         }
+
+        [CustomAuthorize(Roles = "Admin,Cashier")]
 
         public ActionResult DeleteAllProdsInCart()
         {
@@ -119,6 +127,7 @@ namespace PVMTrading_v1.Controllers
 
 
 
+        [CustomAuthorize(Roles = "Admin,Cashier")]
 
         public ActionResult AddQuantity(int id, int quantity)
         {
@@ -131,6 +140,7 @@ namespace PVMTrading_v1.Controllers
             }
             return RedirectToAction("Cart");
         }
+        [CustomAuthorize(Roles = "Admin,Cashier")]
 
         public ActionResult LessQuantity(int id, int quantity)
         {
@@ -145,6 +155,7 @@ namespace PVMTrading_v1.Controllers
         }
 
 
+        [CustomAuthorize(Roles = "Admin,Cashier")]
 
         public ActionResult Select(int id)
         {
@@ -186,8 +197,9 @@ namespace PVMTrading_v1.Controllers
         }
 
 
+        [CustomAuthorize(Roles = "Admin,Cashier")]
 
-         public ActionResult LoanSummary(string loanId)
+        public ActionResult LoanSummary(string loanId)
           {
               var loan = _context.Loans.SingleOrDefault(c => c.Id == loanId);
               var customer = _context.Customers.SingleOrDefault(c => c.Id == loan.CustomerId);
@@ -206,8 +218,9 @@ namespace PVMTrading_v1.Controllers
               return View(viewModel);
           }
 
-       
-         public ActionResult Save(LoanViewModel lvm)
+        [CustomAuthorize(Roles = "Admin,Cashier")]
+
+        public ActionResult Save(LoanViewModel lvm)
          {
             var loanInDb = _context.Loans.SingleOrDefault(c => c.Id == lvm.Loan.Id);
 
@@ -231,8 +244,9 @@ namespace PVMTrading_v1.Controllers
               return RedirectToAction("Index");
                        }
 
+        [CustomAuthorize(Roles = "Admin")]
 
-            public ActionResult Delete(string id)
+        public ActionResult Delete(string id)
             {
                 var voidTransact = _context.Loans.SingleOrDefault(c => c.Id == id);
 
@@ -247,7 +261,9 @@ namespace PVMTrading_v1.Controllers
                    _context.SaveChanges();
                    return RedirectToAction("Index");
                              }
-          public ActionResult Details(string id)
+        [CustomAuthorize(Roles = "Admin,Cashier")]
+
+        public ActionResult Details(string id)
            {
             var transact = _context.Loans.SingleOrDefault(c => c.Id == id);
             var customer = _context.Customers.SingleOrDefault(c => c.Id == transact.CustomerId);
@@ -294,16 +310,17 @@ namespace PVMTrading_v1.Controllers
           
                         }
 
-                    /*  public ActionResult Update(LayAwayTransactionReceipt layAway)
-                         {
-                          var transact = _context.LayAwayTransactions.SingleOrDefault(c => c.Id == layAway.LayAwayTransactionId);
-                           transact.TotalPaidAmount = transact.TotalPaidAmount + layAway.AmountPaid;
-                           _context.LayAwayTransactionReceipts.Add(layAway);
-                                                _context.SaveChanges();
-                                                return View();
-                                            }*/
- 
-                public ActionResult Approve(string id)
+        /*  public ActionResult Update(LayAwayTransactionReceipt layAway)
+             {
+              var transact = _context.LayAwayTransactions.SingleOrDefault(c => c.Id == layAway.LayAwayTransactionId);
+               transact.TotalPaidAmount = transact.TotalPaidAmount + layAway.AmountPaid;
+               _context.LayAwayTransactionReceipts.Add(layAway);
+                                    _context.SaveChanges();
+                                    return View();
+                                                }*/
+        [CustomAuthorize(Roles = "Admin,Cashier")]
+
+        public ActionResult Approve(string id)
                 {
                          var transact = _context.Loans.SingleOrDefault(c => c.Id == id);
                     transact.LoanStatusId = 2;
@@ -324,7 +341,7 @@ namespace PVMTrading_v1.Controllers
 
                 }
 
-        public ActionResult CreateTrackDuePayment(LoanDuePayment ldp)
+      /*  public ActionResult CreateTrackDuePayment(LoanDuePayment ldp)
         {
             var loanDue = _context.LoanDuePayments.SingleOrDefault(c => c.Id == ldp.Id);
             loanDue.OR = ldp.OR;
@@ -362,6 +379,6 @@ namespace PVMTrading_v1.Controllers
             }
 
             return;
-        }
+        }*/
     }
 }

@@ -27,15 +27,16 @@ namespace PVMTrading_v1.Controllers
             _context.Dispose();
         }
 
-/*
-        public ViewResult CosCount(int id)
-        {
+        /*
+                public ViewResult CosCount(int id)
+                {
 
-            var C = _context.Customers.SqlQuery("SELECT COUNT Id FROM dbo.Customers");
+                    var C = _context.Customers.SqlQuery("SELECT COUNT Id FROM dbo.Customers");
 
-            return View(C);
-        }
-*/
+                    return View(C);
+                }
+        */
+        [CustomAuthorize(Roles = "Admin,Cashier,Sales Clerk")]
 
         public ActionResult Index()
         {
@@ -104,6 +105,7 @@ namespace PVMTrading_v1.Controllers
         }
 
 
+        [CustomAuthorize(Roles = "Admin,Cashier")]
 
         public ActionResult New()
         {
@@ -127,6 +129,8 @@ namespace PVMTrading_v1.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [CustomAuthorize(Roles = "Admin,Cashier")]
+
         public ActionResult Save(Customer customer,CustomerCompleInfo customerCompleInfo)
         {
             var isCustomerExist =
@@ -195,6 +199,7 @@ namespace PVMTrading_v1.Controllers
 
             return RedirectToAction("Index");
         }
+        [CustomAuthorize(Roles = "Admin,Cashier")]
 
         public ActionResult Edit(int id)
         {
@@ -217,6 +222,7 @@ namespace PVMTrading_v1.Controllers
 
             return View("New", viewModel);
         }
+        [CustomAuthorize(Roles = "Admin")]
 
         public ActionResult Delete(int id)
         {
@@ -230,6 +236,8 @@ namespace PVMTrading_v1.Controllers
             return RedirectToAction("Index");
         }
         [HttpGet]
+        [CustomAuthorize(Roles = "Admin,Cashier")]
+
         public ActionResult Details(int id)
         {
             var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
@@ -259,6 +267,8 @@ namespace PVMTrading_v1.Controllers
              return View(oder.ToList());
 
          }*/
+        [CustomAuthorize(Roles = "Admin,Cashier")]
+
         public ActionResult CustomerView(int id)
         {
 
@@ -278,6 +288,7 @@ namespace PVMTrading_v1.Controllers
             return View(customerView);
         }
 
+        [CustomAuthorize(Roles = "Admin,Cashier")]
 
         public ActionResult CustomerReg()
         {
@@ -289,6 +300,8 @@ namespace PVMTrading_v1.Controllers
             };
             return View(viewModel);
         }
+
+        [CustomAuthorize(Roles = "Admin,Cashier")]
 
         public ActionResult CustomerReg(Customer customer,CustomerCompleInfo customerCompleInfo)
         {

@@ -15,6 +15,7 @@ namespace PVMTrading_v1.Controllers
 
         private ApplicationDbContext _context;
 
+
         public BrandController()
         {
             _context = new ApplicationDbContext();
@@ -26,12 +27,15 @@ namespace PVMTrading_v1.Controllers
         }
 
         // GET: Brand
+        [CustomAuthorize(Roles = "Admin,Cashier,Sales Clerk")]
+
         public ViewResult Index()
         {
             var brands = _context.Brands.Include(c => c.BrandType).ToList();
 
             return View(brands);
         }
+        [CustomAuthorize(Roles = "Admin,Cashier")]
 
         public ActionResult New()
         {
@@ -44,6 +48,7 @@ namespace PVMTrading_v1.Controllers
 
             return View(viewModel);
         }
+        [CustomAuthorize(Roles = "Admin,Cashier")]
 
         public ActionResult Edit(int id)
         {
@@ -64,6 +69,8 @@ namespace PVMTrading_v1.Controllers
 
 
         [HttpPost]
+        [CustomAuthorize(Roles = "Admin,Cashier")]
+
         public ActionResult Save(Brand brand)
         {
            /* if (!ModelState.IsValid)

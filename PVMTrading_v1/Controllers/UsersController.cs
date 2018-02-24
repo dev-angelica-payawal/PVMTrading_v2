@@ -31,6 +31,8 @@ namespace PVMTrading_v1.Controllers
             context.Dispose();
         }
         // GET: Users
+        [CustomAuthorize(Roles = "Admin,Cashier,Sales Clerk")]
+
         public ActionResult Index()
         {
 

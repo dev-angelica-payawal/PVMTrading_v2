@@ -51,7 +51,7 @@
                                                     @*@Html.ActionLink("Void", "Delete", new { id = cash.Id })*@
                                                     <button data-toggle="modal" data-target="#loanModal">
                                                         Details
-                                                    </button>| @Html.ActionLink("Details", "Details", new { id = cash.Id })
+                                                    </button>| @Html.ActionLink("Details", "Details", new { id = loan.Id })
                                                 </td>
                                                 <!-- Modal for Details-->
                                                 @*<div class="modal fade" id="modalDisplay" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -72,10 +72,10 @@
                                                                 </button>
                                                             </div>
                                                             <div class="modal-body">
-                                                                @{Html.RenderAction("Details", "CashTransaction", new { id = cash.Id });}/div>
+                                                                @{Html.RenderAction("Details", "CashTransaction", new { id = loan.Id });}/div>
                                                             <div class="modal-footer">
                                                                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                                                <a class="btn btn-primary">@Html.ActionLink("Void", "Delete", new { id = cash.Id })*</a>
+                                                                <a class="btn btn-primary">@Html.ActionLink("Void", "Delete", new { id = loan.Id })*</a>
                                                             </div>
                                                         </div>
                                                     </div>

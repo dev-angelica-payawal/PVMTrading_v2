@@ -25,6 +25,8 @@ namespace PVMTrading_v1.Controllers
         }
 
         // GET: CashTransaction
+        [CustomAuthorize(Roles = "Admin,Cashier,Sales Clerk")]
+
         public ActionResult Index()
         {
             var layAway = _context.LayAwayTransactions.Include(c => c.Product)
@@ -34,6 +36,8 @@ namespace PVMTrading_v1.Controllers
         }
 
         //select customer search
+        [CustomAuthorize(Roles = "Admin,Cashier")]
+
         public ActionResult SearchCustomer()
         {
             var customers = _context.Customers;
@@ -42,6 +46,7 @@ namespace PVMTrading_v1.Controllers
             return View(customers.ToList());
         }
 
+        [CustomAuthorize(Roles = "Admin,Cashier")]
 
         public ActionResult ProductList()
         {
@@ -54,6 +59,7 @@ namespace PVMTrading_v1.Controllers
 
         }
 
+        [CustomAuthorize(Roles = "Admin,Cashier")]
 
         public ActionResult BuyNow(int id, double price)
         {
@@ -77,6 +83,7 @@ namespace PVMTrading_v1.Controllers
             
             return RedirectToAction("Cart");
         }
+        [CustomAuthorize(Roles = "Admin,Cashier")]
 
         public ActionResult Cart()
         {
@@ -85,8 +92,9 @@ namespace PVMTrading_v1.Controllers
             return View( tempCartList);
         }
 
-      
 
+
+        [CustomAuthorize(Roles = "Admin,CashieR")]
 
         public ActionResult DeleteFromCart(int id)
         {
@@ -96,6 +104,7 @@ namespace PVMTrading_v1.Controllers
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
+        [CustomAuthorize(Roles = "Admin,Cashier")]
 
         public ActionResult DeleteAllProdsInCart()
         {
@@ -113,6 +122,7 @@ namespace PVMTrading_v1.Controllers
 
 
 
+        [CustomAuthorize(Roles = "Admin,Cashier")]
 
         public ActionResult AddQuantity(int id, int quantity)
         {
@@ -125,6 +135,7 @@ namespace PVMTrading_v1.Controllers
             }
             return RedirectToAction("Index");
         }
+        [CustomAuthorize(Roles = "Admin,Cashier")]
 
         public ActionResult LessQuantity(int id, int quantity)
         {
@@ -138,7 +149,8 @@ namespace PVMTrading_v1.Controllers
             return RedirectToAction("Index");
         }
 
-      
+
+        [CustomAuthorize(Roles = "Admin,Cashier")]
 
         public ActionResult Select(int id)
         {
@@ -176,6 +188,7 @@ namespace PVMTrading_v1.Controllers
             _context.SaveChanges();
             return RedirectToAction("LayAwayTransactionSummary",new {cashId});
         }
+        [CustomAuthorize(Roles = "Admin,Cashier")]
 
         public ActionResult LayAwayTransactionSummary(string layAwayId)
         {
@@ -194,7 +207,8 @@ namespace PVMTrading_v1.Controllers
             return View(viewModel);
         }
 
-       
+
+        [CustomAuthorize(Roles = "Admin,Cashier")]
 
         public ActionResult Save(LayAwayTransactionViewModel vm)
         {
@@ -223,7 +237,8 @@ namespace PVMTrading_v1.Controllers
             return RedirectToAction("Index");
         }
 
-      
+        [CustomAuthorize(Roles = "Admin")]
+
         public ActionResult Delete(string id)
         {
 
@@ -245,6 +260,7 @@ namespace PVMTrading_v1.Controllers
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
+        [CustomAuthorize(Roles = "Admin,Cashier")]
 
         public ActionResult Details(string id)
         {
@@ -272,7 +288,8 @@ namespace PVMTrading_v1.Controllers
 
             return View();
         }
-        
+        [CustomAuthorize(Roles = "Admin,Cashier")]
+
         public ActionResult Update(LayAwayTransactionReceipt layAway)
         {
             var transact = _context.LayAwayTransactions.SingleOrDefault(c => c.Id == layAway.LayAwayTransactionId);

@@ -25,7 +25,8 @@ namespace PVMTrading_v1.Controllers
             _context.Dispose();
         }
 
-       
+        [CustomAuthorize(Roles = "Admin,Cashier,Sales Clerk")]
+
         public ActionResult Index()
         {
             var customer = _context.Customers.Include(s => s.Sex).ToList();

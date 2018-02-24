@@ -23,6 +23,8 @@ namespace PVMTrading_v1.Controllers
         }
 
         // GET: ProductCategory
+        [CustomAuthorize(Roles = "Admin,Cashier,Sales Clerk")]
+
         public ActionResult Index()
         {
             var productCategory = _context.ProductCategories;
@@ -30,13 +32,14 @@ namespace PVMTrading_v1.Controllers
         }
 
 
-     /*   public ActionResult loaddata()
-        {
-            
-                var data = _context.ProductCategories.OrderBy(a => a.Name).ToList();
-                return Json(new {data = data}, JsonRequestBehavior.AllowGet);
-            
-        }*/
+        /*   public ActionResult loaddata()
+           {
+
+                   var data = _context.ProductCategories.OrderBy(a => a.Name).ToList();
+                   return Json(new {data = data}, JsonRequestBehavior.AllowGet);
+
+           }*/
+        [CustomAuthorize(Roles = "Admin,Cashier")]
 
         public ActionResult New()
         {
@@ -44,6 +47,7 @@ namespace PVMTrading_v1.Controllers
 
             return View(productCategories);
         }
+        [CustomAuthorize(Roles = "Admin,Cashier")]
 
         public ActionResult Edit(int id)
         {
@@ -57,6 +61,8 @@ namespace PVMTrading_v1.Controllers
             return View("New", productCategory);
         }
         [HttpPost]
+        [CustomAuthorize(Roles = "Admin,Cashier")]
+
         public ActionResult Save(ProductCategory productCategory)
         {
             if (!ModelState.IsValid)
@@ -86,6 +92,7 @@ namespace PVMTrading_v1.Controllers
         {
             return Content("Not yet Available");
         }
+        [CustomAuthorize(Roles = "Admin")]
 
         public ActionResult Delete(int id)
         {

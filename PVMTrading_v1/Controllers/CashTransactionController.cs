@@ -29,6 +29,8 @@ namespace PVMTrading_v1.Controllers
         }
 
         // GET: CashTransaction
+        [CustomAuthorize(Roles = "Admin,Cashier,Sales Clerk")]
+
         public ActionResult Index()
         {
 
@@ -39,6 +41,8 @@ namespace PVMTrading_v1.Controllers
         }
 
         //select customer search
+        [CustomAuthorize(Roles = "Admin,Cashier")]
+
         public ActionResult SearchCustomer()
         {
             var customers = _context.Customers;
@@ -47,8 +51,9 @@ namespace PVMTrading_v1.Controllers
             return View(customersList);
         }
 
-      
-        
+
+        [CustomAuthorize(Roles = "Admin,Cashier")]
+
         public ActionResult CashTransactionSummary(string cashId)
         {
              var cashTransaction = _context.CashTransactions.SingleOrDefault(c => c.Id == cashId);
@@ -64,12 +69,14 @@ namespace PVMTrading_v1.Controllers
             return View(viewModel);
         }
 
+        [CustomAuthorize(Roles = "Admin,Cashier")]
 
         public ActionResult CashTransactionItemListSummary()
         {
 
             return View(_context.TempCarts.ToList());
         }
+        [CustomAuthorize(Roles = "Admin,Cashier")]
 
         public ActionResult Save(CashTransaction cashTransaction)
 
@@ -108,6 +115,7 @@ namespace PVMTrading_v1.Controllers
        
             return RedirectToAction("Index");
         }
+        [CustomAuthorize(Roles = "Admin,Cashier")]
 
         public ActionResult Select(int id)
         {
@@ -157,6 +165,7 @@ namespace PVMTrading_v1.Controllers
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
+        [CustomAuthorize(Roles = "Admin,Cashier")]
 
         public ActionResult Details(string id)
         {

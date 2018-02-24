@@ -29,6 +29,8 @@ namespace PVMTrading_v1.Controllers
         }
 
         // GET: Product
+        [CustomAuthorize(Roles = "Admin,Cashier,Sales Clerk")]
+
         public ViewResult Index()
         {
             var products = _context.Products.Include(c => c.Brand)
@@ -46,6 +48,7 @@ namespace PVMTrading_v1.Controllers
             return View("ReadOnlyView", products);
 
         }
+        [CustomAuthorize(Roles = "Admin,Cashier")]
 
         public ViewResult ProductFilter()
         {
@@ -65,7 +68,8 @@ namespace PVMTrading_v1.Controllers
 
         }
 
-        [CustomAuthorize(Roles = RoleName.Admin)]
+        [CustomAuthorize(Roles = "Admin,Cashier")]
+
         public ActionResult New()
         {
             var brands = _context.Brands.ToList();
@@ -90,6 +94,8 @@ namespace PVMTrading_v1.Controllers
     
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [CustomAuthorize(Roles = "Admin,Cashier")]
+
         public ActionResult Save(Product product, ProductInclusion productInclusion, ProductPrice productPrice, ProductViewModel model, HttpPostedFileBase file)
         {
             /*var decodedString = Convert.ToBase64String(product.ProductImage)
@@ -225,7 +231,8 @@ namespace PVMTrading_v1.Controllers
 
 
         //[ValidateAntiForgeryToken]
-        [CustomAuthorize(Roles = RoleName.Admin)]
+        [CustomAuthorize(Roles = "Admin,Cashier")]
+
         public ActionResult Edit(int id)
         {
 
@@ -254,7 +261,8 @@ namespace PVMTrading_v1.Controllers
 
 
         [ValidateAntiForgeryToken]
-        [CustomAuthorize(Roles = RoleName.Admin)]
+        [CustomAuthorize(Roles = "Admin")]
+
         public ActionResult Delete(int id)
         {
             var product = _context.Products.Single(p => p.Id == id);
@@ -274,6 +282,8 @@ namespace PVMTrading_v1.Controllers
 
 
         [HttpGet]
+        [CustomAuthorize(Roles = "Admin,Cashier")]
+
         public ActionResult Details(int id)
         {
             var product = _context.Products.SingleOrDefault(p => p.Id == id);

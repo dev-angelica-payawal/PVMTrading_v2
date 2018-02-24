@@ -17,6 +17,7 @@ namespace PVMTrading_v1.Controllers
         {
             return View();
         }
+        [CustomAuthorize(Roles = "Admin,Cashier")]
 
         public ActionResult BuyNow(int id,double price)
         {

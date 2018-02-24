@@ -27,6 +27,7 @@ namespace PVMTrading_v1.Controllers
 			_context.Dispose();
 		}
 
+	    [CustomAuthorize(Roles = "Admin,Cashier")]
 
         public ActionResult ProductList()
 	    {
@@ -42,14 +43,17 @@ namespace PVMTrading_v1.Controllers
 	    }
 
 
-	    // GET: SearchProduct
-	    public ActionResult Index()
+        // GET: SearchProduct
+	    [CustomAuthorize(Roles = "Admin,Cashier")]
+
+        public ActionResult Index()
 	    {
 	        var tempCartList = _context.TempCarts.Include(c => c.Product).ToList();
 	        ViewBag.CountofProducts = _context.TempCarts.Count();
 	        return View("Cart", tempCartList);
 	    }
 
+	    [CustomAuthorize(Roles = "Admin,Cashier")]
 
         public ActionResult BuyNow(int id,double price)
 	    {
@@ -74,8 +78,9 @@ namespace PVMTrading_v1.Controllers
 	        _context.SaveChanges();
 	       return RedirectToAction("Index");
 	    }
+	    [CustomAuthorize(Roles = "Admin,Cashier")]
 
-	    public ActionResult DeleteFromCart(int id)
+        public ActionResult DeleteFromCart(int id)
 	    {
 	        var deleteItem = _context.TempCarts.SingleOrDefault(c => c.Id == id);
             if(deleteItem != null)
@@ -83,8 +88,9 @@ namespace PVMTrading_v1.Controllers
 	        _context.SaveChanges();
 	        return RedirectToAction("Index");
 	    }
+	    [CustomAuthorize(Roles = "Admin,Cashier")]
 
-	    public ActionResult DeleteAllProdsInCart()
+        public ActionResult DeleteAllProdsInCart()
 	    {
 	        var temp = _context.TempCarts;
 	        
@@ -98,10 +104,11 @@ namespace PVMTrading_v1.Controllers
 	        return RedirectToAction("Index");
 	    }
 
-	 
 
 
-	    public ActionResult AddQuantity(int id,int quantity)
+	    [CustomAuthorize(Roles = "Admin,Cashier")]
+
+        public ActionResult AddQuantity(int id,int quantity)
 	    {
 	        var tempCart = _context.TempCarts.SingleOrDefault(p => p.Id == id);
             if(tempCart != null && tempCart.Quantity < quantity)
@@ -111,6 +118,7 @@ namespace PVMTrading_v1.Controllers
             }
             return RedirectToAction("Index");
         }
+	    [CustomAuthorize(Roles = "Admin,Cashier")]
 
         public ActionResult LessQuantity(int id,int quantity)
 	    {
