@@ -319,6 +319,8 @@ namespace PVMTrading_v1.Controllers
             return View(duePayment);
           
                         }
+
+        [CustomAuthorize(Roles = "Admin,Cashier")]
         public ActionResult SaveUpdateLoan(LoanDuePayment ldp)
         {
             var loanDue = _context.LoanDuePayments.SingleOrDefault(c => c.Id == ldp.Id);
@@ -330,17 +332,6 @@ namespace PVMTrading_v1.Controllers
             var loan = _context.Loans.SingleOrDefault(c => c.Id == loanDue.LoanId);
             loan.LoanTotalPayment = loan.LoanTotalPayment + ldp.TotalAmountDue;
 
-<<<<<<< HEAD
-        /*  public ActionResult Update(LayAwayTransactionReceipt layAway)
-             {
-              var transact = _context.LayAwayTransactions.SingleOrDefault(c => c.Id == layAway.LayAwayTransactionId);
-               transact.TotalPaidAmount = transact.TotalPaidAmount + layAway.AmountPaid;
-               _context.LayAwayTransactionReceipts.Add(layAway);
-                                    _context.SaveChanges();
-                                    return View();
-                                                }*/
-        [CustomAuthorize(Roles = "Admin,Cashier")]
-=======
             var DueDate = new LoanDuePayment();
             DueDate.LoanId = loanDue.LoanId;
             if (loan.ModeOfPaymentId == 1)
@@ -376,7 +367,7 @@ namespace PVMTrading_v1.Controllers
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
->>>>>>> 470c95ca764638ec20e8d5568ef7e65a6a1d3efc
+
 
         public ActionResult Approve(string id)
                 {
@@ -397,9 +388,16 @@ namespace PVMTrading_v1.Controllers
 
                     return View(loandue);
 
-                }
-
-      /*  public ActionResult CreateTrackDuePayment(LoanDuePayment ldp)
+        }
+        /*  public ActionResult Update(LayAwayTransactionReceipt layAway)
+           {
+            var transact = _context.LayAwayTransactions.SingleOrDefault(c => c.Id == layAway.LayAwayTransactionId);
+             transact.TotalPaidAmount = transact.TotalPaidAmount + layAway.AmountPaid;
+             _context.LayAwayTransactionReceipts.Add(layAway);
+                                  _context.SaveChanges();
+                                  return View();
+                                              }*/
+        public ActionResult CreateTrackDuePayment(LoanDuePayment ldp)
         {
             var loanDue = _context.LoanDuePayments.SingleOrDefault(c => c.Id == ldp.Id);
             loanDue.OR = ldp.OR;
@@ -443,10 +441,7 @@ namespace PVMTrading_v1.Controllers
         }
 
 
-<<<<<<< HEAD
-            return;
-        }*/
-=======
+
 
         public ActionResult TrackDuePayment()
         {
@@ -454,6 +449,5 @@ namespace PVMTrading_v1.Controllers
             return View();
         }
 
->>>>>>> 470c95ca764638ec20e8d5568ef7e65a6a1d3efc
     }
 }

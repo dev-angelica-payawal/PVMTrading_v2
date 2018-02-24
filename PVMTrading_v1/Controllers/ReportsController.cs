@@ -32,7 +32,48 @@ namespace PVMTrading_v1.Controllers
             return View();
         }
 
+
         // GET: ExportData
+        public ActionResult ProductsReports()
+        {
+            // Step 1 - get the data from database
+            var data = _context.Products.Include(c => c.ProductCategory)
+                .Include(c=>c.Branch)
+                .Include(c=>c.ProductCondition)
+                .Include(c => c.Warranty).ToList();
+
+            // instantiate the GridView control from System.Web.UI.WebControls namespace
+            // set the data source
+            GridView gridview = new GridView();
+            gridview.DataSource = data;
+            gridview.DataBind();
+
+            // Clear all the content from the current response
+            Response.ClearContent();
+            Response.Buffer = true;
+            // set the header
+            Response.AddHeader("content-disposition", "attachment;filename = ProductReports.xls");
+            Response.ContentType = "application/ms-excel";
+            Response.Charset = "";
+            // create HtmlTextWriter object with StringWriter
+            using (StringWriter sw = new StringWriter())
+            {
+                using (HtmlTextWriter htw = new HtmlTextWriter(sw))
+                {
+                    // render the GridView to the HtmlTextWriter
+                    gridview.RenderControl(htw);
+                    // Output the GridView content saved into StringWriter
+                    Response.Output.Write(sw.ToString());
+                    Response.Flush();
+                    Response.End();
+                }
+            }
+            return RedirectToAction("Index");
+        }
+
+
+
+        // GET: Cash
         public ActionResult CashTransactionReport()
         {
             // Step 1 - get the data from database
@@ -64,7 +105,7 @@ namespace PVMTrading_v1.Controllers
                     Response.End();
                 }
             }
-            return View();
+            return RedirectToAction("Index");
         }
 
         public ActionResult LayAwayTransactionReport()
@@ -99,13 +140,13 @@ namespace PVMTrading_v1.Controllers
                     Response.End();
                 }
             }
-            return View();
+            return RedirectToAction("Index");
         }
 
         public ActionResult Loan()
         {
             // Step 1 - get the data from database
-            var data = _context.CashTransactions.Include(c => c.Customer).ToList();
+            var data = _context.LoanDuePayments.Include(c => c.Loan).ToList();
 
             // instantiate the GridView control from System.Web.UI.WebControls namespace
             // set the data source
@@ -133,7 +174,7 @@ namespace PVMTrading_v1.Controllers
                     Response.End();
                 }
             }
-            return View();
+            return RedirectToAction("Index");
         }
     }
 }
