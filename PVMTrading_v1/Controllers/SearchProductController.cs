@@ -115,7 +115,7 @@ namespace PVMTrading_v1.Controllers
         public ActionResult LessQuantity(int id,int quantity)
 	    {
 	        var tempCart = _context.TempCarts.SingleOrDefault(p => p.Id == id);
-	        if (tempCart != null && tempCart.Quantity >0) { 
+	        if (tempCart != null && tempCart.Quantity >1) { 
 	            --tempCart.Quantity;
             _context.SaveChanges();
 	        }

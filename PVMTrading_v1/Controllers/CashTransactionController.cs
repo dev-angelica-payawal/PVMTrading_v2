@@ -49,11 +49,9 @@ namespace PVMTrading_v1.Controllers
 
       
         
-        public ActionResult CashTransactionSummary()
+        public ActionResult CashTransactionSummary(string cashId)
         {
-            var count = _context.CashTransactions.Count();
-            var cashId = Convert.ToString(DateTime.Today.Year) + "00" + Convert.ToString(count) + Convert.ToString(DateTime.Today.Day);
-            var cashTransaction = _context.CashTransactions.SingleOrDefault(c => c.Id == cashId);
+             var cashTransaction = _context.CashTransactions.SingleOrDefault(c => c.Id == cashId);
             var customer = _context.Customers.SingleOrDefault(c => c.Id == cashTransaction.CustomerId);
            
             var viewModel = new CashTransactionViewModel
@@ -135,7 +133,7 @@ namespace PVMTrading_v1.Controllers
             cashTransaction.Remarks = "";
             _context.CashTransactions.Add(cashTransaction);
             _context.SaveChanges();
-            return RedirectToAction("CashTransactionSummary");
+            return RedirectToAction("CashTransactionSummary",new {cashId});
         }
 
         [CustomAuthorize(Roles = RoleName.Admin)]

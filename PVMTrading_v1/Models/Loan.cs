@@ -17,7 +17,7 @@ namespace PVMTrading_v1.Models
         [Range(0, double.MaxValue, ErrorMessage = "Value should not be negative")]
         [GreaterThanOrEqualTo("Downpayment", ErrorMessage = "Value should greater Than or Equal To Downpayment")]
         [Required]
-        [Display(Name = "Down Payment")]
+        [Display(Name = "Loan Payment")]
         public double LoanAmount { get; set; }
 
         public ModeOfPayment ModeOfPayment { get; set; }
@@ -33,6 +33,7 @@ namespace PVMTrading_v1.Models
 
         public double DuePayment { get; set; }
 
+        [Display(Name = "Paid Total Amount")]
         public double LoanTotalPayment { get; set; }
 
         public LoanStatus LoanStatus { get; set; }
@@ -48,14 +49,14 @@ namespace PVMTrading_v1.Models
         [Display(Name = "Customer Name")]
         [Required]
         public int CustomerId { get; set; }
-<<<<<<< HEAD
-        //     public int CreditInvestigatorId { get; set; }
-
-   //     public int CreditInvestigatorId { get; set; }
-=======
 
         //     public int CreditInvestigatorId { get; set; }
->>>>>>> b7bf8d9c87532fba7c4b408121c044e99ede3c1c
+        public Product Product { get; set; }
+        public int ProductId { get; set; }
+
+        public int Quantity { get; set; }
+
+        public double ProductPrice { get; set; }
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0: MM:dd:yyyy}", ApplyFormatInEditMode = true)]

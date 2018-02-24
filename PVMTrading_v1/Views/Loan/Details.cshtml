@@ -1,0 +1,153 @@
+﻿@using PVMTrading_v1.Models
+@model PVMTrading_v1.ViewModels.LoanViewModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="content-wrapper">
+<h2>Details</h2>
+
+    <div>
+        <h4>Loan</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Loan.Customer.FirstName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Loan.Customer.FirstName)
+                @Html.DisplayFor(model => model.Loan.Customer.LastName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Loan.LoanStatus.Label)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Loan.LoanStatus.Label)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Loan.ModeOfPayment.Label)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Loan.ModeOfPayment.Label)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Loan.Product.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Loan.Product.Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Loan.Downpayment)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Loan.Downpayment)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Loan.LoanAmount)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Loan.LoanAmount)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Loan.Terms)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Loan.Terms)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Loan.InterestRate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Loan.InterestRate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Loan.DuePayment)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Loan.DuePayment)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Loan.LoanTotalPayment)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Loan.LoanTotalPayment)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Loan.Remarks)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Loan.Remarks)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Loan.Quantity)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Loan.Quantity)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Loan.ProductPrice)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Loan.ProductPrice)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Loan.LoanDateCreated)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Loan.LoanDateCreated)
+            </dd>
+
+        </dl>
+    </div>
+    
+    @if (ViewData["ListPayment"] != null)
+    {<table>
+         <tr>
+             <th>DueDateTime</th>
+             <th>Penalty</th>
+             <th>Paid Amount</th>
+             <th>Or</th>
+         </tr>
+         @foreach (var payment in ViewData["ListPayment"] as IList<LoanDuePayment>)
+         {
+         <td>@payment.DueDateTime</td>
+        <td>
+            @payment.PenaltyAmount
+        </td>
+            <td>  @payment.TotalAmountDue</td>
+            <td>   @payment.OR</td>
+         }
+</table>
+    }
+    <p>
+    @Html.ActionLink("Update", "Update", new { id = Model.Loan.Id }) |
+</p>
+</div>

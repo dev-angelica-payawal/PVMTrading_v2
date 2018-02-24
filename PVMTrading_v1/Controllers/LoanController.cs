@@ -25,16 +25,16 @@ namespace PVMTrading_v1.Controllers
         }
 
 
-<<<<<<< HEAD
-        // GET: Loan
-=======
-         // GET: Loan
->>>>>>> b7bf8d9c87532fba7c4b408121c044e99ede3c1c
+
+        // GET: Loans
         public ActionResult Index()
         {
-            
+
             var loans = _context.Loans.Include(c => c.Customer)
-                                       .Include(s => s.LoanStatus).ToList();
+                                       .Include(s => s.LoanStatus)
+                                        .Include(s => s.ModeOfPayment)
+                                        .Include(e => e.Product).ToList();
+
 
             return View(loans);
         }
@@ -100,7 +100,7 @@ namespace PVMTrading_v1.Controllers
             if (deleteItem != null)
                 _context.TempCarts.Remove(deleteItem);
             _context.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Cart");
         }
 
         public ActionResult DeleteAllProdsInCart()
@@ -114,7 +114,7 @@ namespace PVMTrading_v1.Controllers
 
 
             _context.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Cart");
         }
 
 
@@ -129,19 +129,19 @@ namespace PVMTrading_v1.Controllers
 
                 _context.SaveChanges();
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Cart");
         }
 
         public ActionResult LessQuantity(int id, int quantity)
         {
             var tempCart = _context.TempCarts.SingleOrDefault(p => p.Id == id);
-            if (tempCart != null && tempCart.Quantity > 0)
+            if (tempCart != null && tempCart.Quantity > 1)
             {
                 --tempCart.Quantity;
                 _context.SaveChanges();
             }
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Cart");
         }
 
 
@@ -158,136 +158,210 @@ namespace PVMTrading_v1.Controllers
             foreach (var c in _context.TempCarts.ToList())
             {
                 totalPrice = totalPrice + (c.ProductPrice * c.Quantity);
-
+                loan.ProductId = c.ProductId;
+                loan.Quantity = c.Quantity;
+                loan.ProductPrice = c.ProductPrice;
+               
             }
+
+            var prod = _context.Products.SingleOrDefault(p => p.Id == loan.ProductId);
+            
+            prod.AvailableForSelling = prod.AvailableForSelling - loan.Quantity;
+            prod.Reserved = prod.Reserved + loan.Quantity;
 
 
             var selectCustomer = _context.Customers.SingleOrDefault(c => c.Id == id);
             loan.Id = loanId;
+            loan.ModeOfPaymentId = 4;
             loan.CustomerId = selectCustomer.Id;
             loan.LoanDateCreated = DateTime.Now;
             loan.LoanAmount = totalPrice;
+            loan.LoanStatusId = 1;
             loan.Remarks = "";
+            loan.InterestRate = 4;
             _context.Loans.Add(loan);
             _context.SaveChanges();
-            return RedirectToAction("");
+
+            return RedirectToAction("LoanSummary",new { loanId});
         }
 
 
 
-        /*  public ActionResult CashTransactionSummary()
+         public ActionResult LoanSummary(string loanId)
           {
-              var count = _context.Loans.Count();
-              var loanId = Convert.ToString(DateTime.Today.Year) + Convert.ToString(DateTime.Today.Month) + "0" + Convert.ToString(count + 1);
-              var cashTransaction = _context.Loans.SingleOrDefault(c => c.Id == loanId);
-              var customer = _context.Customers.SingleOrDefault(c => c.Id == cashTransaction.CustomerId);
-
-              var viewModel = new CashTransactionViewModel
+              var loan = _context.Loans.SingleOrDefault(c => c.Id == loanId);
+              var customer = _context.Customers.SingleOrDefault(c => c.Id == loan.CustomerId);
+              var product = _context.Products.SingleOrDefault(p => p.Id == loan.ProductId);
+              
+              var viewModel = new LoanViewModel
               {
-                  CashTransaction = cashTransaction,
-                  Customer = customer
+                  Loan = loan,
+                  Customer = customer,
+                  Product = product,
+                  ModeOfPayment = _context.ModeOfPayment.ToList(),
+                  LoanStatus = _context.LoanStatus.ToList()
 
               };
 
               return View(viewModel);
           }
 
-
-          public ActionResult Save(CashTransaction cashTransaction)
-
-          {
-              var cashTransactionItem = new CashTransactionItem();
-
+       
+         public ActionResult Save(LoanViewModel lvm)
+         {
+            var loanInDb = _context.Loans.SingleOrDefault(c => c.Id == lvm.Loan.Id);
 
 
-              foreach (var item in _context.TempCarts.ToList())
+             loanInDb.LoanAmount = lvm.Loan.LoanAmount;
+             loanInDb.Downpayment = lvm.Loan.Downpayment;
+             loanInDb.DuePayment = lvm.Loan.DuePayment;
+             loanInDb.Remarks = lvm.Loan.Remarks;
+             loanInDb.ModeOfPaymentId = lvm.Loan.ModeOfPaymentId;
+             loanInDb.Terms = lvm.Loan.Terms;
+           
+               var temp = _context.TempCarts;
+            foreach (var d in temp.ToList())
               {
-                  cashTransactionItem.ProductId = item.ProductId;
-                  cashTransactionItem.CashTransactionId = cashTransaction.Id;
-                  cashTransactionItem.ProductPrice = item.ProductPrice;
-                  cashTransactionItem.Quantity = item.Quantity;
-                  _context.CashTransactionItems.Add(cashTransactionItem);
-                  //minus product stock to available for selling
-                  _context.Products.SingleOrDefault(p => p.Id == item.ProductId).AvailableForSelling = _context.Products.SingleOrDefault(p => p.Id == item.ProductId).AvailableForSelling - item.Quantity;
-              }
-
-              var cash = _context.CashTransactions.SingleOrDefault(c => c.Id == cashTransaction.Id);
-              cash.CustomerId = cashTransaction.CustomerId;
-              cash.CashTransactionDate = DateTime.Now;
-              cash.OR = cashTransaction.OR;
-              cash.TotalAmount = cash.OriginalTotalAmount - cash.TotalDiscountedAmount;
-              cash.TotalDiscountedAmount = cashTransaction.TotalDiscountedAmount;
-              cash.Remarks = cashTransaction.Remarks;
-
-              var temp = _context.TempCarts;
-
-              foreach (var d in temp.ToList())
-              {
-                  _context.TempCarts.Remove(_context.TempCarts.SingleOrDefault(c => c.Id == d.Id));
+                _context.TempCarts.Remove(_context.TempCarts.SingleOrDefault(c => c.Id == d.Id));
               }
 
               _context.SaveChanges();
 
 
               return RedirectToAction("Index");
-          }
+                       }
 
 
-          public ActionResult Delete(string id)
-          {
-
-              var voidTransact = _context.CashTransactions.SingleOrDefault(c => c.Id == id);
-              var voidItems = _context.CashTransactionItems.Where(c => c.CashTransactionId == id);
-              var product = new Product();
-              foreach (var c in voidItems.ToList())
-              {
-                  product = _context.Products.SingleOrDefault(b => b.Id == c.ProductId);
-                  product.AvailableForSelling = product.AvailableForSelling + c.Quantity;
-
-              }
-
-              voidTransact.IsVoid = true;
+            public ActionResult Delete(string id)
+            {
+                var voidTransact = _context.Loans.SingleOrDefault(c => c.Id == id);
 
 
+                voidTransact.LoanStatusId = 3;
 
-              _context.SaveChanges();
-              return RedirectToAction("Index");
-          }
+                var prod = _context.Products.SingleOrDefault(p => p.Id == voidTransact.ProductId);
+
+                prod.AvailableForSelling = prod.AvailableForSelling + voidTransact.Quantity;
+                prod.Reserved = prod.Reserved - voidTransact.Quantity;
+
+                   _context.SaveChanges();
+                   return RedirectToAction("Index");
+                             }
           public ActionResult Details(string id)
-          {
-              var transact = _context.LayAwayTransactions.SingleOrDefault(c => c.Id == id);
-              var customer = _context.Customers.SingleOrDefault(c => c.Id == transact.CustomerId);
-              var product = _context.Products.SingleOrDefault(c => c.Id == transact.ProductId);
-              var voidItems = _context.LayAwayTransactionReceipts.Where(c => c.LayAwayTransactionId == id);
-              /* var product = new Product();#1#
+           {
+            var transact = _context.Loans.SingleOrDefault(c => c.Id == id);
+            var customer = _context.Customers.SingleOrDefault(c => c.Id == transact.CustomerId);
+            var product = _context.Products.SingleOrDefault(c => c.Id == transact.ProductId);
+            var duePayment = _context.LoanDuePayments.Where(c => c.LoanId == id);
+          
 
-              ViewData["ListItem"] = voidItems.ToList();
+               ViewData["ListPayment"] = duePayment.ToList();
 
-              var vm = new LayAwayTransactionViewModel()
-              {
-                  LayAwayTransaction = transact,
-                  Product = product,
-                  Customer = customer,
-              };
+                                  var vm = new LoanViewModel
+                                  {
+                                      Loan = transact,
+                                      Product = product,
+                                      Customer = customer,
+                                      LoanStatus = _context.LoanStatus.ToList(),
+                                      ModeOfPayment = _context.ModeOfPayment.ToList()
+                                  };
 
 
-              return View(vm);
-          }
+                                  return View(vm);
+                              }
 
-          public ActionResult Update()
-          {
+                      public ActionResult Update(string id)
+                        {
+                            var transact = _context.Loans.SingleOrDefault(c => c.Id == id);
+                            var customer = _context.Customers.SingleOrDefault(c => c.Id == transact.CustomerId);
+                            var product = _context.Products.SingleOrDefault(c => c.Id == transact.ProductId);
+                            var duePayment = _context.LoanDuePayments.Where(c => c.LoanId == id);
 
-              return View();
-          }
 
-          public ActionResult Update(LayAwayTransactionReceipt layAway)
-          {
-              var transact = _context.LayAwayTransactions.SingleOrDefault(c => c.Id == layAway.LayAwayTransactionId);
-              transact.TotalPaidAmount = transact.TotalPaidAmount + layAway.AmountPaid;
+                            ViewData["ListPayment"] = duePayment.ToList();
 
-              _context.LayAwayTransactionReceipts.Add(layAway);
-              _context.SaveChanges();
-              return View();
-          }*/
+                            var vm = new LoanViewModel
+                            {
+                                Loan = transact,
+                                Product = product,
+                                Customer = customer,
+                                LoanStatus = _context.LoanStatus.ToList(),
+                                ModeOfPayment = _context.ModeOfPayment.ToList()
+                            };
+
+
+                            return View(vm);
+          
+                        }
+
+                    /*  public ActionResult Update(LayAwayTransactionReceipt layAway)
+                         {
+                          var transact = _context.LayAwayTransactions.SingleOrDefault(c => c.Id == layAway.LayAwayTransactionId);
+                           transact.TotalPaidAmount = transact.TotalPaidAmount + layAway.AmountPaid;
+                           _context.LayAwayTransactionReceipts.Add(layAway);
+                                                _context.SaveChanges();
+                                                return View();
+                                            }*/
+ 
+                public ActionResult Approve(string id)
+                {
+                         var transact = _context.Loans.SingleOrDefault(c => c.Id == id);
+                    transact.LoanStatusId = 2;
+                    
+                    var downPayment = new LoanDuePayment();
+
+                    downPayment.LoanId = id;
+                    downPayment.DueDateTime = DateTime.Now;
+                    downPayment.PenaltyAmount = 0;
+                    downPayment.TotalAmountDue = transact.Downpayment;
+                    downPayment.IsPaid = true;
+                    _context.LoanDuePayments.Add(downPayment);
+                    _context.SaveChanges();
+
+                     var loandue = _context.LoanDuePayments.SingleOrDefault(c => c.LoanId == id);
+
+                    return View(loandue);
+
+                }
+
+        public ActionResult CreateTrackDuePayment(LoanDuePayment ldp)
+        {
+            var loanDue = _context.LoanDuePayments.SingleOrDefault(c => c.Id == ldp.Id);
+            loanDue.OR = ldp.OR;
+
+            var loan = _context.Loans.SingleOrDefault(c => c.Id == loanDue.LoanId);
+            
+            var DueDate = new LoanDuePayment();
+            DueDate.LoanId = loanDue.LoanId;
+            if (loan.ModeOfPaymentId == 1)
+            {
+                DueDate.DueDateTime = DateTime.Today.AddDays(1);
+                DueDate.TotalAmountDue = loan.DuePayment;
+                DueDate.LoanId = loan.Id;
+            }
+
+            if (loan.ModeOfPaymentId == 2)
+            {
+                DueDate.DueDateTime = DateTime.Today.AddDays(7);
+                DueDate.TotalAmountDue = loan.DuePayment;
+                DueDate.LoanId = loan.Id;
+            }
+
+            if (loan.ModeOfPaymentId == 3)
+            {
+                DueDate.DueDateTime = DateTime.Today.AddDays(14);
+                DueDate.TotalAmountDue = loan.DuePayment;
+                DueDate.LoanId = loan.Id;
+            }
+
+            if (loan.ModeOfPaymentId == 4)
+            {
+                DueDate.DueDateTime = DateTime.Today.AddMonths(1);
+                DueDate.TotalAmountDue = loan.DuePayment;
+                DueDate.LoanId = loan.Id;
+            }
+
+            return;
+        }
     }
 }
