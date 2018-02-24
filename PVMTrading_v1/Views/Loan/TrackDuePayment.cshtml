@@ -1,0 +1,69 @@
+﻿@model IEnumerable<PVMTrading_v1.ViewModels.LoanViewModel>
+
+@{
+    ViewBag.Title = "TrackDuePayment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="content-wrapper">
+<h2>Track Due Payment</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.LoanDuePayment.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Loan.Customer.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LoanDuePayment.DueDateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LoanDuePayment.IsPaid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LoanDuePayment.PenaltyAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LoanDuePayment.TotalAmountDue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LoanDuePayment.OR)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.LoanDuePayment.LoanId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Loan.Customer.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LoanDuePayment.DueDateTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LoanDuePayment.IsPaid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LoanDuePayment.PenaltyAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LoanDuePayment.TotalAmountDue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LoanDuePayment.OR)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new {id = item.LoanDuePayment.Id}) |
+            @Html.ActionLink("Details", "Details", new {id = item.LoanDuePayment.Id}) |
+            @Html.ActionLink("Delete", "Delete", new {id = item.LoanDuePayment.Id})
+        </td>
+    </tr>
+}
+
+</table>
+</div>

@@ -2,51 +2,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Required meta tags always come first -->
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>SB Admin - Start Bootstrap Template</title>
-    <!-- Bootstrap core CSS-->
-    @Styles.Render("~/bundles/corecss")
-    <!-- Custom fonts for this template-->
-    @Styles.Render("~/bundles/font-awesome")
-    <!-- Custom styles for this template-->
-    @Styles.Render("~/bundles/customstyle")
-    <link rel="stylesheet" href="~/Content/background.css">
-    <script src="~/Content/jquery.min.js"></script>
-    <script src="~/Content/bootstrap.min.js"></script>
-</head>
-<body class="bg-light">
-<div class="carousel slide carousel-fade" data-ride="carousel">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner" role="listbox">
-        <div class="item active">
-        </div>
-        <div class="item">
-        </div>
-        @*<div class="item">
-        </div>*@
-    </div>
-</div>
+    <meta name="description" content="Employee login">
+    <meta name="author" content="Angelica Payawal">
+    <title>PVM Trading</title>
     
+    <!-- Material Design fonts and bootstrap material design-->
+    @Styles.Render("~/Content/material-design-css")
 
+    @*    <!-- Bootstrap core CSS-->*@
+    @*    @Styles.Render("~/bundles/corecss")*@
+    @*    <!-- Custom fonts for this template-->*@
+    @*    @Styles.Render("~/bundles/font-awesome")*@
+    @*    <!-- Custom styles for this template-->*@
+    @*    @Styles.Render("~/bundles/customstyle")*@
+    @*    <link rel="stylesheet" href="~/Content/background.css">*@
+    @*    <script src="~/Content/jquery.min.js"></script>*@
+    @*    <script src="~/Content/bootstrap.min.js"></script>*@
 
-            
+</head>
+<body>
 
-
-<div>
     @RenderBody()
-</div>
-<!-- Bootstrap core JavaScript-->
-@Scripts.Render("~/bundles/core")
 
-<!-- Core plugin JavaScript-->
-@Scripts.Render("~/bundles/coreplugin")
-@RenderSection("scripts", required: false)
+    <!-- jQuery first, then tether, then Bootstrap Material Design JS. -->
+    <!-- then IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    @Scripts.Render("~/Content/material-design-js");
+<script>
+    $(function() {
+        $('body').bootstrapMaterialDesign();
+    });
+</script>
 
+    @RenderSection("scripts", required: false)
 </body>
+@*<body class="bg-light">
+    <div class="carousel slide carousel-fade" data-ride="carousel">
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+            <div class="item active">
+            </div>
+            <div class="item">
+            </div>
+            $1$<div class="item">
+                </div>#1#
+        </div>
+    </div>
+
+
+    <span>angel babi</span>
+
+
+
+    <div>
+        @RenderBody()
+    </div>
+    <!-- Bootstrap core JavaScript-->
+    @Scripts.Render("~/bundles/core")
+
+    <!-- Core plugin JavaScript-->
+    @Scripts.Render("~/bundles/coreplugin")
+    @RenderSection("scripts", required: false)
+
+</body>*@
 </html>
 

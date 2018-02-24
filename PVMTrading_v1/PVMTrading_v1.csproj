@@ -209,6 +209,7 @@
     <Compile Include="Controllers\LandingPageController.cs" />
     <Compile Include="Controllers\LayAwayTransactionController.cs" />
     <Compile Include="Controllers\LoanController.cs" />
+    <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Migrations\201802181038462_TempCart.cs" />
     <Compile Include="Migrations\201802181038462_TempCart.Designer.cs">
       <DependentUpon>201802181038462_TempCart.cs</DependentUpon>
@@ -1252,8 +1253,10 @@
     <Content Include="Views\Loan\Index.cshtml" />
     <Content Include="Views\Loan\LoanSummary.cshtml" />
     <Content Include="Views\Loan\Details.cshtml" />
-    <Content Include="Views\Loan\Update.cshtml" />
     <Content Include="Views\Loan\Approve.cshtml" />
+    <Content Include="Views\Loan\Update.cshtml" />
+    <Content Include="Views\Loan\TrackDuePayment.cshtml" />
+    <Content Include="Views\Reports\ExportToExcel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

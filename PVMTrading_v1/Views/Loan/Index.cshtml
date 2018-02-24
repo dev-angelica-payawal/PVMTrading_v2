@@ -87,12 +87,13 @@
                                             <td>@if(item.LoanStatusId != 3) { 
                                                     @Html.ActionLink("Void", "Delete", new {id = item.Id}, new {@class = "btn btn-xs btn-primary"})
                                                     @Html.ActionLink("Details", "Details", new {id = item.Id}, new {@class = "btn btn-xs btn-primary"})
-                                                if(@item.LoanStatusId != 2) { 
+                                                if(item.LoanStatusId != 2) { 
                                                     @Html.ActionLink("Approve", "Approve", new {id = item.Id}, new {@class = "btn btn-xs btn-primary"})
-                                                }
-                                                    @Html.ActionLink("Update", "Update", new {id = item.Id}, new {@class = "btn btn-xs btn-primary"})
-                                                }
-                                                else { <text>Rejected</text>}
+                                                }if(item.LoanStatusId != 1) {
+                                                    @Html.ActionLink("Update", "Update", new {id = item.Id}, new {@class = "btn btn-xs btn-primary"}) }
+                                            }
+                                            else
+                                            { <text>Rejected</text>}
                                             </td>
                                             <td>@item.Id</td>
                                             <td>

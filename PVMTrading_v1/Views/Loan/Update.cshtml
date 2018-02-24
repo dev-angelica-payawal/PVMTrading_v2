@@ -1,134 +1,113 @@
-﻿@using PVMTrading_v1.Models
-@model PVMTrading_v1.ViewModels.LoanViewModel
-
+﻿@model PVMTrading_v1.Models.LoanDuePayment
 
 @{
     ViewBag.Title = "Update";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="content-wrapper">
-    <h2>Details</h2>
 
-    <div>
-        <h4>Loan</h4>
+<h2>Update</h2>
+<script src="~/Content/jquery.min.js"></script>
+@using (Html.BeginForm("SaveUpdateLoan","Loan"))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>LoanDuePayment</h4>
         <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.Loan.Customer.FirstName)
-            </dt>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
 
-            <dd>
-                @Html.DisplayFor(model => model.Loan.Customer.FirstName)
-                @Html.DisplayFor(model => model.Loan.Customer.LastName)
-            </dd>
 
-                 
-            <div class="form-group">
-                @Html.LabelFor(model => model.Loan.LoanStatusId, "LoanStatusId", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("LoanStatusId", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.Loan.LoanStatusId, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.DueDateTime,  new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DueDateTime, new { @class = "form-control" ,@readonly=true  })
+                @Html.ValidationMessageFor(model => model.DueDateTime, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IsPaid, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.IsPaid,new {Value=true})
+                    @Html.ValidationMessageFor(model => model.IsPaid, "", new { @class = "text-danger" })
                 </div>
             </div>
+        </div>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Loan.ModeOfPayment.Label)
-            </dt>
+        <div class="form-group">
+            @Html.LabelFor(model => model.PenaltyAmount, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.PenaltyAmount, new {id="penalty", @class = "txt form-control", @readonly = true })
+                @Html.ValidationMessageFor(model => model.PenaltyAmount, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-            <dd>
-                @Html.DisplayFor(model => model.Loan.ModeOfPayment.Label)
-            </dd>
+        <div class="form-group">
+            @Html.LabelFor(model => model.TotalAmountDue, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.TotalAmountDue,  new {id="amountDue", @class = "txt form-control"  })
+                @Html.ValidationMessageFor(model => model.TotalAmountDue, "", new { @class = "text-danger" })
+                <input type="text" id="amount" style="display: none;" Value=@Model.TotalAmountDue/>
+            </div>
+        </div>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Loan.Product.Name)
-            </dt>
+        <div class="form-group">
+            @Html.LabelFor(model => model.OR, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.OR, new { @class = "txt form-control"  })
+                @Html.ValidationMessageFor(model => model.OR, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-            <dd>
-                @Html.DisplayFor(model => model.Loan.Product.Name)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Loan.Downpayment)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Loan.Downpayment)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Loan.LoanAmount)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Loan.LoanAmount)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Loan.Terms)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Loan.Terms)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Loan.InterestRate)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Loan.InterestRate)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Loan.DuePayment)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Loan.DuePayment)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Loan.LoanTotalPayment)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Loan.LoanTotalPayment)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Loan.Remarks)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Loan.Remarks)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Loan.Quantity)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Loan.Quantity)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Loan.ProductPrice)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Loan.ProductPrice)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Loan.LoanDateCreated)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Loan.LoanDateCreated)
-            </dd>
-
-        </dl>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
     </div>
+}
 
-</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
 
+
+
+<script>
+
+
+
+        $(document).ready(function () {
+
+            $(".txt").each(function () {
+
+                $(this).keyup(function () {
+                   
+                    StringCompare();
+
+
+                });
+            });
+
+        });
+   
+    //if discount if greater than orig amount
+    function StringCompare() {
+        var penalty = document.getElementById("penalty").value;
+      
+        var loanamount = 0;
+
+        var amount = document.getElementById("amount").value;
+      
+       
+        loanamount = +amount + +penalty;
+            document.getElementById("amountDue").value = loanamount;
+      
+
+    }
+    
+
+
+</script>

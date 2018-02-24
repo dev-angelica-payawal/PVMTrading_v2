@@ -92,6 +92,19 @@ namespace PVMTrading_v1
             
             ));
 
+            //bootstrap material design
+            bundles.Add(new StyleBundle("~/Content/material-design-css")
+                                    .Include("~/Content/vendor/bootstrap-material-design/css/google-font-roboto.css",
+                                             "~/Content/vendor/bootstrap-material-design/css/google-font-icon.css",
+                                             "~/Content/vendor/bootstrap-material-design/css/bootstrap-material-design.min.css"
+                ));
+            bundles.Add(new ScriptBundle("~/Content/material-design-js")
+                                    .Include("~/Content/vendor/bootstrap-material-design/js/jquery-3.1.0.min.js",
+                                             "~/Content/vendor/bootstrap-material-design/js/tether.min.js",
+                                             "~/Content/vendor/bootstrap-material-design/js/bootstrap-material-design.iife.min.js",
+                                             "~/Content/vendor/bootstrap-material-design/js/ie10-viewport-bug-workaround.js"
+
+                ));
         }
     }
 }
