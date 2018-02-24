@@ -14,10 +14,10 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <div id="dataTable_wrapper" class="dataTables_wrapper container-fluid">
+                        <div id="dataTable_wrapper" class="dataTables_wrapper">
 
 
-                            @Html.ActionLink("New Cash Transaction", "ProductList", "SearchProduct", new { @class = "btn btn-primary" }, null)
+                            @Html.ActionLink("New Cash Transaction", "ProductList", "SearchProduct",null, new { @class = "btn btn-primary" })
 
 
                             @if (!Model.Any())
@@ -28,44 +28,46 @@
                             {
                                 <table class="table table-bordered" id="cashtransact" style="margin: 0">
                                     <thead>
-                                        <tr>
-                                            <th>No.</th>
-                                            <th>Customer</th>
-                                            <th>Total Amount</th>
-                                            <th>Discount</th>
-                                            <th>Total Amount w/ Discount</th>
-                                            <th>Date</th>
-                                            <th>Remarks</th>
-                                            <th>OR</th>
-                                            <th>Void</th>
-                                            <th></th>
+                                    <tr>
+                                        <th>No.</th>
+                                        <th>Customer</th>
+                                        <th>Total Amount</th>
+                                        <th>Discount</th>
+                                        <th>Total Amount w/ Discount</th>
+                                        <th>Date</th>
+                                        <th>Remarks</th>
+                                        <th>OR</th>
+                                        <th>Void</th>
+                                        <th></th>
 
 
 
-                                        </tr>
+                                    </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach (var cash in Model)
-                                        {
+                                    @foreach (var cash in Model)
+                                    {
 
-                                            <tr>
-                                                <td>@cash.Id</td>
-                                                <td>@cash.Customer.FirstName @cash.Customer.LastName</td>
-                                                <td>@cash.OriginalTotalAmount</td>
-                                                <td>@cash.TotalDiscountedAmount</td>
-                                                <td>@cash.TotalAmount</td>
-                                                <td>@cash.CashTransactionDate</td>
-                                                <td>@cash.Remarks</td>
-                                                <td>@cash.OR</td>
-                                                <td>@cash.IsVoid</td>
-                                                <td>
-                                                    @*@Html.ActionLink("Void", "Delete", new { id = cash.Id })*@
-                                                    <button data-toggle="modal" data-target="#modalDisplay">
-                                                        Details
-                                                    </button>| @Html.ActionLink("Details", "Details", new { id = cash.Id })
+                                        <tr>
+                                            <td>@cash.Id</td>
+                                            <td>@cash.Customer.FirstName @cash.Customer.LastName</td>
+                                            <td>@cash.OriginalTotalAmount</td>
+                                            <td>@cash.TotalDiscountedAmount</td>
+                                            <td>@cash.TotalAmount</td>
+                                            <td>@cash.CashTransactionDate</td>
+                                            <td>@cash.Remarks</td>
+                                            <td>@cash.OR</td>
+                                            <td>@cash.IsVoid</td>
+                                            <td>
+                                                @Html.ActionLink("Void", "Delete", new { id = cash.Id }, new { @class = "btn btn-xs btn-primary" })
+                                                @*<button data-toggle="modal" data-target="#modalDisplay" class = "btn btn-xs btn-primary" >
+                                                    Details
+                                                </button>*@
+                                                <span class="btn btn-xs btn-primary" id="void_@cash.Id" onclick="createModal('@Url.Action("Details", "CashTransaction" , new {id=cash.Id })')">Details</span>
+
                                             </td>
-                                                <!-- Modal for Details-->
-                                                @*<div class="modal fade" id="modalDisplay" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                            <!-- Modal for Details-->
+                                            @*<div class="modal fade" id="modalDisplay" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
                                                         
@@ -73,28 +75,38 @@
                                                         </div>
                                                     </div>
                                                 </div>*@
-                                                <div class="modal fade" id="modalDisplay" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="modalDisplay">Cash Transaction View</h5>
-                                                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">×</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">@{Html.RenderAction("Details", "CashTransaction", new { id = cash.Id });}</div>
-                                                                <div class="modal-footer">
-                                                                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                                                    <a class="btn btn-primary">@Html.ActionLink("Void", "Delete", new { id = cash.Id })</a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                              
                                                 
-                                            </tr>
-                                        }
+                                        </tr>
+                                       @* <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="myModal">Cash Transaction View</h5>
+                                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">×</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">@{Html.RenderAction("Details", "CashTransaction", new { id = cash.Id });}</div>
+                                                  $1$  <div class="modal-footer">
+                                                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                                                        <a class="btn btn-primary">@Html.ActionLink("Void", "Delete", new { id = cash.Id })</a>
+                                                    </div>#1#
+                                                </div>
+                                            </div>
+                                        </div>*@
+                                    }
+
                                     </tbody>
+
                                 </table>
+                                <div class="modal fade" id="cashModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content" id="cashContent">
+                                        </div>
+
+                                    </div>
+                                </div>
                             }
                         </div>
                         </div>
@@ -110,8 +122,8 @@
 @section scripts{
     <script>
         function createModal(url){
-            $('#modelContent').load(url);
-            $('#myModal').modal('show');
+            $('#cashContent').load(url);
+            $('#cashModal').modal('show');
         }
     </script>
     <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>

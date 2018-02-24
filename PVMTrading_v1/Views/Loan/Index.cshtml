@@ -1,25 +1,27 @@
-﻿@model IEnumerable<PVMTrading_v1.Models.Loan>
+﻿
+
+
+
+@using PVMTrading_v1.Models
+@model IEnumerable<PVMTrading_v1.Models.Loan>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
-
 <div class="content-wrapper">
     <div class="container-fluid">
         <div class="card mb-3">
             <div class="card-header">
-                <h4>List of Lay Away Transactions</h4>
+                <h4>List of Loan</h4>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
                     <div id="dataTable_wrapper" class="dataTables_wrapper">
 
-
                         @Html.ActionLink("New Loan", "ProductList")
-
+                        <br />
                         @if (!Model.Any())
                         {
                             <p>We don't have any Transaction available yet.</p>
@@ -28,98 +30,147 @@
                         {
                             <table class="table table-bordered" id="cashtransact" style="margin: 0">
                                 <thead>
-                                    <tr>
-                                        <th>No.</th>
-                                        <th>@Html.DisplayNameFor(model => model.Customer.FirstName)</th>
-                                       <th>
-                                            @Html.DisplayNameFor(model => model.LoanStatus.Label)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.ModeOfPayment.Label)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.Downpayment)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.LoanAmount)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.Terms)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.InterestRate)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.DuePayment)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.LoanTotalPayment)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.Remarks)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.LoanDateCreated)
-                                        </th>
-                                        <th></th>
+                                <tr>
+                                    <th></th>
+                                <th>#</th>
+                                <th>Customer Name</th>
+                                <th>
+                                    Loan Status
+                                </th>
+                                <th>
+                                    Mode Of Payment
+                                </th>
+                                <th>
+                                    Product
+                                </th>
+                                <th>
+                                    Down payment
+                                </th>
+                                
+                                <th>
+                                    Loan Amount
+                                </th>
+                                <th>
+                                    Terms
+                                </th>
+                                <th>
+                                    Interest Rate
+                                </th>
+                                <th>
+                                    Due Payment
+                                </th>
+                                <th>
+                                    Total Amount Paid
+                                </th>
+                                <th>
+                                    Note
+                                </th>
+                                    <th>Product</th>
+                                <th>
+                                   Product Quantity
+                                </th>
+                                
+                                <th>
+                                    Product Price
+                                </th>
+                                <th>
+                                    Date Start
+                                </th>
+                               
 
-                                    
                                 </thead>
-                               @* <tbody>
-                                    @foreach (var loan in Model)
+                                <tbody>
+                                    @foreach (var item in Model)
                                     {
 
                                         <tr>
-                                            <td>@loan.Id</td>
-                                            <td>@loan.Customer.FirstName @cash.Customer.LastName</td>
-                                            <td>@loan.Product.Name</td>
-                                            <td>@loan.Quantity</td>
-                                            <td>@loan.TotalAmount</td>
-                                            <td>@loan.TotalPaidAmount</td>
-                                            <td>@loan.RemainingBalance</td>
-                                            <td>@loan.Remarks</td>
-                                            <td>@loan.IsVoid</td>
-                                            <td>
-                                                @Html.ActionLink("Void", "Delete", new { id = cash.Id }, new { @class = "btn btn-xs btn-primary" })
-                                                $1$
-                                                    <span class="btn btn-xs btn-primary" id="details_@cash.Id" onclick="createModal('@Url.Action("Details", "Details" , new {id=cash.Id })')">Details</span>
-                                                #1#
-                                                @Html.ActionLink("Details", "Details", new { id = cash.Id }, new { @class = "btn btn-xs btn-primary" })
-
-                                                @Html.ActionLink("Update", "Update", new { id = cash.Id }, new { @class = "btn btn-xs btn-primary" })
+                                            <td>@if(item.LoanStatusId != 3) { 
+                                                    @Html.ActionLink("Void", "Delete", new {id = item.Id}, new {@class = "btn btn-xs btn-primary"})
+                                                    @Html.ActionLink("Details", "Details", new {id = item.Id}, new {@class = "btn btn-xs btn-primary"})
+                                                if(@item.LoanStatusId != 2) { 
+                                                    @Html.ActionLink("Approve", "Approve", new {id = item.Id}, new {@class = "btn btn-xs btn-primary"})
+                                                }
+                                                    @Html.ActionLink("Update", "Update", new {id = item.Id}, new {@class = "btn btn-xs btn-primary"})
+                                                }
+                                                else { <text>Rejected</text>}
                                             </td>
+                                            <td>@item.Id</td>
+                                            <td>
+                                                @item.Customer.FirstName @item.Customer.LastName
+                                            </td>
+                                            <td>
+                                                @item.LoanStatus.Label
+                                            </td>
+                                            <td>
+                                                @item.ModeOfPayment.Label
+                                            </td>
+                                            <td>
+                                                @item.Product.Name
+                                            </td>
+                                            <td>
+                                                @item.Downpayment
+                                            </td>
+                                            <td>
+                                                @item.LoanAmount
+                                            </td>
+                                            <td>
+                                                @item.Terms
+                                            </td>
+                                            <td>
+                                                @item.InterestRate
+                                            </td>
+                                            <td>
+                                                @item.DuePayment
+                                            </td>
+                                            <td>
+                                                @item.LoanTotalPayment
+                                            </td>
+                                            <td>
+                                                @item.Remarks
+                                            </td>
+                                            <td>@item.Product.Name</td>
+                                            <td>
+                                                @item.Quantity
+                                            </td>
+                                            <td>
+                                                @item.ProductPrice
+                                            </td>
+                                            <td>
+                                                @item.LoanDateCreated
+                                            </td>
+
 
                                         </tr>
                                     }
-                                </tbody>*@
+                                </tbody>
                             </table>
-                                <div class="modal fade" id="layawayModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content" id="layawayContent">
-                                        </div>
+                            <div class="modal fade" id="layawayModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+                                <div class="modal-dialog">
+                                    <div class="modal-content" id="layawayContent">
                                     </div>
                                 </div>
+                            </div>
                         }
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
+</div>
 
 
 <link href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
 @section scripts{
+    <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script>
         function createModal(url){
             $('#layawayContent').load(url);
             $('#layawayModal').modal('show');
         }
-    </script>
-    <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-    <script>
+    
+   
+    
         $(document).ready(function() {
             $('#cashtransact').DataTable({
                 "column": [
@@ -132,8 +183,3 @@
         });
     </script>
 }
-
-
-        
-  
-

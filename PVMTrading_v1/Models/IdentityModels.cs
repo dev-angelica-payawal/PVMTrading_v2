@@ -72,6 +72,7 @@ namespace PVMTrading_v1.Models
         public DbSet<LayAwayTransactionReceipt> LayAwayTransactionReceipts{ get; set; }
 
         public DbSet<Loan> Loans { get; set; }
+        public DbSet<LoanDuePayment> LoanDuePayments { get; set; }
 
 
 

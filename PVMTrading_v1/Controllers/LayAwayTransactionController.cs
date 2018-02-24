@@ -129,7 +129,7 @@ namespace PVMTrading_v1.Controllers
         public ActionResult LessQuantity(int id, int quantity)
         {
             var tempCart = _context.TempCarts.SingleOrDefault(p => p.Id == id);
-            if (tempCart != null && tempCart.Quantity > 0)
+            if (tempCart != null && tempCart.Quantity > 1)
             {
                 --tempCart.Quantity;
                 _context.SaveChanges();
@@ -174,13 +174,11 @@ namespace PVMTrading_v1.Controllers
             layAway.TotalPaidAmount =0 ;
             _context.LayAwayTransactions.Add(layAway);
             _context.SaveChanges();
-            return RedirectToAction("LayAwayTransactionSummary");
+            return RedirectToAction("LayAwayTransactionSummary",new {cashId});
         }
 
-        public ActionResult LayAwayTransactionSummary()
+        public ActionResult LayAwayTransactionSummary(string layAwayId)
         {
-            var count = _context.LayAwayTransactions.Count();
-            var layAwayId = Convert.ToString(DateTime.Today.Year) + "00" + Convert.ToString(count) + Convert.ToString(DateTime.Today.Day);
             var layAwayTransaction = _context.LayAwayTransactions.SingleOrDefault(c => c.Id == layAwayId);
             var customer = _context.Customers.SingleOrDefault(c => c.Id == layAwayTransaction.CustomerId);
             var product = _context.Products.SingleOrDefault(p => p.Id == layAwayTransaction.ProductId);

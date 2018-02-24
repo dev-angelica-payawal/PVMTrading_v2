@@ -1,0 +1,223 @@
+﻿@using PVMTrading_v1.Models
+@model PVMTrading_v1.ViewModels.LoanViewModel
+
+@{
+    ViewBag.Title = "Loan Summary";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+   
+<script src="~/Content/jquery.min.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+
+<div class="content-wrapper">
+   
+
+@using (Html.BeginForm("Save","Loan"))
+{
+    @Html.AntiForgeryToken()
+        <div class="form-horizontal">
+            <h4>Loan Summary</h4>
+            <hr />
+         
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Loan.Downpayment, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Loan.Downpayment,  new { @class = "txt form-control", id = "DownPayment" })
+                    @Html.ValidationMessageFor(model => model.Loan.Downpayment, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Loan.LoanAmount,  new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Loan.LoanAmount, new { @class = "txt form-control", @readonly = true, id = "LoanAmount" })
+                    @Html.ValidationMessageFor(model => model.Loan.LoanAmount, "", new { @class = "text-danger" })
+                    <input type="text" class="hidden" Value="@Model.Loan.LoanAmount" id="loan" style="display: none;" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Loan.ModeOfPaymentId, "Mode of Payment",  new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(m => m.Loan.ModeOfPaymentId, new SelectList(Model.ModeOfPayment, "Id", "Label"), "Select Mode of Payment", new { @class = "form-control", @readonly = true, id = "modeOfPayment" })
+                    @Html.ValidationMessageFor(model => model.Loan.ModeOfPaymentId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Loan.Terms, "Number of Months To Pay", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Loan.Terms, new { @class = "txt form-control", id ="terms" } )
+                    @Html.ValidationMessageFor(model => model.Loan.Terms, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Loan.InterestRate, "Interest Rate", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Loan.InterestRate,  new { @class = "form-control", @readonly = true })%
+                    @Html.ValidationMessageFor(model => model.Loan.InterestRate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Loan.DuePayment, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Loan.DuePayment,  new { @class = "form-control", @readonly = true, id = "duepayment" } )
+                    @Html.ValidationMessageFor(model => model.Loan.DuePayment, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Loan.LoanStatusId, "Loan Status", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(m => m.Loan.LoanStatusId, new SelectList(Model.LoanStatus, "Id", "Label"), "Select Loan Status", new { @onchange= "sumDuePayment();", @class = "form-control", @readonly = true })
+                    @Html.ValidationMessageFor(model => model.Loan.LoanStatusId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Loan.Remarks, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.Loan.Remarks,   new { @class = "form-control"  })
+                    @Html.ValidationMessageFor(model => model.Loan.Remarks, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Loan.CustomerId, "Customer Name", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Customer.FirstName, null, new { @class = "form-control", @readonly = true })
+                    @Html.TextBoxFor(model => model.Customer.MiddleName, null, new { @class = "form-control", @readonly = true })
+                    @Html.TextBoxFor(model => model.Customer.LastName, null, new { @class = "form-control", @readonly = true })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Loan.Product, "Product Info", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Product.Name, null, new { @class = "form-control", @readonly = true })
+                    <text>Product Model</text>
+                    @Html.TextBoxFor(model => model.Product.Model, null, new { @class = "form-control", @readonly = true })
+                    @Html.LabelFor(model => model.Loan.Quantity, "Product Quantity", new { @class = "control-label col-md-2" })
+
+                    @Html.TextBoxFor(model => model.Loan.Quantity, null, new { @class = "form-control", @readonly = true })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Loan.ProductPrice, "Product Price", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Loan.ProductPrice, null, new { @class = "form-control", @readonly = true })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Loan.LoanDateCreated, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Loan.LoanDateCreated, new { @class = "form-control", @readonly = true } )
+                </div>
+            </div>
+            @Html.HiddenFor(loan => loan.Loan.ProductId)
+            @Html.HiddenFor(loan => loan.Loan.CustomerId)
+            @Html.HiddenFor(loan => loan.Loan.Id)
+
+
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+        
+}
+</div>
+    
+
+
+
+
+
+<script>
+
+
+    $(document).ready(function () {
+
+        $(".txt").each(function () {
+
+            $(this).keyup(function () {
+                sumDuePayment();
+                StringCompare();
+
+
+            });
+        });
+
+    });
+   
+    //if discount if greater than orig amount
+    function StringCompare() {
+        var downpayment = document.getElementById("DownPayment").value;
+      
+        var loanamount = 0;
+
+        var loan = document.getElementById("loan").value;
+      
+        if (parseFloat(downpayment) > parseFloat(loan)) {
+            document.getElementById("DownPayment").value = 0;
+        } else {
+            loanamount = +loan - +downpayment;
+            document.getElementById("LoanAmount").value = loanamount;
+        }
+
+
+    }
+
+    function sumDuePayment() {
+        var modeOfpayment = 0;
+        
+        switch (+document.getElementById("modeOfPayment").value) {
+        case 1:
+            modeOfpayment = 30;
+            break;
+        case 2:
+            modeOfpayment = 4;
+            break;
+        case 3:
+            modeOfpayment = 2;
+            break;
+        case 4:
+            modeOfpayment = 1;
+            break;
+        }
+
+        var downpayment = document.getElementById("DownPayment").value;
+        var loanamount = document.getElementById("LoanAmount").value;
+        var duepayment = 0;
+        var terms = document.getElementById("terms").value;
+
+        if (downpayment > 0 && terms > 0) {
+           
+            duepayment = (((+terms * 0.04) * +loanamount) + +loanamount) / (+terms * modeOfpayment);
+        }
+        document.getElementById("duepayment").value = duepayment;
+    }
+
+
+
+
+</script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
+
+

@@ -264,6 +264,29 @@
     <Compile Include="Migrations\201802240017182_LoanTable.Designer.cs">
       <DependentUpon>201802240017182_LoanTable.cs</DependentUpon>
     </Compile>
+<<<<<<< HEAD
+=======
+    <Compile Include="Migrations\201802240052311_AddCustomerForeign.cs" />
+    <Compile Include="Migrations\201802240052311_AddCustomerForeign.Designer.cs">
+      <DependentUpon>201802240052311_AddCustomerForeign.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802240748162_AddProduct.cs" />
+    <Compile Include="Migrations\201802240748162_AddProduct.Designer.cs">
+      <DependentUpon>201802240748162_AddProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802240922251_ChangeColumnNameForLoanToProductPrice.cs" />
+    <Compile Include="Migrations\201802240922251_ChangeColumnNameForLoanToProductPrice.Designer.cs">
+      <DependentUpon>201802240922251_ChangeColumnNameForLoanToProductPrice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802241645064_AddLoanDuePayment.cs" />
+    <Compile Include="Migrations\201802241645064_AddLoanDuePayment.Designer.cs">
+      <DependentUpon>201802241645064_AddLoanDuePayment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802241706171_addOrToDuePayment.cs" />
+    <Compile Include="Migrations\201802241706171_addOrToDuePayment.Designer.cs">
+      <DependentUpon>201802241706171_addOrToDuePayment.cs</DependentUpon>
+    </Compile>
+>>>>>>> 900af656452f53b32388455d413a7a49ed4fe62c
     <Compile Include="Models\archieved\LoadApplicantSouceOfIncom.cs" />
     <Compile Include="Models\TypeOfTransaction.cs" />
     <Compile Include="ViewModels\Item.cs" />
@@ -520,6 +543,7 @@
     <Compile Include="ViewModels\CartRemoveModel.cs" />
     <Compile Include="ViewModels\CartViewModel.cs" />
     <Compile Include="ViewModels\LayAwayTransactionViewModel.cs" />
+    <Compile Include="ViewModels\LoanViewModel.cs" />
     <Compile Include="ViewModels\RoleViewModel.cs" />
     <Compile Include="Scripts\Brand.cs" />
     <Compile Include="Models\BrandType.cs" />
@@ -527,7 +551,7 @@
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\archieved\DeliveryCharge.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\LoanProductItem.cs" />
+    <Compile Include="Models\archieved\LoanProductItem.cs" />
     <Compile Include="Models\Loan.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Product.cs" />
@@ -894,6 +918,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Resources\404.png" />
+    <Content Include="Resources\404_1.gif" />
     <Content Include="Resources\css\bootstrap.css" />
     <Content Include="Resources\css\etalage.css" />
     <Content Include="Resources\css\form.css" />
@@ -1311,14 +1336,22 @@
     <Content Include="Views\LayAwayTransaction\Update.cshtml" />
 
     <Content Include="Views\LoanTransaction\Index.cshtml" />
+    <Content Include="Views\Loan\SearchCustomer.cshtml" />
     <Content Include="Views\Loan\Cart.cshtml" />
     <Content Include="Views\Loan\ProductList.cshtml" />
     <Content Include="Views\Loan\Index.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\Loan\Cart.cshtml" />
     <Content Include="Views\Loan\ProductList.cshtml" />
     <Content Include="Views\Loan\Index.cshtml" />
     <Content Include="Views\Loan\SearchCustomer.cshtml" />
 
+=======
+    <Content Include="Views\Loan\LoanSummary.cshtml" />
+    <Content Include="Views\Loan\Details.cshtml" />
+    <Content Include="Views\Loan\Update.cshtml" />
+    <Content Include="Views\Loan\Approve.cshtml" />
+>>>>>>> 900af656452f53b32388455d413a7a49ed4fe62c
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1536,6 +1569,24 @@
     <EmbeddedResource Include="Migrations\201802240017182_LoanTable.resx">
       <DependentUpon>201802240017182_LoanTable.cs</DependentUpon>
     </EmbeddedResource>
+<<<<<<< HEAD
+=======
+    <EmbeddedResource Include="Migrations\201802240052311_AddCustomerForeign.resx">
+      <DependentUpon>201802240052311_AddCustomerForeign.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802240748162_AddProduct.resx">
+      <DependentUpon>201802240748162_AddProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802240922251_ChangeColumnNameForLoanToProductPrice.resx">
+      <DependentUpon>201802240922251_ChangeColumnNameForLoanToProductPrice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802241645064_AddLoanDuePayment.resx">
+      <DependentUpon>201802241645064_AddLoanDuePayment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802241706171_addOrToDuePayment.resx">
+      <DependentUpon>201802241706171_addOrToDuePayment.cs</DependentUpon>
+    </EmbeddedResource>
+>>>>>>> 900af656452f53b32388455d413a7a49ed4fe62c
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
