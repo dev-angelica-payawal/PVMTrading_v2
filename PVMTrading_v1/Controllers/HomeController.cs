@@ -32,6 +32,10 @@ namespace PVMTrading_v1.Controllers
             var customer = _context.Customers.Include(s => s.Sex).ToList();
            var prod = _context.Products.Count();
             var cus = _context.Customers.Count();
+            var pending = _context.Loans.Count(c => c.LoanStatusId == 1);
+            var approved = _context.Loans.Count(p => p.LoanStatusId == 2);
+            ViewBag.Pending = pending;
+            ViewBag.Approved = approved;
             ViewBag.Customer = cus;
             ViewBag.Product = prod;
 
