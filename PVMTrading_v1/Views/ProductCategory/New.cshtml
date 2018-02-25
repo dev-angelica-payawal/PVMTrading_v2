@@ -12,8 +12,15 @@
 {
     @Html.AntiForgeryToken()
     <div class="content-wrapper">
+    <div class="container-fluid">
+    <div class="card mb-3">
+
+    <div class="card mb-3">
+        <div class="card-header">
+            <h5>New Product Category</h5>
+        </div>
         <div class="form-horizontal">
-            <h4>New Product Category</h4>
+            
             
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
@@ -31,7 +38,10 @@
             </div>
         </div>
         </div>
-        }
+            </div>
+        </div>
+    </div>
+    }
 
         <div>
             @Html.ActionLink("Back to List", "Index")
