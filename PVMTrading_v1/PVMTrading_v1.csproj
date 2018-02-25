@@ -1231,7 +1231,6 @@
     <Content Include="Views\Shared\AuthorizeFailed.cshtml" />
     <Content Include="Views\SearchProduct\Cart.cshtml" />
     <Content Include="Views\CashTransaction\Index.cshtml" />
-    <Content Include="Views\Customer\CustomerReg.cshtml" />
     <Content Include="Views\LandingPage\Index.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Customer\CustomerProfile.cshtml" />
@@ -1257,6 +1256,7 @@
     <Content Include="Views\Loan\Update.cshtml" />
     <Content Include="Views\Loan\TrackDuePayment.cshtml" />
     <Content Include="Views\Reports\Index.cshtml" />
+    <Content Include="Views\Customer\CustomerReg.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

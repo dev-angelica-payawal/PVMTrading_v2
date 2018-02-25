@@ -238,26 +238,7 @@
                                         <th>Mobile Number</th>
                                         <th>Sex</th>
                                         <th>Registered Date Created</th>
-                                        @*
-                                            <th>Address</th>*@
-
-
-                                        @*
-                                            <th>Telephone</th>
-
-                                              <th>Telephone</th>
-
-                                              <th>Email Address</th>
-                                              <th>Birth Date</th>
-                                              <th>Civil Status</th>
-
-                                              <th>Place Of Birth</th>
-                                              <th>Nationality</th>
-                                              <th>Tax Identification Number</th>
-                                              <th>Customer Type</th>
-
-                                              <th>Address</th>
-                                              <th>Zip Code</th>*@
+                                       
 
                                     </tr>
                                 </thead>
@@ -273,24 +254,6 @@
                                             <td>@customer.Mobile</td>
                                             <td>@customer.Sex.Label</td>
                                             <td>@customer.RegisteredDateCreated.ToShortDateString()</td>
-                                            @*<td>@customer.CustomerCompleInfo.Telephone</td>
-                                                <td>@customer.CustomerCompleInfo.Email</td>
-                                                <td>@customer.CustomerCompleInfo.Birthdate</td>
-                                                <td>@customer.CustomerCompleInfo.CivilStatus.Label</td>
-                                                <td>@customer.CustomerCompleInfo.PlaceOfBirth</td>
-                                                <td>@customer.CustomerCompleInfo.Nationality</td>
-                                                <td>@customer.CustomerCompleInfo.TaxIdentificationNumber</td>
-                                                <td>@customer.CustomerCompleInfo.CustomerType.Label</td>
-                                                <td>@customer.CustomerCompleInfo.LotHouseNumberAndStreet, @customer.CustomerCompleInfo.Barangay, @customer.CustomerCompleInfo.CityMunicipality, @customer.CustomerCompleInfo.Province, @customer.CustomerCompleInfo.Country</td>"
-                                                <td>@customer.CustomerCompleInfo.ZipCode</td>#1#*@
-                                            <td>
-                                                @*@Html.ActionLink("Edit", "Edit", new { id = customer.Id }, null)*@ @*<span class="btn btn-xs btn-primary" id="edit_@customer.Id" onclick="createModal('@Url.Action("Edit", "Customer" , new {id=customer.Id })')">Edit</span> | @Html.ActionLink("Delete", "Delete", new { id = customer.Id }, null) | @#1#Html.ActionLink("Details", "Details", "Customer", new { id = customer.Id }, null)#1#  <span class="btn btn-xs btn-primary" id="edit_@customer.Id" onclick="createModal('@Url.Action("Details", "Customer" , new {id=customer.Id })')">Details</span>*@
-
-
-
-
-
-                                                @* <td>@Html.ActionLink("OderByCustomer", "OderByCustomer")</td>*@
                                         </tr>
                                     }
                                 </tbody>
@@ -355,7 +318,7 @@
     <footer class="sticky-footer">
         <div class="container">
             <div class="text-center">
-                <small>Copyright © Your Website 2017</small>
+                <small>Copyright @DateTime.Now.Year</small>
             </div>
         </div>
     </footer>
@@ -365,47 +328,27 @@
     </a>
 
 </div>
-<link href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+
 @section scripts{
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js">
-    </script>
+    <script src="~/Scripts/bootbox.min.js"></script>
+    
     <script>
         function createModal(url) {
             $('#modelContent').load(url);
             $('#myModal').modal('show');
         }
     </script>
-    <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
     <script>
+    
         $(document).ready(function () {
-            $('#customers').DataTable({/*
-            "ajax": {
-                "url": "/customer/Loaddata",
-                "type": "GET",
-                "datatype":"json"
-            },*/
+            $('#customers').DataTable({
                 "column": [
                     { "autowidth": true },
-                    { "ScrollY": (0.6 * $(window).height()) },
-
-
-                    /* { "data": "FirstName", "autowidth": true },
-                     { "data": "MiddleName", "autowidth": true },
-                     { "data": "LastName", "autowidth": true },
-                     { "data": "NameExtension", "autowidth": true },
-                     { "data": "Mobile", "autowidth": true },
-                      { "data": "Telephone", "autowidth": true },
-                      { "data": "Sex.Label", "autowidth": true },
-                     { "data": "RegisteredDateCreated", "autowidth": true },
-                     { "data": "PlaceOfBirth", "autowidth": true },
-                     { "data": "Nationality", "autowidth": true },
-                     { "data": "TaxIdentificationNumber", "autowidth": true },
-                     { "data": "CustomerType", "autowidth": true },
-                     { "data": "ZipCode", "autowidth": true }
- */
+                    { "ScrollY": (0.6 * $(window).height()) }
 
                 ]
-
 
 
             });

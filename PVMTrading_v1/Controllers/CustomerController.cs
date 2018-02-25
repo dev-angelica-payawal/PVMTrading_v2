@@ -289,50 +289,44 @@ namespace PVMTrading_v1.Controllers
         }
 
         [CustomAuthorize(Roles = "Admin,Cashier")]
-
         public ActionResult CustomerReg()
         {
-            
-            var viewModel = new CustomerViewModel
+            var customersTypes = _context.CustomerTypes.ToList();
+            var civilstatus = _context.CivilStatus.ToList();
+            var sex = _context.Sex.ToList();
+          
+
+            var viewModels = new CustomerViewModel
             {
-                Sexs = _context.Sex.ToList(),
-                
+                CustomerTypes = customersTypes,
+                CivilStatuses = civilstatus,
+                Sexs = sex,
+               
             };
-            return View(viewModel);
+
+
+            return View(viewModels);
         }
 
         [CustomAuthorize(Roles = "Admin,Cashier")]
 
-        public ActionResult CustomerReg(Customer customer,CustomerCompleInfo customerCompleInfo)
+        public ActionResult SaveReg(CustomerViewModel cvm)
         {
-
-            var isCustomerExist =
-                 _context.Customers.Count(c => c.FirstName == customer.FirstName && c.LastName == customer.LastName);
-            if (customer.Id == 0)
+            if (_context.Customers.Count(c => c.FirstName == cvm.Customer.FirstName && c.LastName == cvm.Customer.LastName) ==0)
             {
-                if (isCustomerExist != 0)
-                {
-                    TempData["notice"] = "Successfully registered";
-                    return RedirectToAction("New");
-                }
-                else
-                {
-                    
-                    customer.RegisteredDateCreated = DateTime.Now;
-                    _context.Customers.Add(customer);
+                cvm.Customer.RegisteredDateCreated = DateTime.Now;
+                _context.Customers.Add(cvm.Customer);
 
-                    if (customerCompleInfo.Id == 0)
-                    {
-                        customerCompleInfo.CustomerId = customer.Id;
-                        _context.CustomerCompleInfos.Add(customerCompleInfo);
-                    }
-                }
+                var customerId=_context.Customers.Count();
+                cvm.CustomerCompleInfo.CustomerId = customerId;
+                cvm.CustomerCompleInfo.CivilStatusId = 1;
+                cvm.CustomerCompleInfo.CustomerTypeId = 1;
+                _context.CustomerCompleInfos.Add(cvm.CustomerCompleInfo);
             }
 
             _context.SaveChanges();
-          
 
-            return View();
+            return RedirectToAction("Index");
         }
     }
 }
