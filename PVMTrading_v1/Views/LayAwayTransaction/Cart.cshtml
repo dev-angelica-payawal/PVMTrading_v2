@@ -64,7 +64,7 @@
                                 <div class="cart-item-info">
                                     <h3>@item.Product.Name<span>Model :@item.Product.Model</span></h3>
                                     <h4>&#8369; @item.ProductPrice</h4>
-                                    <p class="qty">Qty :@Html.ActionLink("-","LessQuantity",new {id=item.Id,quantity = item.Product.AvailableForSelling},new { @class = "btn btn-xs btn-primary" })|   @item.Quantity   |@Html.ActionLink("+", "AddQuantity", new { id = item.Id, quantity = item.Product.AvailableForSelling }, new { @class = "btn btn-xs btn-primary" })  </p>
+                                    <p class="qty">Qty :@Html.ActionLink("-","LessQuantity","LayAwayTransaction",new {id=item.Id,quantity = item.Product.AvailableForSelling},new { @class = "btn btn-xs btn-primary" })|   @item.Quantity   |@Html.ActionLink("+", "AddQuantity","LayAwayTransaction", new { id = item.Id, quantity = item.Product.AvailableForSelling }, new { @class = "btn btn-xs btn-primary" })  </p>
                                     <p><span>Avail Prod: </span> @item.Product.AvailableForSelling</p>
                                 </div>
 

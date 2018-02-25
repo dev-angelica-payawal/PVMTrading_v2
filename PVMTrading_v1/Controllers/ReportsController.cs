@@ -158,7 +158,7 @@ namespace PVMTrading_v1.Controllers
             Response.ClearContent();
             Response.Buffer = true;
             // set the header
-            Response.AddHeader("content-disposition", "attachment;filename = LayAway.xls");
+            Response.AddHeader("content-disposition", "attachment;filename = Loan.xls");
             Response.ContentType = "application/ms-excel";
             Response.Charset = "";
             // create HtmlTextWriter object with StringWriter
