@@ -318,11 +318,8 @@ namespace PVMTrading_v1.Controllers
             _context.SaveChanges();
             return View(duePayment);
           
-                        }
-<<<<<<< HEAD
-=======
+                 }
 
->>>>>>> b34764e237972802a565eec386eba241374ad091
         [CustomAuthorize(Roles = "Admin,Cashier")]
         public ActionResult SaveUpdateLoan(LoanDuePayment ldp)
         {
@@ -335,7 +332,6 @@ namespace PVMTrading_v1.Controllers
             var loan = _context.Loans.SingleOrDefault(c => c.Id == loanDue.LoanId);
             loan.LoanTotalPayment = loan.LoanTotalPayment + ldp.TotalAmountDue;
 
-<<<<<<< HEAD
         /*  public ActionResult Update(LayAwayTransactionReceipt layAway)
              {
               var transact = _context.LayAwayTransactions.SingleOrDefault(c => c.Id == layAway.LayAwayTransactionId);
@@ -346,8 +342,7 @@ namespace PVMTrading_v1.Controllers
                                                 }*/
         
 
-=======
->>>>>>> b34764e237972802a565eec386eba241374ad091
+
             var DueDate = new LoanDuePayment();
             DueDate.LoanId = loanDue.LoanId;
             if (loan.ModeOfPaymentId == 1)
@@ -405,14 +400,7 @@ namespace PVMTrading_v1.Controllers
                     return View(loandue);
 
         }
-        /*  public ActionResult Update(LayAwayTransactionReceipt layAway)
-           {
-            var transact = _context.LayAwayTransactions.SingleOrDefault(c => c.Id == layAway.LayAwayTransactionId);
-             transact.TotalPaidAmount = transact.TotalPaidAmount + layAway.AmountPaid;
-             _context.LayAwayTransactionReceipts.Add(layAway);
-                                  _context.SaveChanges();
-                                  return View();
-                                              }*/
+      
         public ActionResult CreateTrackDuePayment(LoanDuePayment ldp)
         {
             var loanDue = _context.LoanDuePayments.SingleOrDefault(c => c.Id == ldp.Id);
@@ -456,24 +444,12 @@ namespace PVMTrading_v1.Controllers
             return RedirectToAction("Details",new {loan.Id});
         }
 
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-            return;
-        }*/
-=======
->>>>>>> b34764e237972802a565eec386eba241374ad091
-
+        
 
         public ActionResult TrackDuePayment()
         {
             var trackDue = _context.LoanDuePayments.Include(c => c.Loan).ToList();
             return View();
         }
-
-<<<<<<< HEAD
-
-=======
->>>>>>> b34764e237972802a565eec386eba241374ad091
-    }
+}
 }

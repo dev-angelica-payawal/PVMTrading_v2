@@ -133,7 +133,7 @@ namespace PVMTrading_v1.Controllers
 
                 _context.SaveChanges();
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Cart");
         }
         [CustomAuthorize(Roles = "Admin,Cashier")]
 
@@ -146,7 +146,7 @@ namespace PVMTrading_v1.Controllers
                 _context.SaveChanges();
             }
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Cart");
         }
 
 
