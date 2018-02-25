@@ -5,11 +5,16 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="content-wrapper">
-    <div class="container-fluid">
-        <h2>List of Brand Name</h2>
+<div class="container-fluid">
+<div class="card mb-3">
+
+    <div class="card mb-3">
+        <div class="card-header">
+            <h3>List of Brand Name</h3>
+        </div>
 
         <p>
-            @Html.ActionLink("Create New", "New")
+            @Html.ActionLink("Create New", "New", null, new { @class = "btn btn-primary" })
         </p>
         <table class="table">
             <tr>
@@ -41,5 +46,7 @@
 
 
         </table>
+    </div>
+</div>
     </div>
 </div>

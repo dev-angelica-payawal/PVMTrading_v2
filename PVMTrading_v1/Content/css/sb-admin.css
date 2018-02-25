@@ -118,8 +118,11 @@ body.fixed-nav {
       flex-direction: column;
       margin-top: 56px; }
       #mainNav .navbar-collapse .navbar-sidenav > .nav-item {
-        width: 250px;
-        padding: 0; }
+        width: 235px;
+          padding-top: 15px;
+          padding-right: 0px;
+          padding-bottom: 15px;
+          padding-left: 5px; }
         #mainNav .navbar-collapse .navbar-sidenav > .nav-item > .nav-link {
           padding: 1em; }
         #mainNav .navbar-collapse .navbar-sidenav > .nav-item .sidenav-second-level,

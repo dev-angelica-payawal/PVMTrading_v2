@@ -10,11 +10,17 @@
 {
     @Html.AntiForgeryToken()
     <div class="content-wrapper">
-        <div class="form-horizontal">
+    <div class="container-fluid">
+    <div class="card mb-3">
+
+        <div class="card mb-3">
+            <div class="card-header">
+                <h4>Create New Brand Name</h4>
+            </div>
 
             <div class="form-horizontal">
-                <h4>Create New Brand Name</h4>
-                <hr />
+                
+               
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
                 <div class="form-group">
@@ -42,6 +48,8 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
         </div>
     </div>
 }

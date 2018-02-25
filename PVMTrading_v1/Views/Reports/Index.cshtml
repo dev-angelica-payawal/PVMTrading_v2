@@ -4,9 +4,27 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
 
-@Html.ActionLink("Inventory Report","ProductsReports")
-@Html.ActionLink("Cash Transaction Report", "CashTransactionReport")
-@Html.ActionLink("Lay Away Transaction Report", "LayAwayTransactionReport")
-@Html.ActionLink("Loan Transaction Report", "Loan")
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <div class="card mb-3">
+
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h4>Reports</h4>
+                </div>
+                <div class="card-body">
+                    <h5>Details</h5>
+                    <hr />
+                    For Printing Transaction Reports.
+                    <hr />
+                </div>
+
+                @Html.ActionLink("Inventory Report", "ProductsReports", null, new { @class = "btn btn-xs btn-primary" })
+            @Html.ActionLink("Cash Transaction Report", "CashTransactionReport", null, new { @class = "btn btn-xs btn-primary" })
+            @Html.ActionLink("Lay Away Transaction Report", "LayAwayTransactionReport", null, new { @class = "btn btn-xs btn-primary" })
+            @Html.ActionLink("Loan Transaction Report", "Loan", null, new { @class = "btn btn-xs btn-primary" })
+        </div>
+    </div>
+</div>
+</div>
